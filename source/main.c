@@ -13,6 +13,7 @@
 #define SCREEN_WIDTH  400
 #define SCREEN_HEIGHT 240
 #define CHARACTER_SPEED 8
+#define CHARACTER_HP 10
 
 // Simple sprite struct
 typedef struct
@@ -25,6 +26,8 @@ static C2D_SpriteSheet spriteSheet;
 static Sprite sprites[MAX_SPRITES];
 static Sprite mainCharacter;
 static size_t numSprites = MAX_SPRITES/2;
+static int currentSpeed;
+static int currentHp;
 
 //---------------------------------------------------------------------------------
 static void initSprites() {
@@ -50,6 +53,11 @@ C2D_SpriteSetPos(&mainCharacter.spr, rand() % SCREEN_WIDTH, rand() % SCREEN_HEIG
 C2D_SpriteSetRotation(&mainCharacter.spr, C3D_Angle(rand()/(float)RAND_MAX));
 }
 
+static void initCharacter(){
+	currentSpeed = CHARACTER_SPEED;
+	currentHp = CHARACTER_HP;
+}
+
 //---------------------------------------------------------------------------------
 static void moveSprites() {
 //---------------------------------------------------------------------------------
@@ -72,26 +80,42 @@ static void moveSprites() {
 
 static void moveUp(){
 	if(!(mainCharacter.spr.params.pos.y<=0)){
-		mainCharacter.spr.params.pos.y = mainCharacter.spr.params.pos.y - CHARACTER_SPEED;
+		mainCharacter.spr.params.pos.y = mainCharacter.spr.params.pos.y - currentSpeed;
 	}
 }
 
 static void moveDown(){
 	if(!(mainCharacter.spr.params.pos.y>=SCREEN_HEIGHT)){
-		mainCharacter.spr.params.pos.y = mainCharacter.spr.params.pos.y + CHARACTER_SPEED;
+		mainCharacter.spr.params.pos.y = mainCharacter.spr.params.pos.y + currentSpeed;
 	}
 }
 
 static void moveRight(){
 	if(!(mainCharacter.spr.params.pos.x>=SCREEN_WIDTH)){
-		mainCharacter.spr.params.pos.x = mainCharacter.spr.params.pos.x + CHARACTER_SPEED;
+		mainCharacter.spr.params.pos.x = mainCharacter.spr.params.pos.x + currentSpeed;
 	}
 }
 
 static void moveLeft(){
 	if(!(mainCharacter.spr.params.pos.x<=0)){
-		mainCharacter.spr.params.pos.x = mainCharacter.spr.params.pos.x - CHARACTER_SPEED;
+		mainCharacter.spr.params.pos.x = mainCharacter.spr.params.pos.x - currentSpeed;
 	}
+}
+//Logica del disparo del personaje
+static void shootUp(){
+
+}
+
+static void shootDown(){
+
+}
+
+static void shootRight(){
+
+}
+
+static void shootLeft(){
+
 }
 
 //---------------------------------------------------------------------------------
@@ -118,6 +142,9 @@ int main(int argc, char* argv[]) {
 	printf("\x1b[8;1HPress Up to increment sprites");
 	printf("\x1b[9;1HPress Down to decrement sprites");
 
+	//iniciar Stats Personaje
+	initCharacter();
+
 	// Main loop
 	while (aptMainLoop())
 	{
@@ -130,9 +157,12 @@ int main(int argc, char* argv[]) {
 		}
 			
 		u32 kHeld = hidKeysHeld();
+
+		//Programar movimiento
 		if (kHeld & KEY_UP){
 			moveUp();
 		}
+
 		if (kHeld & KEY_DOWN){
 			moveDown();
 		}
@@ -144,7 +174,24 @@ int main(int argc, char* argv[]) {
 		if (kHeld & KEY_LEFT){
 			moveLeft();
 		}
-			
+
+		//Programar Disparos
+		if (kHeld & KEY_A){
+			shootRight();
+		}
+
+		if (kHeld & KEY_Y){
+			shootLeft();
+		}
+
+		if (kHeld & KEY_X){
+			shootUp();
+		}
+
+		if (kHeld & KEY_B){
+			shootDown();
+		}
+
 		//moveSprites();
 
 		printf("The Binding of Aivan");
