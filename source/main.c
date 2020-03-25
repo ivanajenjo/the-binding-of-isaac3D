@@ -22,26 +22,30 @@ typedef struct
 
 static C2D_SpriteSheet spriteSheet;
 static Sprite sprites[MAX_SPRITES];
-static size_t numSprites = MAX_SPRITES/2;
+static Sprite mainSprite;
+static size_t numSprites = 1;
 
 //---------------------------------------------------------------------------------
 static void initSprites() {
 //---------------------------------------------------------------------------------
-	size_t numImages = C2D_SpriteSheetCount(spriteSheet);
-	srand(time(NULL));
+//	size_t numImages = C2D_SpriteSheetCount(spriteSheet);
+//	srand(time(NULL));
 
-	for (size_t i = 0; i < MAX_SPRITES; i++)
-	{
-		Sprite* sprite = &sprites[i];
-
-		// Random image, position, rotation and speed
-		C2D_SpriteFromSheet(&sprite->spr, spriteSheet, rand() % numImages);
-		C2D_SpriteSetCenter(&sprite->spr, 0.5f, 0.5f);
-		C2D_SpriteSetPos(&sprite->spr, rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT);
-		C2D_SpriteSetRotation(&sprite->spr, C3D_Angle(rand()/(float)RAND_MAX));
-		sprite->dx = rand()*4.0f/RAND_MAX - 2.0f;
-		sprite->dy = rand()*4.0f/RAND_MAX - 2.0f;
-	}
+//	for (size_t i = 0; i < MAX_SPRITES; i++)
+//	{
+//		Sprite* sprite = &sprites[i];
+//
+//		// Random image, position, rotation and speed
+//		C2D_SpriteFromSheet(&sprite->spr, spriteSheet, rand() % numImages);
+//		C2D_SpriteSetCenter(&sprite->spr, 0.5f, 0.5f);
+//		C2D_SpriteSetPos(&sprite->spr, rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT);
+//		C2D_SpriteSetRotation(&sprite->spr, C3D_Angle(rand()/(float)RAND_MAX));
+//		sprite->dx = rand()*4.0f/RAND_MAX - 2.0f;
+//		sprite->dy = rand()*4.0f/RAND_MAX - 2.0f;
+//	}
+C2d_spriteFromSheet(&mainSprite->spr, spriteSheet, 0);
+C2D_SpriteSetCenter(&mainSprite->spr, 0.5f, 0.5f);
+C2D_SpriteSetPos(&mainSprite->spr, rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT);
 }
 
 //---------------------------------------------------------------------------------
@@ -104,7 +108,7 @@ int main(int argc, char* argv[]) {
 		if ((kHeld & KEY_DOWN) && numSprites > 1)
 			numSprites--;
 
-		moveSprites();
+		//moveSprites();
 
 		printf("\x1b[1;1HSprites: %zu/%u\x1b[K", numSprites, MAX_SPRITES);
 		printf("\x1b[2;1HCPU:     %6.2f%%\x1b[K", C3D_GetProcessingTime()*6.0f);
