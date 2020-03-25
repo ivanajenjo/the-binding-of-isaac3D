@@ -43,7 +43,7 @@ static void initSprites() {
 //		sprite->dx = rand()*4.0f/RAND_MAX - 2.0f;
 //		sprite->dy = rand()*4.0f/RAND_MAX - 2.0f;
 //	}
-C2D_SpriteFromSheet(&mainSprite.spr, spriteSheet, 1);
+C2D_SpriteFromSheet(&mainSprite.spr, spriteSheet, 0);
 C2D_SpriteSetCenter(&mainSprite.spr, 0.5f, 0.5f);
 C2D_SpriteSetPos(&mainSprite.spr, rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT);
 C2D_SpriteSetRotation(&mainSprite.spr, C3D_Angle(rand()/(float)RAND_MAX));
