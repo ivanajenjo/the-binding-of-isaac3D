@@ -77,15 +77,21 @@ static void moveUp(){
 }
 
 static void moveDown(){
-	mainCharacter.spr.params.pos.y = mainCharacter.spr.params.pos.y + CHARACTER_SPEED;
+	if(!(mainCharacter.spr.params.pos.y>=SCREEN_HEIGHT)){
+		mainCharacter.spr.params.pos.y = mainCharacter.spr.params.pos.y + CHARACTER_SPEED;
+	}
 }
 
 static void moveRight(){
-	mainCharacter.spr.params.pos.x = mainCharacter.spr.params.pos.x + CHARACTER_SPEED;
+	if(!(mainCharacter.spr.params.pos.x>=SCREEN_WIDTH)){
+		mainCharacter.spr.params.pos.x = mainCharacter.spr.params.pos.x + CHARACTER_SPEED;
+	}
 }
 
 static void moveLeft(){
-	mainCharacter.spr.params.pos.x = mainCharacter.spr.params.pos.x - CHARACTER_SPEED;
+	if(!(mainCharacter.spr.params.pos.x<=0)){
+		mainCharacter.spr.params.pos.x = mainCharacter.spr.params.pos.x - CHARACTER_SPEED;
+	}
 }
 
 //---------------------------------------------------------------------------------
