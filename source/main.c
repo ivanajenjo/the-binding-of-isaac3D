@@ -70,19 +70,19 @@ static void moveSprites() {
 }
 
 static void moveUp(){
-	mainSprite.spr.params.pos.y = mainSprite.spr.params.pos.y + 10
+	mainSprite.spr.params.pos.y = mainSprite.spr.params.pos.y + 10;
 }
 
 static void moveDown(){
-	mainSprite.spr.params.pos.y = mainSprite.spr.params.pos.y - 10
+	mainSprite.spr.params.pos.y = mainSprite.spr.params.pos.y - 10;
 }
 
 static void moveRight(){
-	mainSprite.spr.params.pos.x = mainSprite.spr.params.pos.x + 10
+	mainSprite.spr.params.pos.x = mainSprite.spr.params.pos.x + 10;
 }
 
 static void moveLeft(){
-	mainSprite.spr.params.pos.x = mainSprite.spr.params.pos.x - 10
+	mainSprite.spr.params.pos.x = mainSprite.spr.params.pos.x - 10;
 }
 
 //---------------------------------------------------------------------------------
@@ -121,10 +121,18 @@ int main(int argc, char* argv[]) {
 
 		u32 kHeld = hidKeysHeld();
 		if ((kHeld & KEY_UP) && numSprites < MAX_SPRITES){
-			numSprites++;
+			moveUp();
 			}
 		if ((kHeld & KEY_DOWN) && numSprites > 1){
-			numSprites--;
+			moveDown();
+		}
+
+		if ((kHeld & KEY_RIGHT) && numSprites > 1){
+			moveRight();
+		}
+
+		if ((kHeld & KEY_LEFT) && numSprites > 1){
+			moveLeft();
 		}
 			
 		//moveSprites();
