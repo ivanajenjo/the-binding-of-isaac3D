@@ -71,7 +71,9 @@ static void moveSprites() {
 }
 
 static void moveUp(){
-	mainCharacter.spr.params.pos.y = mainCharacter.spr.params.pos.y - CHARACTER_SPEED;
+	if(!(mainCharacter.spr.params.pos.y<=0)){
+		mainCharacter.spr.params.pos.y = mainCharacter.spr.params.pos.y - CHARACTER_SPEED;
+	}
 }
 
 static void moveDown(){
