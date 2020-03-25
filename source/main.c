@@ -23,7 +23,7 @@ typedef struct
 static C2D_SpriteSheet spriteSheet;
 static Sprite sprites[MAX_SPRITES];
 static Sprite mainSprite;
-static size_t numSprites = 1;
+static size_t numSprites = MAX_SPRITES/2;
 
 //---------------------------------------------------------------------------------
 static void initSprites() {
