@@ -43,9 +43,9 @@ static void initSprites() {
 //		sprite->dx = rand()*4.0f/RAND_MAX - 2.0f;
 //		sprite->dy = rand()*4.0f/RAND_MAX - 2.0f;
 //	}
-C2d_spriteFromSheet(&mainSprite->spr, spriteSheet, 0);
-C2D_SpriteSetCenter(&mainSprite->spr, 0.5f, 0.5f);
-C2D_SpriteSetPos(&mainSprite->spr, rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT);
+C2D_SpriteFromSheet(&mainSprite.spr, spriteSheet, 0);
+C2D_SpriteSetCenter(&mainSprite.spr, 0.5f, 0.5f);
+C2D_SpriteSetPos(&mainSprite.spr, rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT);
 }
 
 //---------------------------------------------------------------------------------
