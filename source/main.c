@@ -12,6 +12,7 @@
 #define MAX_SPRITES   768
 #define SCREEN_WIDTH  400
 #define SCREEN_HEIGHT 240
+#define CHARACTER_SPEED 8
 
 // Simple sprite struct
 typedef struct
@@ -22,7 +23,7 @@ typedef struct
 
 static C2D_SpriteSheet spriteSheet;
 static Sprite sprites[MAX_SPRITES];
-static Sprite mainSprite;
+static Sprite mainCharacter;
 static size_t numSprites = MAX_SPRITES/2;
 
 //---------------------------------------------------------------------------------
@@ -43,10 +44,10 @@ static void initSprites() {
 //		sprite->dx = rand()*4.0f/RAND_MAX - 2.0f;
 //		sprite->dy = rand()*4.0f/RAND_MAX - 2.0f;
 //	}
-C2D_SpriteFromSheet(&mainSprite.spr, spriteSheet, 0);
-C2D_SpriteSetCenter(&mainSprite.spr, 0.5f, 0.5f);
-C2D_SpriteSetPos(&mainSprite.spr, rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT);
-C2D_SpriteSetRotation(&mainSprite.spr, C3D_Angle(rand()/(float)RAND_MAX));
+C2D_SpriteFromSheet(&mainCharacter.spr, spriteSheet, 0);
+C2D_SpriteSetCenter(&mainCharacter.spr, 0.5f, 0.5f);
+C2D_SpriteSetPos(&mainCharacter.spr, rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT);
+C2D_SpriteSetRotation(&mainCharacter.spr, C3D_Angle(rand()/(float)RAND_MAX));
 }
 
 //---------------------------------------------------------------------------------
@@ -70,19 +71,19 @@ static void moveSprites() {
 }
 
 static void moveUp(){
-	mainSprite.spr.params.pos.y = mainSprite.spr.params.pos.y + 10;
+	mainCharacter.spr.params.pos.y = mainCharacter.spr.params.pos.y - CHARACTER_SPEED;
 }
 
 static void moveDown(){
-	mainSprite.spr.params.pos.y = mainSprite.spr.params.pos.y - 10;
+	mainCharacter.spr.params.pos.y = mainCharacter.spr.params.pos.y + CHARACTER_SPEED;
 }
 
 static void moveRight(){
-	mainSprite.spr.params.pos.x = mainSprite.spr.params.pos.x + 10;
+	mainCharacter.spr.params.pos.x = mainCharacter.spr.params.pos.x + CHARACTER_SPEED;
 }
 
 static void moveLeft(){
-	mainSprite.spr.params.pos.x = mainSprite.spr.params.pos.x - 10;
+	mainCharacter.spr.params.pos.x = mainCharacter.spr.params.pos.x - CHARACTER_SPEED;
 }
 
 //---------------------------------------------------------------------------------
@@ -116,28 +117,29 @@ int main(int argc, char* argv[]) {
 
 		// Respond to user input
 		u32 kDown = hidKeysDown();
-		if (kDown & KEY_START)
+		if (kDown & KEY_START){
 			break; // break in order to return to hbmenu
-
+		}
+			
 		u32 kHeld = hidKeysHeld();
-		if ((kHeld & KEY_UP) && numSprites < MAX_SPRITES){
+		if (kHeld & KEY_UP){
 			moveUp();
-			}
-		if ((kHeld & KEY_DOWN) && numSprites > 1){
+		}
+		if (kHeld & KEY_DOWN){
 			moveDown();
 		}
 
-		if ((kHeld & KEY_RIGHT) && numSprites > 1){
+		if (kHeld & KEY_RIGHT){
 			moveRight();
 		}
 
-		if ((kHeld & KEY_LEFT) && numSprites > 1){
+		if (kHeld & KEY_LEFT){
 			moveLeft();
 		}
 			
 		//moveSprites();
 
-		printf("\x1b[1;1HSprites: %zu/%u\x1b[K", numSprites, MAX_SPRITES);
+		printf("The Binding of Aivan");
 		printf("\x1b[2;1HCPU:     %6.2f%%\x1b[K", C3D_GetProcessingTime()*6.0f);
 		printf("\x1b[3;1HGPU:     %6.2f%%\x1b[K", C3D_GetDrawingTime()*6.0f);
 		printf("\x1b[4;1HCmdBuf:  %6.2f%%\x1b[K", C3D_GetCmdBufUsage()*100.0f);
@@ -146,7 +148,7 @@ int main(int argc, char* argv[]) {
 		C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
 		C2D_TargetClear(top, C2D_Color32f(0.0f, 0.0f, 0.0f, 1.0f));
 		C2D_SceneBegin(top);
-		C2D_DrawSprite(&mainSprite.spr);
+		C2D_DrawSprite(&mainCharacter.spr);
 //		for (size_t i = 0; i < numSprites; i ++)
 //			C2D_DrawSprite(&sprites[i].spr);
 		C3D_FrameEnd(0);
