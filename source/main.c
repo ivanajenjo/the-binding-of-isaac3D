@@ -9,9 +9,8 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define MAX_SPRITES   768
 #define SCREEN_WIDTH  400
-#define SCREEN_HEIGHT 240
+#define SCREEN_HEIGHT 320
 #define CHARACTER_SPEED 8
 #define CHARACTER_HP 10
 
@@ -23,34 +22,25 @@ typedef struct
 } Sprite;
 
 static C2D_SpriteSheet spriteSheet;
-static Sprite sprites[MAX_SPRITES];
 static Sprite mainCharacter;
-static size_t numSprites = MAX_SPRITES/2;
+static Sprite background;
 static int currentSpeed;
 static int currentHp;
+
+static void initBackground(){
+	C2D_SpriteFromSheet(&background.spr, spriteSheet, 1);
+	C2D_SpriteSetCenter(&background.spr, 0.5f, 0.5f);
+	C2D_SpriteSetPos(&background.spr, 0, 0);
+	C2D_SpriteSetRotation(&background.spr, C3D_Angle(rand()/(float)RAND_MAX));
+}
 
 //---------------------------------------------------------------------------------
 static void initSprites() {
 //---------------------------------------------------------------------------------
-//	size_t numImages = C2D_SpriteSheetCount(spriteSheet);
-//	srand(time(NULL));
-
-//	for (size_t i = 0; i < MAX_SPRITES; i++)
-//	{
-//		Sprite* sprite = &sprites[i];
-//
-//		// Random image, position, rotation and speed
-//		C2D_SpriteFromSheet(&sprite->spr, spriteSheet, rand() % numImages);
-//		C2D_SpriteSetCenter(&sprite->spr, 0.5f, 0.5f);
-//		C2D_SpriteSetPos(&sprite->spr, rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT);
-//		C2D_SpriteSetRotation(&sprite->spr, C3D_Angle(rand()/(float)RAND_MAX));
-//		sprite->dx = rand()*4.0f/RAND_MAX - 2.0f;
-//		sprite->dy = rand()*4.0f/RAND_MAX - 2.0f;
-//	}
-C2D_SpriteFromSheet(&mainCharacter.spr, spriteSheet, 0);
-C2D_SpriteSetCenter(&mainCharacter.spr, 0.5f, 0.5f);
-C2D_SpriteSetPos(&mainCharacter.spr, rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT);
-C2D_SpriteSetRotation(&mainCharacter.spr, C3D_Angle(rand()/(float)RAND_MAX));
+	C2D_SpriteFromSheet(&mainCharacter.spr, spriteSheet, 0);
+	C2D_SpriteSetCenter(&mainCharacter.spr, 0.5f, 0.5f);
+	C2D_SpriteSetPos(&mainCharacter.spr, rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT);
+	C2D_SpriteSetRotation(&mainCharacter.spr, C3D_Angle(rand()/(float)RAND_MAX));
 }
 
 static void initCharacter(){
@@ -61,21 +51,7 @@ static void initCharacter(){
 //---------------------------------------------------------------------------------
 static void moveSprites() {
 //---------------------------------------------------------------------------------
-	for (size_t i = 0; i < numSprites; i++)
-	{
-		Sprite* sprite = &sprites[i];
-		C2D_SpriteMove(&sprite->spr, sprite->dx, sprite->dy);
-		C2D_SpriteRotateDegrees(&sprite->spr, 1.0f);
 
-		// Check for collision with the screen boundaries
-		if ((sprite->spr.params.pos.x < sprite->spr.params.pos.w / 2.0f && sprite->dx < 0.0f) ||
-			(sprite->spr.params.pos.x > (SCREEN_WIDTH-(sprite->spr.params.pos.w / 2.0f)) && sprite->dx > 0.0f))
-			sprite->dx = -sprite->dx;
-
-		if ((sprite->spr.params.pos.y < sprite->spr.params.pos.h / 2.0f && sprite->dy < 0.0f) ||
-			(sprite->spr.params.pos.y > (SCREEN_HEIGHT-(sprite->spr.params.pos.h / 2.0f)) && sprite->dy > 0.0f))
-			sprite->dy = -sprite->dy;
-	}
 }
 
 static void moveUp(){
@@ -135,6 +111,9 @@ int main(int argc, char* argv[]) {
 	// Load graphics
 	spriteSheet = C2D_SpriteSheetLoad("romfs:/gfx/sprites.t3x");
 	if (!spriteSheet) svcBreak(USERBREAK_PANIC);
+
+	// Initialize background
+	initBackground();
 
 	// Initialize sprites
 	initSprites();

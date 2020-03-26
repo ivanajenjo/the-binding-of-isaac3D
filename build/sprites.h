@@ -2,3 +2,4 @@
 #pragma once
 
 #define sprites_enemyBlue1_idx 0
+#define sprites_background_idx 1
