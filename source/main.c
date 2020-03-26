@@ -10,7 +10,7 @@
 #include <time.h>
 
 #define SCREEN_WIDTH  400
-#define SCREEN_HEIGHT 320
+#define SCREEN_HEIGHT 240
 #define CHARACTER_SPEED 8
 #define CHARACTER_HP 10
 
@@ -30,7 +30,7 @@ static int currentHp;
 static void initBackground(){
 	C2D_SpriteFromSheet(&background.spr, spriteSheet, 1);
 	C2D_SpriteSetCenter(&background.spr, 0.5f, 0.5f);
-	C2D_SpriteSetPos(&background.spr, 0, 0);
+	C2D_SpriteSetPos(&background.spr, 0.5f, 0.5f);
 	C2D_SpriteSetRotation(&background.spr, C3D_Angle(rand()/(float)RAND_MAX));
 }
 
