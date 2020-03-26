@@ -32,7 +32,7 @@ static void initBackground(){
 	C2D_SpriteSetCenter(&background.spr, 0.5f, 0.5f);
 	C2D_SpriteSetPos(&background.spr, 0.5f, 0.5f);
 	C2D_SpriteSetRotation(&background.spr, C3D_Angle(0));
-	C2D_SpriteSetDepth(&background.spr, 2.9f);
+	C2D_SpriteSetDepth(&background.spr, 0.2f);
 }
 
 //---------------------------------------------------------------------------------
