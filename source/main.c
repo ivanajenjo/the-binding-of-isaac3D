@@ -31,8 +31,7 @@ static void initBackground(){
 	C2D_SpriteFromSheet(&background.spr, spriteSheet, 1);
 	C2D_SpriteSetCenter(&background.spr, 0.5f, 0.5f);
 	C2D_SpriteSetPos(&background.spr, 0.5f, 0.5f);
-	C2D_SpriteSetDepth(&background.spr, 2.0f);
-	C2D_SpriteSetRotation(&background.spr, C3D_Angle(rand()/(float)RAND_MAX));
+	C2D_SpriteSetRotation(&background.spr, C3D_Angle(0));
 }
 
 //---------------------------------------------------------------------------------
@@ -184,10 +183,8 @@ int main(int argc, char* argv[]) {
 		C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
 		C2D_TargetClear(top, C2D_Color32f(0.0f, 0.0f, 0.0f, 1.0f));
 		C2D_SceneBegin(top);
-		C2D_DrawSprite(&mainCharacter.spr);
 		C2D_DrawSprite(&background.spr);
-//		for (size_t i = 0; i < numSprites; i ++)
-//			C2D_DrawSprite(&sprites[i].spr);
+		C2D_DrawSprite(&mainCharacter.spr);
 		C3D_FrameEnd(0);
 	}
 
