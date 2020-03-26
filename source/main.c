@@ -81,19 +81,19 @@ static void moveLeft(){
 }
 //Logica del disparo del personaje
 static void shootUp(){
-	C2D_SpriteSetRotation(&mainCharacter.spr, C3D_Angle(0.0f));
-}
-
-static void shootDown(){
 	C2D_SpriteSetRotation(&mainCharacter.spr, C3D_Angle(0.5f));
 }
 
+static void shootDown(){
+	C2D_SpriteSetRotation(&mainCharacter.spr, C3D_Angle(0.0f));
+}
+
 static void shootRight(){
-	C2D_SpriteSetRotation(&mainCharacter.spr, C3D_Angle(0.25f));
+	C2D_SpriteSetRotation(&mainCharacter.spr, C3D_Angle(0.75f));
 }
 
 static void shootLeft(){
-	C2D_SpriteSetRotation(&mainCharacter.spr, C3D_Angle(0.75f));
+	C2D_SpriteSetRotation(&mainCharacter.spr, C3D_Angle(0.25f));
 }
 
 //---------------------------------------------------------------------------------
