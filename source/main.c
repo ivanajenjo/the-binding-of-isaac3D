@@ -31,7 +31,8 @@ static void initBackground(){
 	C2D_SpriteFromSheet(&background.spr, spriteSheet, 1);
 	C2D_SpriteSetCenter(&background.spr, 0.5f, 0.5f);
 	C2D_SpriteSetPos(&background.spr, 0.5f, 0.5f);
-	C2D_SpriteSetRotation(&background.spr, C3D_Angle(rand()/(float)RAND_MAX));
+	C2D_SpriteSetDepth(&background.spr, 20.0f);
+	//C2D_SpriteSetRotation(&background.spr, C3D_Angle(rand()/(float)RAND_MAX));
 }
 
 //---------------------------------------------------------------------------------
