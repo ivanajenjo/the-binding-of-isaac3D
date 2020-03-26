@@ -42,7 +42,7 @@ static void initSprites() {
 	C2D_SpriteSetCenter(&mainCharacter.spr, 0.5f, 0.5f);
 	C2D_SpriteSetPos(&mainCharacter.spr, rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT);
 	C2D_SpriteSetRotation(&mainCharacter.spr, C3D_Angle(rand()/(float)RAND_MAX));
-	C2D_SpriteSetDepth(&background.spr, 0.1f);
+	C2D_SpriteSetDepth(&mainCharacter.spr, 0.1f);
 }
 
 static void initCharacter(){
