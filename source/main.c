@@ -13,6 +13,7 @@
 #define SCREEN_HEIGHT 240
 #define INIT_CHARACTER_SPEED 8
 #define INIT_CHARACTER_HP 10
+#define INIT_ENEMY_HP 10
 #define MAX_ENEMIES 20
 
 // Simple sprite struct
@@ -20,6 +21,8 @@ typedef struct
 {
 	C2D_Sprite spr;
 	float dx, dy; // velocity
+	int enemyHp;
+	int characterHp;
 } Sprite;
 
 static C2D_SpriteSheet spriteSheet;
@@ -47,6 +50,7 @@ static void initSprites() {
 	C2D_SpriteSetPos(&mainCharacter.spr, rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT);
 	C2D_SpriteSetRotation(&mainCharacter.spr, C3D_Angle(rand()/(float)RAND_MAX));
 	C2D_SpriteSetDepth(&mainCharacter.spr, 0.3f);
+	mainCharacter.characterHp = INIT_CHARACTER_HP;
 }
 
 static void initEnemies(){
@@ -60,6 +64,9 @@ static void initEnemies(){
 		C2D_SpriteSetPos(&sprite->spr, rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT);
 		C2D_SpriteSetRotation(&sprite->spr, C3D_Angle(rand()/(float)RAND_MAX));
 		C2D_SpriteSetDepth(&sprite->spr, 0.3f);
+		sprite->dx = rand()*4.0f/RAND_MAX - 2.0f;
+		sprite->dy = rand()*4.0f/RAND_MAX - 2.0f;
+		sprite->enemyHp = INIT_ENEMY_HP;
 	}
 }
 
@@ -144,9 +151,6 @@ int main(int argc, char* argv[]) {
 	// Initialize sprites
 	initSprites();
 
-	printf("\x1b[8;1HPress Up to increment sprites");
-	printf("\x1b[9;1HPress Down to decrement sprites");
-
 	//iniciar Stats Personaje
 	initCharacter();
 
@@ -199,7 +203,7 @@ int main(int argc, char* argv[]) {
 
 		//moveSprites();
 
-		printf("The Binding of Aivan");
+		printf("The Binding of Ivan");
 		printf("\x1b[2;1HCPU:     %6.2f%%\x1b[K", C3D_GetProcessingTime()*6.0f);
 		printf("\x1b[3;1HGPU:     %6.2f%%\x1b[K", C3D_GetDrawingTime()*6.0f);
 		printf("\x1b[4;1HCmdBuf:  %6.2f%%\x1b[K", C3D_GetCmdBufUsage()*100.0f);
