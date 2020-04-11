@@ -29,6 +29,7 @@ static Sprite background;
 static int currentSpeed;
 static int currentHp;
 static Sprite enemies[MAX_ENEMIES];
+static size_t numEnemies = MAX_ENEMIES/2;
 
 static void initBackground(){
 	C2D_SpriteFromSheet(&background.spr, spriteSheet, 1);
@@ -208,6 +209,12 @@ int main(int argc, char* argv[]) {
 		C2D_SceneBegin(top);
 		C2D_DrawSprite(&background.spr);
 		C2D_DrawSprite(&mainCharacter.spr);
+		// Render Enemies
+		for (size_t i = 0; i < numEnemies; i++)
+		{
+			C2D_DrawSprite(&enemies[i].spr);
+		}
+		
 		C3D_FrameEnd(0);
 	}
 
