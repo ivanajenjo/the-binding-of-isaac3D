@@ -11,8 +11,9 @@
 
 #define SCREEN_WIDTH  400
 #define SCREEN_HEIGHT 240
-#define CHARACTER_SPEED 8
-#define CHARACTER_HP 10
+#define INIT_CHARACTER_SPEED 8
+#define INIT_CHARACTER_HP 10
+#define MAX_ENEMIES 20
 
 // Simple sprite struct
 typedef struct
@@ -22,10 +23,12 @@ typedef struct
 } Sprite;
 
 static C2D_SpriteSheet spriteSheet;
+static C2D_SpriteSheet enemiesSpriteSheet;
 static Sprite mainCharacter;
 static Sprite background;
 static int currentSpeed;
 static int currentHp;
+static Sprite enemies[MAX_ENEMIES];
 
 static void initBackground(){
 	C2D_SpriteFromSheet(&background.spr, spriteSheet, 1);
@@ -45,9 +48,22 @@ static void initSprites() {
 	C2D_SpriteSetDepth(&mainCharacter.spr, 0.3f);
 }
 
+static void initEnemies(){
+	size_t numImages = C2D_SpriteSheetCount(enemiesSpriteSheet);
+
+	for (size_t i = 0; i < MAX_ENEMIES; i++)
+	{
+		Sprite* sprite = &enemies[i];
+		C2D_SpriteFromSheet(&sprite->spr, enemiesSpriteSheet, rand() % numImages);
+		C2D_SpriteSetCenter(&sprite->spr, 0.5f, 0.5f);
+		C2D_SpriteSetPos(&sprite->spr, rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT);
+		C2D_SpriteSetRotation(&sprite->spr, C3D_Angle(rand()/(float)RAND_MAX));
+	}
+}
+
 static void initCharacter(){
-	currentSpeed = CHARACTER_SPEED;
-	currentHp = CHARACTER_HP;
+	currentSpeed = INIT_CHARACTER_SPEED;
+	currentHp = INIT_CHARACTER_HP;
 }
 
 //---------------------------------------------------------------------------------
@@ -114,8 +130,14 @@ int main(int argc, char* argv[]) {
 	spriteSheet = C2D_SpriteSheetLoad("romfs:/gfx/sprites.t3x");
 	if (!spriteSheet) svcBreak(USERBREAK_PANIC);
 
+	enemiesSpriteSheet = C2D_SpriteSheetLoad("romfs:/gfx/enemiesSprites.t3x");
+	if (!enemiesSpriteSheet) svcBreak(USERBREAK_PANIC);
+
 	// Initialize background
 	initBackground();
+
+	// Initialize enemies
+	initEnemies();
 
 	// Initialize sprites
 	initSprites();
