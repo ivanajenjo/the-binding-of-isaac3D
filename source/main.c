@@ -59,6 +59,7 @@ static void initEnemies(){
 		C2D_SpriteSetCenter(&sprite->spr, 0.5f, 0.5f);
 		C2D_SpriteSetPos(&sprite->spr, rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT);
 		C2D_SpriteSetRotation(&sprite->spr, C3D_Angle(rand()/(float)RAND_MAX));
+		C2D_SpriteSetDepth(&sprite->spr, 0.3f);
 	}
 }
 
