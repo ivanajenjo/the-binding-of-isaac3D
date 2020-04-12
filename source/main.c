@@ -97,6 +97,7 @@ static void initIsaacSprites(){
 
 static void initCharacter(){
 	mainIsaac.head = isaacSprites[0].spr;
+	mainIsaac.body = isaacSprites[4].spr;
 	currentSpeed = INIT_CHARACTER_SPEED;
 	currentHp = INIT_CHARACTER_HP;
 }
@@ -147,10 +148,15 @@ static void shootLeft(){
 	C2D_SpriteSetRotation(&mainCharacter.spr, C3D_Angle(0.25f));
 }
 
+static void drawIsaac(){
+	C2D_DrawSprite(&mainIsaac.head);
+	C2D_DrawSprite(&mainIsaac.body);
+}
+
 static void drawScene(){
 	C2D_DrawSprite(&background.spr);
 	C2D_DrawSprite(&mainCharacter.spr);
-	C2D_DrawSprite(&mainIsaac.head);
+	drawIsaac();
 		// Render Enemies
 	for (size_t i = 0; i < numEnemies; i++)
 	{
