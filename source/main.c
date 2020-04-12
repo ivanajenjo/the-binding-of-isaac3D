@@ -102,8 +102,8 @@ static void initCharacter(){
 	mainIsaac.body = isaacSprites[4].spr;
 	mainIsaac.head.params.pos.x = mainIsaac.posx;
 	mainIsaac.head.params.pos.y = mainIsaac.posy;
-	mainIsaac.body.params.pos.x = mainIsaac.posx+20;
-	mainIsaac.body.params.pos.y = mainIsaac.posy;
+	mainIsaac.body.params.pos.x = mainIsaac.posx;
+	mainIsaac.body.params.pos.y = mainIsaac.posy+20;
 	currentSpeed = INIT_CHARACTER_SPEED;
 	currentHp = INIT_CHARACTER_HP;
 }
