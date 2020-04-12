@@ -11,7 +11,7 @@
 
 #define SCREEN_WIDTH  400
 #define SCREEN_HEIGHT 240
-#define INIT_CHARACTER_SPEED 5
+#define INIT_CHARACTER_SPEED 2
 #define INIT_CHARACTER_HP 10
 #define INIT_ENEMY_HP 10
 #define MAX_ENEMIES 20
@@ -40,8 +40,6 @@ static Sprite isaacSprites[12];
 static Isaac mainIsaac;
 static Sprite mainCharacter;
 static Sprite background;
-static int currentSpeed;
-static int currentHp;
 static Sprite enemies[MAX_ENEMIES];
 static size_t numEnemies = MAX_ENEMIES/2;
 
