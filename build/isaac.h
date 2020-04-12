@@ -5,3 +5,11 @@
 #define isaac_isaac_head2_idx 1
 #define isaac_isaac_head3_idx 2
 #define isaac_isaac_head4_idx 3
+#define isaac_isaac_body1_idx 4
+#define isaac_isaac_body2_idx 5
+#define isaac_isaac_body3_idx 6
+#define isaac_isaac_body4_idx 7
+#define isaac_isaac_body5_idx 8
+#define isaac_isaac_body6_idx 9
+#define isaac_isaac_body7_idx 10
+#define isaac_isaac_body8_idx 11

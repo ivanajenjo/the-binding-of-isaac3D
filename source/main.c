@@ -36,12 +36,14 @@ typedef struct
 static C2D_SpriteSheet spriteSheet;
 static C2D_SpriteSheet enemiesSpriteSheet;
 static C2D_SpriteSheet isaacSheet;
+static Isaac mainIsaac;
 static Sprite mainCharacter;
 static Sprite background;
 static int currentSpeed;
 static int currentHp;
 static Sprite enemies[MAX_ENEMIES];
 static size_t numEnemies = MAX_ENEMIES/2;
+static Sprite isaacSprites[12];
 
 static void initBackground(){
 	C2D_SpriteFromSheet(&background.spr, spriteSheet, 1);
@@ -79,7 +81,22 @@ static void initEnemies(){
 	}
 }
 
+static void initIsaacSprites(){
+	size_t numImages = C2D_SpriteSheetCount(isaacSheet);
+
+	for (size_t i = 0; i < numImages; i++)
+	{
+		Sprite* sprite = &isaacSprites[i];
+		C2D_SpriteFromSheet(&sprite->spr, isaacSheet, i);
+		C2D_SpriteSetCenter(&sprite->spr, 0.5f, 0.5f);
+		C2D_SpriteSetPos(&sprite->spr, rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT);
+		C2D_SpriteSetDepth(&sprite->spr, 0.3f);
+		sprite->enemyHp = INIT_ENEMY_HP;
+	}
+}
+
 static void initCharacter(){
+	mainIsaac.head = isaacSprites[0].spr;
 	currentSpeed = INIT_CHARACTER_SPEED;
 	currentHp = INIT_CHARACTER_HP;
 }
@@ -132,12 +149,13 @@ static void shootLeft(){
 
 static void drawScene(){
 	C2D_DrawSprite(&background.spr);
-		C2D_DrawSprite(&mainCharacter.spr);
+	C2D_DrawSprite(&mainCharacter.spr);
+	C2D_DrawSprite(&mainIsaac.head);
 		// Render Enemies
-		for (size_t i = 0; i < numEnemies; i++)
-		{
-			C2D_DrawSprite(&enemies[i].spr);
-		}
+	for (size_t i = 0; i < numEnemies; i++)
+	{
+		C2D_DrawSprite(&enemies[i].spr);
+	}
 }
 
 //---------------------------------------------------------------------------------
@@ -172,6 +190,7 @@ int main(int argc, char* argv[]) {
 
 	// Initialize sprites
 	initSprites();
+	initIsaacSprites();
 
 	//iniciar Stats Personaje
 	initCharacter();
@@ -234,6 +253,7 @@ int main(int argc, char* argv[]) {
 		C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
 		C2D_TargetClear(top, C2D_Color32f(0.0f, 0.0f, 0.0f, 1.0f));
 		C2D_SceneBegin(top);
+		//draw Scene Logic
 		drawScene();
 		
 		C3D_FrameEnd(0);
