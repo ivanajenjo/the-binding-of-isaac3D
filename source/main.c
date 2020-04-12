@@ -29,7 +29,7 @@ typedef struct
 {
 	C2D_Sprite head;
 	C2D_Sprite body;
-	float dx, dy; // velocity
+	int posx, posy; // velocity
 	int characterHp;
 } Isaac;
 
@@ -96,8 +96,14 @@ static void initIsaacSprites(){
 }
 
 static void initCharacter(){
+	mainIsaac.posx = 50;
+	mainIsaac.posy = 50;
 	mainIsaac.head = isaacSprites[0].spr;
 	mainIsaac.body = isaacSprites[4].spr;
+	mainIsaac.head.params.pos.x = mainIsaac.posx;
+	mainIsaac.head.params.pos.y = mainIsaac.posy;
+	mainIsaac.body.params.pos.x = mainIsaac.posx+20;
+	mainIsaac.body.params.pos.y = mainIsaac.posy;
 	currentSpeed = INIT_CHARACTER_SPEED;
 	currentHp = INIT_CHARACTER_HP;
 }
