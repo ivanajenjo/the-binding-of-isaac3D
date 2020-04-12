@@ -95,15 +95,19 @@ static void initIsaacSprites(){
 	}
 }
 
+static void isaacSpritePos(){
+	mainIsaac.head.params.pos.x = mainIsaac.posx;
+	mainIsaac.head.params.pos.y = mainIsaac.posy;
+	mainIsaac.body.params.pos.x = mainIsaac.posx;
+	mainIsaac.body.params.pos.y = mainIsaac.posy+15;
+}
+
 static void initCharacter(){
 	mainIsaac.posx = 50;
 	mainIsaac.posy = 50;
 	mainIsaac.head = isaacSprites[0].spr;
 	mainIsaac.body = isaacSprites[4].spr;
-	mainIsaac.head.params.pos.x = mainIsaac.posx;
-	mainIsaac.head.params.pos.y = mainIsaac.posy;
-	mainIsaac.body.params.pos.x = mainIsaac.posx;
-	mainIsaac.body.params.pos.y = mainIsaac.posy+20;
+	isaacSpritePos();
 	currentSpeed = INIT_CHARACTER_SPEED;
 	currentHp = INIT_CHARACTER_HP;
 }
@@ -115,26 +119,26 @@ static void moveSprites() {
 }
 
 static void moveUp(){
-	if(!(mainCharacter.spr.params.pos.y<=0)){
-		mainCharacter.spr.params.pos.y = mainCharacter.spr.params.pos.y - currentSpeed;
+	if(!(mainIsaac.posy<=0)){
+		mainIsaac.posy = mainIsaac.posy - currentSpeed;
 	}
 }
 
 static void moveDown(){
-	if(!(mainCharacter.spr.params.pos.y>=SCREEN_HEIGHT)){
-		mainCharacter.spr.params.pos.y = mainCharacter.spr.params.pos.y + currentSpeed;
+	if(!(mainIsaac.posy>=SCREEN_HEIGHT)){
+		mainIsaac.posy = mainIsaac.posy + currentSpeed;
 	}
 }
 
 static void moveRight(){
-	if(!(mainCharacter.spr.params.pos.x>=SCREEN_WIDTH)){
-		mainCharacter.spr.params.pos.x = mainCharacter.spr.params.pos.x + currentSpeed;
+	if(!(mainIsaac.posx>=SCREEN_WIDTH)){
+		mainIsaac.posx = mainIsaac.posx + currentSpeed;
 	}
 }
 
 static void moveLeft(){
-	if(!(mainCharacter.spr.params.pos.x<=0)){
-		mainCharacter.spr.params.pos.x = mainCharacter.spr.params.pos.x - currentSpeed;
+	if(!(mainIsaac.posx<=0)){
+		mainIsaac.posx = mainIsaac.posx - currentSpeed;
 	}
 }
 //Logica del disparo del personaje
@@ -259,6 +263,7 @@ int main(int argc, char* argv[]) {
 		}
 
 		//moveSprites();
+		isaacSpritePos();
 
 		printf("The Binding of Ivan");
 		printf("\x1b[2;1HCPU:     %6.2f%%\x1b[K", C3D_GetProcessingTime()*6.0f);
