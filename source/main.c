@@ -154,6 +154,14 @@ static void shootLeft(){
 	C2D_SpriteSetRotation(&mainCharacter.spr, C3D_Angle(0.25f));
 }
 
+static void drawEnemies(){
+	// Render Enemies
+	for (size_t i = 0; i < numEnemies; i++)
+	{
+		C2D_DrawSprite(&enemies[i].spr);
+	}
+}
+
 static void drawIsaac(){
 	C2D_DrawSprite(&mainIsaac.head);
 	C2D_DrawSprite(&mainIsaac.body);
@@ -163,11 +171,7 @@ static void drawScene(){
 	C2D_DrawSprite(&background.spr);
 	C2D_DrawSprite(&mainCharacter.spr);
 	drawIsaac();
-		// Render Enemies
-	for (size_t i = 0; i < numEnemies; i++)
-	{
-		C2D_DrawSprite(&enemies[i].spr);
-	}
+	//drawEnemies();
 }
 
 //---------------------------------------------------------------------------------
