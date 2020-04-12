@@ -25,8 +25,17 @@ typedef struct
 	int characterHp;
 } Sprite;
 
+typedef struct
+{
+	C2D_Sprite head;
+	C2D_Sprite body;
+	float dx, dy; // velocity
+	int characterHp;
+} Isaac;
+
 static C2D_SpriteSheet spriteSheet;
 static C2D_SpriteSheet enemiesSpriteSheet;
+static C2D_SpriteSheet isaacSheet;
 static Sprite mainCharacter;
 static Sprite background;
 static int currentSpeed;
@@ -121,6 +130,16 @@ static void shootLeft(){
 	C2D_SpriteSetRotation(&mainCharacter.spr, C3D_Angle(0.25f));
 }
 
+static void drawScene(){
+	C2D_DrawSprite(&background.spr);
+		C2D_DrawSprite(&mainCharacter.spr);
+		// Render Enemies
+		for (size_t i = 0; i < numEnemies; i++)
+		{
+			C2D_DrawSprite(&enemies[i].spr);
+		}
+}
+
 //---------------------------------------------------------------------------------
 int main(int argc, char* argv[]) {
 //---------------------------------------------------------------------------------
@@ -136,6 +155,9 @@ int main(int argc, char* argv[]) {
 	C3D_RenderTarget* top = C2D_CreateScreenTarget(GFX_TOP, GFX_LEFT);
 
 	// Load graphics
+	isaacSheet = C2D_SpriteSheetLoad("romfs:/gfx/isaac.t3x");
+	if (!isaacSheet) svcBreak(USERBREAK_PANIC);
+
 	spriteSheet = C2D_SpriteSheetLoad("romfs:/gfx/sprites.t3x");
 	if (!spriteSheet) svcBreak(USERBREAK_PANIC);
 
@@ -212,13 +234,7 @@ int main(int argc, char* argv[]) {
 		C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
 		C2D_TargetClear(top, C2D_Color32f(0.0f, 0.0f, 0.0f, 1.0f));
 		C2D_SceneBegin(top);
-		C2D_DrawSprite(&background.spr);
-		C2D_DrawSprite(&mainCharacter.spr);
-		// Render Enemies
-		for (size_t i = 0; i < numEnemies; i++)
-		{
-			C2D_DrawSprite(&enemies[i].spr);
-		}
+		drawScene();
 		
 		C3D_FrameEnd(0);
 	}
