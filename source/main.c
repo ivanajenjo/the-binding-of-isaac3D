@@ -11,7 +11,7 @@
 
 #define SCREEN_WIDTH  400
 #define SCREEN_HEIGHT 240
-#define INIT_CHARACTER_SPEED 8
+#define INIT_CHARACTER_SPEED 5
 #define INIT_CHARACTER_HP 10
 #define INIT_ENEMY_HP 10
 #define MAX_ENEMIES 20
@@ -30,12 +30,13 @@ typedef struct
 	C2D_Sprite head;
 	C2D_Sprite body;
 	int posx, posy; // velocity
-	int characterHp;
+	int characterHp, characterSpeed;
 } Isaac;
 
 static C2D_SpriteSheet spriteSheet;
 static C2D_SpriteSheet enemiesSpriteSheet;
 static C2D_SpriteSheet isaacSheet;
+static Sprite isaacSprites[12];
 static Isaac mainIsaac;
 static Sprite mainCharacter;
 static Sprite background;
@@ -43,9 +44,11 @@ static int currentSpeed;
 static int currentHp;
 static Sprite enemies[MAX_ENEMIES];
 static size_t numEnemies = MAX_ENEMIES/2;
-static Sprite isaacSprites[12];
 
+
+//---------------------------------------------------------------------------------
 static void initBackground(){
+//---------------------------------------------------------------------------------
 	C2D_SpriteFromSheet(&background.spr, spriteSheet, 1);
 	C2D_SpriteSetCenter(&background.spr, 0.5f, 0.5f);
 	C2D_SpriteSetPos(&background.spr, 0.5f, 0.5f);
@@ -64,7 +67,9 @@ static void initSprites() {
 	mainCharacter.characterHp = INIT_CHARACTER_HP;
 }
 
+//---------------------------------------------------------------------------------
 static void initEnemies(){
+//---------------------------------------------------------------------------------
 	size_t numImages = C2D_SpriteSheetCount(enemiesSpriteSheet);
 
 	for (size_t i = 0; i < MAX_ENEMIES; i++)
@@ -108,8 +113,8 @@ static void initCharacter(){
 	mainIsaac.head = isaacSprites[0].spr;
 	mainIsaac.body = isaacSprites[4].spr;
 	isaacSpritePos();
-	currentSpeed = INIT_CHARACTER_SPEED;
-	currentHp = INIT_CHARACTER_HP;
+	mainIsaac.characterSpeed = INIT_CHARACTER_SPEED;
+	mainIsaac.characterHp = INIT_CHARACTER_HP;
 }
 
 //---------------------------------------------------------------------------------
@@ -120,46 +125,42 @@ static void moveSprites() {
 
 static void moveUp(){
 	if(!(mainIsaac.posy<=0)){
-		mainIsaac.posy = mainIsaac.posy - currentSpeed;
+		mainIsaac.posy = mainIsaac.posy - mainIsaac.characterSpeed;
 	}
 }
 
 static void moveDown(){
 	if(!(mainIsaac.posy>=SCREEN_HEIGHT)){
-		mainIsaac.posy = mainIsaac.posy + currentSpeed;
+		mainIsaac.posy = mainIsaac.posy + mainIsaac.characterSpeed;
 	}
 }
 
 static void moveRight(){
 	if(!(mainIsaac.posx>=SCREEN_WIDTH)){
-		mainIsaac.posx = mainIsaac.posx + currentSpeed;
+		mainIsaac.posx = mainIsaac.posx + mainIsaac.characterSpeed;
 	}
 }
 
 static void moveLeft(){
 	if(!(mainIsaac.posx<=0)){
-		mainIsaac.posx = mainIsaac.posx - currentSpeed;
+		mainIsaac.posx = mainIsaac.posx - mainIsaac.characterSpeed;
 	}
 }
 //Logica del disparo del personaje
 static void shootUp(){
-	//C2D_SpriteSetRotation(&mainCharacter.spr, C3D_Angle(0.5f));
 	mainIsaac.head = isaacSprites[2].spr;
 }
 
 static void shootDown(){
 	mainIsaac.head = isaacSprites[0].spr;
-	//C2D_SpriteSetRotation(&mainCharacter.spr, C3D_Angle(0.0f));
 }
 
 static void shootRight(){
 	mainIsaac.head = isaacSprites[1].spr;
-	//C2D_SpriteSetRotation(&mainCharacter.spr, C3D_Angle(0.75f));
 }
 
 static void shootLeft(){
 	mainIsaac.head = isaacSprites[3].spr;
-	//C2D_SpriteSetRotation(&mainCharacter.spr, C3D_Angle(0.25f));
 }
 
 static void drawEnemies(){
@@ -176,6 +177,7 @@ static void drawIsaac(){
 }
 
 static void drawScene(){
+	//Draw Background
 	C2D_DrawSprite(&background.spr);
 	C2D_DrawSprite(&mainCharacter.spr);
 	drawIsaac();
