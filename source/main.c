@@ -143,19 +143,23 @@ static void moveLeft(){
 }
 //Logica del disparo del personaje
 static void shootUp(){
-	C2D_SpriteSetRotation(&mainCharacter.spr, C3D_Angle(0.5f));
+	//C2D_SpriteSetRotation(&mainCharacter.spr, C3D_Angle(0.5f));
+	mainIsaac.head = isaacSprites[2].spr;
 }
 
 static void shootDown(){
-	C2D_SpriteSetRotation(&mainCharacter.spr, C3D_Angle(0.0f));
+	mainIsaac.head = isaacSprites[0].spr;
+	//C2D_SpriteSetRotation(&mainCharacter.spr, C3D_Angle(0.0f));
 }
 
 static void shootRight(){
-	C2D_SpriteSetRotation(&mainCharacter.spr, C3D_Angle(0.75f));
+	mainIsaac.head = isaacSprites[1].spr;
+	//C2D_SpriteSetRotation(&mainCharacter.spr, C3D_Angle(0.75f));
 }
 
 static void shootLeft(){
-	C2D_SpriteSetRotation(&mainCharacter.spr, C3D_Angle(0.25f));
+	mainIsaac.head = isaacSprites[3].spr;
+	//C2D_SpriteSetRotation(&mainCharacter.spr, C3D_Angle(0.25f));
 }
 
 static void drawEnemies(){
