@@ -15,6 +15,7 @@
 #define INIT_CHARACTER_HP 10
 #define INIT_ENEMY_HP 10
 #define MAX_ENEMIES 20
+#define ANIMACION 30
 
 // Simple sprite struct
 typedef struct
@@ -130,7 +131,19 @@ static void moveUp(){
 }
 
 static void moveDown(){
-	mainIsaac.body = isaacSprites[7].spr;
+	if (contCaminar == ANIMACION){
+		mainIsaac.body = isaacSprites[8].spr;
+	}
+	if (contCaminar == ANIMACION*2)
+	{
+		
+	}
+	if (contCaminar == ANIMACION*3)
+	{
+		
+	}
+	
+	
 	if(!(mainIsaac.posy>=SCREEN_HEIGHT)){
 		mainIsaac.posy = mainIsaac.posy + mainIsaac.characterSpeed;
 	}
