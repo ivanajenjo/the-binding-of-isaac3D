@@ -43,6 +43,7 @@ static Sprite background;
 static Sprite enemies[MAX_ENEMIES];
 static size_t numEnemies = MAX_ENEMIES/2;
 static int contadorDisparo = 0;
+static bool disparando = false;
 
 //---------------------------------------------------------------------------------
 static void initBackground(){
@@ -143,10 +144,12 @@ static void moveLeft(){
 	if(!(mainIsaac.posx<=0)){
 		mainIsaac.posx = mainIsaac.posx - mainIsaac.characterSpeed;
 	}
+	disparando = false;
 }
 //Logica del disparo del personaje
 static void shootUp(){
 	mainIsaac.head = isaacSprites[2].spr;
+	disparando = true;
 }
 
 static void shootDown(){
@@ -155,9 +158,6 @@ static void shootDown(){
 
 static void shootRight(){
 	mainIsaac.head = isaacSprites[1].spr;
-	isaacSprites[12].spr.params.pos.x = 300;
-	isaacSprites[12].spr.params.pos.y = 300;
-	C2D_DrawSprite(&isaacSprites[12].spr);
 }
 
 static void shootLeft(){
@@ -177,11 +177,22 @@ static void drawIsaac(){
 	C2D_DrawSprite(&mainIsaac.head);
 }
 
+static void drawShooting(){
+	isaacSprites[12].spr.params.pos.x = 300;
+	isaacSprites[12].spr.params.pos.y = 300;
+	C2D_DrawSprite(&isaacSprites[12].spr);
+}
+
 static void drawScene(){
 	//Draw Background
 	C2D_DrawSprite(&background.spr);
 	C2D_DrawSprite(&mainCharacter.spr);
 	drawIsaac();
+	if (disparando == true)
+	{
+		drawShooting();
+	}
+	
 	//drawEnemies();
 }
 
