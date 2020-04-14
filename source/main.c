@@ -42,7 +42,7 @@ static Sprite mainCharacter;
 static Sprite background;
 static Sprite enemies[MAX_ENEMIES];
 static size_t numEnemies = MAX_ENEMIES/2;
-
+static int contadorDisparo = 0;
 
 //---------------------------------------------------------------------------------
 static void initBackground(){
@@ -171,8 +171,8 @@ static void drawEnemies(){
 }
 
 static void drawIsaac(){
-	C2D_DrawSprite(&mainIsaac.head);
 	C2D_DrawSprite(&mainIsaac.body);
+	C2D_DrawSprite(&mainIsaac.head);
 }
 
 static void drawScene(){
