@@ -155,6 +155,8 @@ static void shootDown(){
 
 static void shootRight(){
 	mainIsaac.head = isaacSprites[1].spr;
+	isaacSprites[12].spr.params.pos.x = 300;
+	isaacSprites[12].spr.params.pos.y = 300;
 	C2D_DrawSprite(&isaacSprites[12].spr);
 }
 
