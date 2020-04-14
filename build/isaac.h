@@ -13,3 +13,4 @@
 #define isaac_isaac_body6_idx 9
 #define isaac_isaac_body7_idx 10
 #define isaac_isaac_body8_idx 11
+#define isaac_redTear_idx 12

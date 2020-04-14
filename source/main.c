@@ -36,7 +36,7 @@ typedef struct
 static C2D_SpriteSheet spriteSheet;
 static C2D_SpriteSheet enemiesSpriteSheet;
 static C2D_SpriteSheet isaacSheet;
-static Sprite isaacSprites[12];
+static Sprite isaacSprites[16];
 static Isaac mainIsaac;
 static Sprite mainCharacter;
 static Sprite background;
@@ -155,6 +155,7 @@ static void shootDown(){
 
 static void shootRight(){
 	mainIsaac.head = isaacSprites[1].spr;
+	C2D_DrawSprite(&isaacSprites[12].spr);
 }
 
 static void shootLeft(){
