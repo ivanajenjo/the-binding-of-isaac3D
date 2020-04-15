@@ -37,12 +37,13 @@ typedef struct
 static C2D_SpriteSheet spriteSheet;
 static C2D_SpriteSheet enemiesSpriteSheet;
 static C2D_SpriteSheet isaacSheet;
-static Sprite isaacSprites[16];
+static Sprite isaacSprites[18];
 static Isaac mainIsaac;
 static Sprite mainCharacter;
 static Sprite background;
 static Sprite enemies[MAX_ENEMIES];
 static size_t numEnemies = MAX_ENEMIES/2;
+static int lastMove = 0;
 static int contadorDisparo = 0;
 static int contCaminar = 0;
 
@@ -98,6 +99,16 @@ static void initIsaacSprites(){
 		C2D_SpriteSetDepth(&sprite->spr, 0.3f);
 		sprite->enemyHp = INIT_ENEMY_HP;
 	}
+
+	for (size_t i = 0; i < 3; i++)
+	{
+		Sprite* sprite = &isaacSprites[i+13];
+		C2D_SpriteFromSheet(&sprite->spr, isaacSheet, i+9);
+		C2D_SpriteSetCenter(&sprite->spr, 0.5f, 0.5f);
+		C2D_SpriteSetPos(&sprite->spr, rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT);
+		C2D_SpriteSetDepth(&sprite->spr, 0.3f);
+		C2D_SpriteScale(&sprite->spr, 0, -1.0f);
+	}
 }
 
 static void isaacSpritePos(){
@@ -124,7 +135,12 @@ static void moveSprites() {
 }
 
 static void moveUp(){
-	if (contCaminar == ANIMACION)
+	if (lastMove != 1)
+	{
+		lastMove = 1;
+		contCaminar = 0;
+	}
+	if (contCaminar <= ANIMACION)
 	{
 		mainIsaac.body = isaacSprites[5].spr;
 	}
@@ -148,7 +164,12 @@ static void moveUp(){
 }
 
 static void moveDown(){
-	if (contCaminar == ANIMACION)
+	if (lastMove != 2)
+	{
+		lastMove = 2;
+		contCaminar = 0;
+	}
+	if (contCaminar <= ANIMACION)
 	{
 		mainIsaac.body = isaacSprites[5].spr;
 	}
@@ -165,6 +186,10 @@ static void moveDown(){
 		mainIsaac.body = isaacSprites[8].spr;
 		contCaminar = 0;
 	}
+		if (contCaminar == ANIMACION*5)
+	{
+		contCaminar = 0;
+	}
 	
 	
 	if(!(mainIsaac.posy>=SCREEN_HEIGHT)){
@@ -173,7 +198,12 @@ static void moveDown(){
 }
 
 static void moveRight(){
-	if (contCaminar == ANIMACION)
+	if (lastMove != 3)
+	{
+		lastMove = 3;
+		contCaminar = 0;
+	}
+	if (contCaminar <= ANIMACION)
 	{
 		mainIsaac.body = isaacSprites[9].spr;
 	}
@@ -184,16 +214,41 @@ static void moveRight(){
 	if (contCaminar == ANIMACION*3)
 	{
 		mainIsaac.body = isaacSprites[11].spr;
+		
+	}
+	if (contCaminar == ANIMACION * 4 )
+	{
 		contCaminar = 0;
 	}
-	mainIsaac.body = isaacSprites[10].spr;
+	
 	if(!(mainIsaac.posx>=SCREEN_WIDTH)){
 		mainIsaac.posx = mainIsaac.posx + mainIsaac.characterSpeed;
 	}
 }
 
 static void moveLeft(){
-	mainIsaac.body = isaacSprites[10].spr;
+	if (lastMove != 4)
+	{
+		lastMove = 4;
+		contCaminar = 0;
+	}
+	if (contCaminar <= ANIMACION)
+	{
+		mainIsaac.body = isaacSprites[13].spr;
+	}
+	if (contCaminar == ANIMACION*2)
+	{
+		mainIsaac.body = isaacSprites[14].spr;
+	}
+	if (contCaminar == ANIMACION*3)
+	{
+		mainIsaac.body = isaacSprites[15].spr;
+		
+	}
+	if (contCaminar == ANIMACION * 4 )
+	{
+		contCaminar = 0;
+	}
 	if(!(mainIsaac.posx<=0)){
 		mainIsaac.posx = mainIsaac.posx - mainIsaac.characterSpeed;
 	}
