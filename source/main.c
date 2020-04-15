@@ -108,11 +108,15 @@ static void isaacSpritePos(){
 	mainIsaac.body.params.pos.y = mainIsaac.posy+15;
 }
 
+static void isaacStanding(){
+	mainIsaac.head = isaacSprites[0].spr;
+	mainIsaac.body = isaacSprites[4].spr;
+}
+
 static void initCharacter(){
 	mainIsaac.posx = 50;
 	mainIsaac.posy = 50;
-	mainIsaac.head = isaacSprites[0].spr;
-	mainIsaac.body = isaacSprites[4].spr;
+	isaacStanding();
 	isaacSpritePos();
 	mainIsaac.characterSpeed = INIT_CHARACTER_SPEED;
 	mainIsaac.characterHp = INIT_CHARACTER_HP;
@@ -362,6 +366,16 @@ int main(int argc, char* argv[]) {
 		if (kHeld & KEY_B){
 			shootDown();
 		}
+
+		u32 kUp = hidKeysUp();
+
+		if((kUp & KEY_UP) || (kUp & KEY_DOWN) || (kUp & KEY_LEFT) || (kUp & KEY_RIGHT)){
+			contCaminar = 0;
+			lastMove = 0;
+			isaacStanding();
+		}
+
+
 
 		//moveSprites();
 		isaacSpritePos();
