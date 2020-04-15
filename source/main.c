@@ -124,6 +124,23 @@ static void moveSprites() {
 }
 
 static void moveUp(){
+	if (contCaminar == ANIMACION)
+	{
+		mainIsaac.body = isaacSprites[5].spr;
+	}
+	if (contCaminar == ANIMACION*2)
+	{
+		mainIsaac.body = isaacSprites[6].spr;
+	}
+	if (contCaminar == ANIMACION*3)
+	{
+		mainIsaac.body = isaacSprites[7].spr;
+	}
+	if (contCaminar == ANIMACION*4)
+	{
+		mainIsaac.body = isaacSprites[8].spr;
+		contCaminar = 0;
+	}
 	mainIsaac.body = isaacSprites[8].spr;
 	if(!(mainIsaac.posy<=0)){
 		mainIsaac.posy = mainIsaac.posy - mainIsaac.characterSpeed;
@@ -156,6 +173,19 @@ static void moveDown(){
 }
 
 static void moveRight(){
+	if (contCaminar == ANIMACION)
+	{
+		mainIsaac.body = isaacSprites[9].spr;
+	}
+	if (contCaminar == ANIMACION*2)
+	{
+		mainIsaac.body = isaacSprites[10].spr;
+	}
+	if (contCaminar == ANIMACION*3)
+	{
+		mainIsaac.body = isaacSprites[11].spr;
+		contCaminar = 0;
+	}
 	mainIsaac.body = isaacSprites[10].spr;
 	if(!(mainIsaac.posx>=SCREEN_WIDTH)){
 		mainIsaac.posx = mainIsaac.posx + mainIsaac.characterSpeed;
