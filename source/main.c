@@ -130,24 +130,23 @@ static void moveUp(){
 		lastMove = 1;
 		contCaminar = 0;
 	}
-	if (contCaminar <= ANIMACION)
+	if (contCaminar == 0)
 	{
 		mainIsaac.body = isaacSprites[5].spr;
 	}
-	if (contCaminar == ANIMACION*2)
+	if (contCaminar == ANIMACION)
 	{
 		mainIsaac.body = isaacSprites[6].spr;
 	}
-	if (contCaminar == ANIMACION*3)
+	if (contCaminar == ANIMACION*2)
 	{
 		mainIsaac.body = isaacSprites[7].spr;
 	}
-	if (contCaminar == ANIMACION*4)
+	if (contCaminar == ANIMACION*3)
 	{
 		mainIsaac.body = isaacSprites[8].spr;
 		contCaminar = 0;
 	}
-	mainIsaac.body = isaacSprites[8].spr;
 	if(!(mainIsaac.posy<=0)){
 		mainIsaac.posy = mainIsaac.posy - mainIsaac.characterSpeed;
 	}
@@ -159,29 +158,27 @@ static void moveDown(){
 		lastMove = 2;
 		contCaminar = 0;
 	}
-	if (contCaminar <= ANIMACION)
+	if (contCaminar == 0)
 	{
 		mainIsaac.body = isaacSprites[5].spr;
 	}
-	if (contCaminar == ANIMACION*2)
+	if (contCaminar == ANIMACION)
 	{
 		mainIsaac.body = isaacSprites[6].spr;
 	}
-	if (contCaminar == ANIMACION*3)
+	if (contCaminar == ANIMACION*2)
 	{
 		mainIsaac.body = isaacSprites[7].spr;
 	}
-	if (contCaminar == ANIMACION*4)
+	if (contCaminar == ANIMACION*3)
 	{
 		mainIsaac.body = isaacSprites[8].spr;
 		contCaminar = 0;
 	}
-		if (contCaminar == ANIMACION*5)
+	if (contCaminar == ANIMACION*4)
 	{
 		contCaminar = 0;
 	}
-	
-	
 	if(!(mainIsaac.posy>=SCREEN_HEIGHT)){
 		mainIsaac.posy = mainIsaac.posy + mainIsaac.characterSpeed;
 	}
@@ -193,24 +190,22 @@ static void moveRight(){
 		lastMove = 3;
 		contCaminar = 0;
 	}
-	if (contCaminar <= ANIMACION)
+	if (contCaminar == 0)
 	{
 		mainIsaac.body = isaacSprites[9].spr;
 	}
-	if (contCaminar == ANIMACION*2)
+	if (contCaminar == ANIMACION)
 	{
 		mainIsaac.body = isaacSprites[10].spr;
 	}
-	if (contCaminar == ANIMACION*3)
+	if (contCaminar == ANIMACION*2)
 	{
 		mainIsaac.body = isaacSprites[11].spr;
-		
 	}
-	if (contCaminar == ANIMACION * 4 )
+	if (contCaminar == ANIMACION*3)
 	{
 		contCaminar = 0;
 	}
-	
 	if(!(mainIsaac.posx>=SCREEN_WIDTH)){
 		mainIsaac.posx = mainIsaac.posx + mainIsaac.characterSpeed;
 	}
@@ -222,20 +217,19 @@ static void moveLeft(){
 		lastMove = 4;
 		contCaminar = 0;
 	}
-	if (contCaminar <= ANIMACION)
+	if (contCaminar == 0)
 	{
 		mainIsaac.body = isaacSprites[12].spr;
 	}
-	if (contCaminar == ANIMACION*2)
+	if (contCaminar == ANIMACION)
 	{
 		mainIsaac.body = isaacSprites[13].spr;
 	}
-	if (contCaminar == ANIMACION*3)
+	if (contCaminar == ANIMACION*2)
 	{
 		mainIsaac.body = isaacSprites[14].spr;
-		
 	}
-	if (contCaminar == ANIMACION * 4 )
+	if (contCaminar == ANIMACION*3)
 	{
 		contCaminar = 0;
 	}
