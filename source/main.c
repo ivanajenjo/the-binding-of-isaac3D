@@ -131,16 +131,22 @@ static void moveUp(){
 }
 
 static void moveDown(){
-	if (contCaminar == ANIMACION){
-		mainIsaac.body = isaacSprites[8].spr;
+	if (contCaminar == ANIMACION)
+	{
+		mainIsaac.body = isaacSprites[5].spr;
 	}
 	if (contCaminar == ANIMACION*2)
 	{
-		
+		mainIsaac.body = isaacSprites[6].spr;
 	}
 	if (contCaminar == ANIMACION*3)
 	{
-		
+		mainIsaac.body = isaacSprites[7].spr;
+	}
+	if (contCaminar == ANIMACION*4)
+	{
+		mainIsaac.body = isaacSprites[8].spr;
+		contCaminar = 0;
 	}
 	
 	
