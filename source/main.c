@@ -99,16 +99,6 @@ static void initIsaacSprites(){
 		C2D_SpriteSetDepth(&sprite->spr, 0.3f);
 		sprite->enemyHp = INIT_ENEMY_HP;
 	}
-
-	for (size_t i = 0; i < 3; i++)
-	{
-		Sprite* sprite = &isaacSprites[i+13];
-		C2D_SpriteFromSheet(&sprite->spr, isaacSheet, i+9);
-		C2D_SpriteSetCenter(&sprite->spr, 0.5f, 0.5f);
-		C2D_SpriteSetPos(&sprite->spr, rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT);
-		C2D_SpriteSetDepth(&sprite->spr, 0.3f);
-		C2D_SpriteScale(&sprite->spr, 0, -1.0f);
-	}
 }
 
 static void isaacSpritePos(){
@@ -234,15 +224,15 @@ static void moveLeft(){
 	}
 	if (contCaminar <= ANIMACION)
 	{
-		mainIsaac.body = isaacSprites[13].spr;
+		mainIsaac.body = isaacSprites[12].spr;
 	}
 	if (contCaminar == ANIMACION*2)
 	{
-		mainIsaac.body = isaacSprites[14].spr;
+		mainIsaac.body = isaacSprites[13].spr;
 	}
 	if (contCaminar == ANIMACION*3)
 	{
-		mainIsaac.body = isaacSprites[15].spr;
+		mainIsaac.body = isaacSprites[14].spr;
 		
 	}
 	if (contCaminar == ANIMACION * 4 )
