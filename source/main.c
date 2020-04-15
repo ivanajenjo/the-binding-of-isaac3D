@@ -15,7 +15,7 @@
 #define INIT_CHARACTER_HP 10
 #define INIT_ENEMY_HP 10
 #define MAX_ENEMIES 20
-#define ANIMACION 30
+#define ANIMACION 5
 
 // Simple sprite struct
 typedef struct
