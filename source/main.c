@@ -34,9 +34,19 @@ typedef struct
 	int characterHp, characterSpeed;
 } Isaac;
 
+typedef struct
+{
+	C2D_Sprite spr;
+	int posx, posy;
+	int enemyHp;
+} deathHead;
+
+
 static C2D_SpriteSheet spriteSheet;
 static C2D_SpriteSheet enemiesSpriteSheet;
 static C2D_SpriteSheet isaacSheet;
+static C2D_SpriteSheet deathHeadSheet;
+static Sprite deathHeadSprites[4];
 static Sprite isaacSprites[18];
 static Isaac mainIsaac;
 static Sprite mainCharacter;
@@ -85,6 +95,19 @@ static void initEnemies(){
 		sprite->dy = rand()*4.0f/RAND_MAX - 2.0f;
 		sprite->enemyHp = INIT_ENEMY_HP;
 	}
+
+	numImages = C2D_SpriteSheetCount(deathHeadSheet);
+
+	for (size_t i = 0; i < numImages; i++)
+	{
+		Sprite* sprite = &deathHeadSprites[i];
+		C2D_SpriteFromSheet(&sprite->spr, deathHeadSheet, i);
+		C2D_SpriteSetCenter(&sprite->spr, 0.5f, 0.5f);
+		C2D_SpriteSetPos(&sprite->spr, rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT);
+		C2D_SpriteSetDepth(&sprite->spr, 0.3f);
+		sprite->enemyHp = INIT_ENEMY_HP;
+	}
+	
 }
 
 static void initIsaacSprites(){
@@ -303,6 +326,9 @@ int main(int argc, char* argv[]) {
 	enemiesSpriteSheet = C2D_SpriteSheetLoad("romfs:/gfx/enemiesSprites.t3x");
 	if (!enemiesSpriteSheet) svcBreak(USERBREAK_PANIC);
 
+	deathHeadSheet = C2D_SpriteSheetLoad("romfs:/gfx/deathHeadSprites.t3x");
+	if (!deathHeadSheet) svcBreak(USERBREAK_PANIC);
+
 	// Initialize background
 	initBackground();
 
@@ -374,8 +400,6 @@ int main(int argc, char* argv[]) {
 			lastMove = 0;
 			isaacStanding();
 		}
-
-
 
 		//moveSprites();
 		isaacSpritePos();
