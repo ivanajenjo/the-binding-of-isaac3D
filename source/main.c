@@ -52,7 +52,6 @@ static C2D_SpriteSheet deathHeadSheet;
 static Sprite deathHeadSprites[4];
 static Sprite isaacSprites[18];
 static Isaac mainIsaac;
-static Sprite mainCharacter;
 static Sprite background;
 static Sprite enemies[MAX_ENEMIES];
 static size_t numEnemies = MAX_ENEMIES/2;
@@ -71,17 +70,6 @@ static void initBackground(){
 	C2D_SpriteSetPos(&background.spr, 0.5f, 0.5f);
 	C2D_SpriteSetRotation(&background.spr, C3D_Angle(0));
 	C2D_SpriteSetDepth(&background.spr, 0.1f);
-}
-
-//---------------------------------------------------------------------------------
-static void initSprites() {
-//---------------------------------------------------------------------------------
-	C2D_SpriteFromSheet(&mainCharacter.spr, spriteSheet, 0);
-	C2D_SpriteSetCenter(&mainCharacter.spr, 0.5f, 0.5f);
-	C2D_SpriteSetPos(&mainCharacter.spr, rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT);
-	C2D_SpriteSetRotation(&mainCharacter.spr, C3D_Angle(rand()/(float)RAND_MAX));
-	C2D_SpriteSetDepth(&mainCharacter.spr, 0.3f);
-	mainCharacter.characterHp = INIT_CHARACTER_HP;
 }
 
 //---------------------------------------------------------------------------------
@@ -347,7 +335,6 @@ static void drawIsaac(){
 static void drawScene(){
 	//Draw Background
 	C2D_DrawSprite(&background.spr);
-	C2D_DrawSprite(&mainCharacter.spr);
 	drawIsaac();
 	drawEnemies();
 }
@@ -386,7 +373,6 @@ int main(int argc, char* argv[]) {
 	initEnemies();
 
 	// Initialize sprites
-	initSprites();
 	initIsaacSprites();
 
 	//iniciar Stats Personaje
