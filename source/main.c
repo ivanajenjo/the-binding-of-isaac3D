@@ -16,6 +16,8 @@
 #define INIT_ENEMY_HP 10
 #define MAX_ENEMIES 20
 #define ANIMACION 5
+#define MAX_DEATH_HEADS 12
+#define CADENCIA_DEATH_HEAD 60
 
 // Simple sprite struct
 typedef struct
@@ -39,6 +41,7 @@ typedef struct
 	C2D_Sprite spr;
 	int posx, posy;
 	int enemyHp;
+	float dx, dy;
 } deathHead;
 
 
@@ -56,6 +59,9 @@ static size_t numEnemies = MAX_ENEMIES/2;
 static int lastMove = 0;
 static int contadorDisparo = 0;
 static int contCaminar = 0;
+static int contadorDeathHead = 0;
+static int nDeathHeads = 0;
+static deathHead deathHeads[MAX_DEATH_HEADS];
 
 //---------------------------------------------------------------------------------
 static void initBackground(){
@@ -106,6 +112,8 @@ static void initEnemies(){
 		C2D_SpriteSetPos(&sprite->spr, rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT);
 		C2D_SpriteSetDepth(&sprite->spr, 0.3f);
 		sprite->enemyHp = INIT_ENEMY_HP;
+		sprite->dx = rand()*4.0f/RAND_MAX - 2.0f;
+		sprite->dy = rand()*4.0f/RAND_MAX - 2.0f;
 	}
 	
 }
@@ -122,6 +130,11 @@ static void initIsaacSprites(){
 		C2D_SpriteSetDepth(&sprite->spr, 0.3f);
 		sprite->enemyHp = INIT_ENEMY_HP;
 	}
+}
+
+static void deathHeadPos(deathHead *death){
+	death->spr.params.pos.x = death->posx;
+	death->spr.params.pos.y = death->posy;
 }
 
 static void isaacSpritePos(){
@@ -145,10 +158,23 @@ static void initCharacter(){
 	mainIsaac.characterHp = INIT_CHARACTER_HP;
 }
 
-//---------------------------------------------------------------------------------
-static void moveSprites() {
-//---------------------------------------------------------------------------------
+static void initDeathHead(deathHead *death){
+	death->spr = deathHeadSprites[0].spr;
+	death->posx = rand() % SCREEN_WIDTH;
+	death->posy = rand() % SCREEN_HEIGHT;
+	death->dx = rand()*4.0f/RAND_MAX - 2.0f;
+	death->dy = rand()*4.0f/RAND_MAX - 2.0f;
+}
 
+//---------------------------------------------------------------------------------
+static void moveDeathHead(deathHead *death) {
+//---------------------------------------------------------------------------------
+	deathHead* deathHead = death;
+	C2D_SpriteMove(&deathHead->spr, deathHead->dx, deathHead->dy);
+	if (deathHead->posx >= SCREEN_WIDTH || deathHead->posx <= 0)
+		deathHead->dx = -deathHead->dx;
+	if (deathHead->posy >= SCREEN_HEIGHT || deathHead->posy <= 0)
+		deathHead->dy = -deathHead->dy;
 }
 
 static void moveUp(){
@@ -287,6 +313,12 @@ static void drawEnemies(){
 	{
 		C2D_DrawSprite(&enemies[i].spr);
 	}
+
+	for (size_t i = 0; i < nDeathHeads; i++)
+	{
+		C2D_DrawSprite(&deathHeads[i].spr);
+	}
+	
 }
 
 static void drawIsaac(){
@@ -342,9 +374,21 @@ int main(int argc, char* argv[]) {
 	//iniciar Stats Personaje
 	initCharacter();
 
+	int i = 0;
+
 	// Main loop
 	while (aptMainLoop())
 	{
+		if (contadorDeathHead == CADENCIA_DEATH_HEAD){
+			contadorDeathHead = 0;
+			initDeathHead(&deathHeads[i]);
+			nDeathHeads++;
+			i++;
+		}else
+		{
+			contadorDeathHead++;
+		}
+		
 		hidScanInput();
 
 		// Respond to user input
