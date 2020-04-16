@@ -324,10 +324,6 @@ static void shootLeft(){
 
 static void drawEnemies(){
 	// Render Enemies
-	for (size_t i = 0; i < numEnemies; i++)
-	{
-		C2D_DrawSprite(&enemies[i].spr);
-	}
 	for (size_t i = 0; i < MAX_DEATH_HEADS; i++)
 	{
 		if (deathHeads[i].visible == true)
