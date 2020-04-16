@@ -331,7 +331,7 @@ static void drawScene(){
 	C2D_DrawSprite(&background.spr);
 	C2D_DrawSprite(&mainCharacter.spr);
 	drawIsaac();
-	//drawEnemies();
+	drawEnemies();
 }
 
 //---------------------------------------------------------------------------------
@@ -379,7 +379,6 @@ int main(int argc, char* argv[]) {
 	// Main loop
 	while (aptMainLoop())
 	{
-		
 		hidScanInput();
 
 		// Respond to user input
