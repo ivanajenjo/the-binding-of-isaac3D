@@ -445,7 +445,12 @@ int main(int argc, char* argv[]) {
 			isaacStanding();
 		}
 
-		//moveSprites();
+		for (size_t i = 0; i < nDeathHeads; i++)
+		{
+			moveDeathHead(&deathHeads[i]);
+		}
+		
+
 		isaacSpritePos();
 
 		printf("The Binding of Ivan");
