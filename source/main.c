@@ -34,6 +34,7 @@ typedef struct
 	C2D_Sprite body;
 	int posx, posy; // velocity
 	int characterHp, characterSpeed;
+	bool visible;
 } Isaac;
 
 typedef struct
@@ -45,10 +46,7 @@ typedef struct
 } deathHead;
 
 
-static C2D_SpriteSheet spriteSheet;
-static C2D_SpriteSheet enemiesSpriteSheet;
-static C2D_SpriteSheet isaacSheet;
-static C2D_SpriteSheet deathHeadSheet;
+static C2D_SpriteSheet spriteSheet, enemiesSpriteSheet, isaacSheet, deathHeadSheet;
 static Sprite deathHeadSprites[4];
 static Sprite isaacSprites[18];
 static Isaac mainIsaac;
@@ -343,6 +341,54 @@ static void drawScene(){
 	drawEnemies();
 }
 
+static void movePlayer(u32 kHeld){
+	if (kHeld & KEY_UP){
+			moveUp();
+			contCaminar++;
+		}
+
+		if (kHeld & KEY_DOWN){
+			moveDown();
+			contCaminar++;
+		}
+
+		if (kHeld & KEY_RIGHT){
+			moveRight();
+			contCaminar++;
+		}
+
+		if (kHeld & KEY_LEFT){
+			moveLeft();
+			contCaminar++;
+		}
+}
+
+static void shootPlayer(u32 kHeld){
+		if (kHeld & KEY_A){
+			shootRight();
+		}
+
+		if (kHeld & KEY_Y){
+			shootLeft();
+		}
+
+		if (kHeld & KEY_X){
+			shootUp();
+		}
+
+		if (kHeld & KEY_B){
+			shootDown();
+		}
+}
+
+static void playerStanding(u32 kUp){
+	if((kUp & KEY_UP) || (kUp & KEY_DOWN) || (kUp & KEY_LEFT) || (kUp & KEY_RIGHT)){
+			contCaminar = 0;
+			lastMove = 0;
+			isaacStanding();
+		}
+}
+
 //---------------------------------------------------------------------------------
 int main(int argc, char* argv[]) {
 //---------------------------------------------------------------------------------
@@ -382,8 +428,6 @@ int main(int argc, char* argv[]) {
 	//iniciar Stats Personaje
 	initCharacter();
 
-	int i = 0;
-
 	// Main loop
 	while (aptMainLoop())
 	{
@@ -398,50 +442,14 @@ int main(int argc, char* argv[]) {
 		u32 kHeld = hidKeysHeld();
 
 		//Programar movimiento
-		if (kHeld & KEY_UP){
-			moveUp();
-			contCaminar++;
-		}
-
-		if (kHeld & KEY_DOWN){
-			moveDown();
-			contCaminar++;
-		}
-
-		if (kHeld & KEY_RIGHT){
-			moveRight();
-			contCaminar++;
-		}
-
-		if (kHeld & KEY_LEFT){
-			moveLeft();
-			contCaminar++;
-		}
+		movePlayer(kHeld);
 
 		//Programar Disparos
-		if (kHeld & KEY_A){
-			shootRight();
-		}
-
-		if (kHeld & KEY_Y){
-			shootLeft();
-		}
-
-		if (kHeld & KEY_X){
-			shootUp();
-		}
-
-		if (kHeld & KEY_B){
-			shootDown();
-		}
+		shootPlayer(kHeld);
 
 		u32 kUp = hidKeysUp();
-
-		if((kUp & KEY_UP) || (kUp & KEY_DOWN) || (kUp & KEY_LEFT) || (kUp & KEY_RIGHT)){
-			contCaminar = 0;
-			lastMove = 0;
-			isaacStanding();
-		}
+		//Player Standing
+		playerStanding(kUp);
 
 		moveEnemies();
 		isaacSpritePos();
