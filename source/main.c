@@ -156,26 +156,11 @@ static void initDeathHeads(){
 	}
 }
 
-//---------------------------------------------------------------------------------
-static void moveDeathHead(deathHead *death) {
-//---------------------------------------------------------------------------------
-	for (size_t i = 0; i < nDeathHeads; i++)
-	{
-		deathHead* deathHead = &deathHeads[i];
-		C2D_SpriteMove(&deathHead->spr, deathHead->dx, deathHead->dy);
-		if (deathHead->posx >= SCREEN_WIDTH || deathHead->posx <= 0)
-			deathHead->dx = -deathHead->dx;
-		if (deathHead->posy >= SCREEN_HEIGHT || deathHead->posy <= 0)
-			deathHead->dy = -deathHead->dy;
-	}
-}
-
 static void moveDeathHeads(){
 	for (size_t i = 0; i < MAX_DEATH_HEADS; i++)
 	{
 		deathHead* sprite = &deathHeads[i];
 		C2D_SpriteMove(&sprite->spr, sprite->dx, sprite->dy);
-		C2D_SpriteRotateDegrees(&sprite->spr, 1.0f);
 
 		// Check for collision with the screen boundaries
 		if ((sprite->spr.params.pos.x < sprite->spr.params.pos.w / 2.0f && sprite->dx < 0.0f) ||
