@@ -152,6 +152,7 @@ static void initDeathHeads(){
 		deathHeads[i].posy = rand() % SCREEN_HEIGHT;
 		deathHeads[i].dx = rand()*4.0f/RAND_MAX - 2.0f;
 		deathHeads[i].dy = rand()*4.0f/RAND_MAX - 2.0f;
+		deathHeads[i].visible = true;
 	}
 }
 
@@ -323,9 +324,12 @@ static void drawEnemies(){
 	{
 		C2D_DrawSprite(&enemies[i].spr);
 	}
-	for (size_t i = 0; i < nDeathHeads; i++)
+	for (size_t i = 0; i < MAX_DEATH_HEADS; i++)
 	{
-		C2D_DrawSprite(&deathHeads[i].spr);
+		if (deathHeads[i].visible == true)
+		{
+			C2D_DrawSprite(&deathHeads[i].spr);
+		}
 	}
 }
 
