@@ -170,6 +170,25 @@ static void moveDeathHead(deathHead *death) {
 	}
 }
 
+static void moveDeathHeads(){
+	for (size_t i = 0; i < MAX_DEATH_HEADS; i++)
+	{
+		deathHead* sprite = &deathHeads[i];
+		C2D_SpriteMove(&sprite->spr, sprite->dx, sprite->dy);
+		C2D_SpriteRotateDegrees(&sprite->spr, 1.0f);
+
+		// Check for collision with the screen boundaries
+		if ((sprite->spr.params.pos.x < sprite->spr.params.pos.w / 2.0f && sprite->dx < 0.0f) ||
+			(sprite->spr.params.pos.x > (SCREEN_WIDTH-(sprite->spr.params.pos.w / 2.0f)) && sprite->dx > 0.0f))
+			sprite->dx = -sprite->dx;
+
+		if ((sprite->spr.params.pos.y < sprite->spr.params.pos.h / 2.0f && sprite->dy < 0.0f) ||
+			(sprite->spr.params.pos.y > (SCREEN_HEIGHT-(sprite->spr.params.pos.h / 2.0f)) && sprite->dy > 0.0f))
+			sprite->dy = -sprite->dy;
+	}
+	
+}
+
 static void moveEnemies() {
 	for (size_t i = 0; i < numEnemies; i++)
 	{
@@ -461,6 +480,7 @@ int main(int argc, char* argv[]) {
 		playerStanding(kUp);
 
 		moveEnemies();
+		moveDeathHeads();
 		isaacSpritePos();
 
 		printf("The Binding of Ivan");
