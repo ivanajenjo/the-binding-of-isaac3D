@@ -463,6 +463,9 @@ int main(int argc, char* argv[]) {
 
 	// Delete graphics
 	C2D_SpriteSheetFree(spriteSheet);
+	C2D_SpriteSheetFree(deathHeadSheet);
+	C2D_SpriteSheetFree(isaacSheet);
+	C2D_SpriteSheetFree(enemiesSpriteSheet);
 
 	// Deinit libs
 	C2D_Fini();
