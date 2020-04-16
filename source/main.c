@@ -177,7 +177,7 @@ static void moveDeathHead(deathHead *death) {
 		deathHead->dy = -deathHead->dy;
 }
 
-static void moveSprites() {
+static void moveEnemies() {
 	for (size_t i = 0; i < numEnemies; i++)
 	{
 		Sprite* sprite = &enemies[i];
@@ -453,6 +453,7 @@ int main(int argc, char* argv[]) {
 			isaacStanding();
 		}
 
+		moveEnemies();
 		isaacSpritePos();
 
 		printf("The Binding of Ivan");
