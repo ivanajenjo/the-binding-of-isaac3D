@@ -43,6 +43,7 @@ typedef struct
 	int posx, posy;
 	int enemyHp;
 	float dx, dy;
+	bool visible;
 } deathHead;
 
 
@@ -146,27 +147,26 @@ static void initCharacter(){
 static void initDeathHeads(){
 	for (size_t i = 0; i < MAX_DEATH_HEADS; i++)
 	{
-		/* code */
+		deathHeads[i].spr = deathHeadSprites[0].spr;
+		deathHeads[i].posx = rand() % SCREEN_WIDTH;
+		deathHeads[i].posy = rand() % SCREEN_HEIGHT;
+		deathHeads[i].dx = rand()*4.0f/RAND_MAX - 2.0f;
+		deathHeads[i].dy = rand()*4.0f/RAND_MAX - 2.0f;
 	}
-}
-
-static void initDeathHead(deathHead *death){
-	death->spr = deathHeadSprites[0].spr;
-	death->posx = rand() % SCREEN_WIDTH;
-	death->posy = rand() % SCREEN_HEIGHT;
-	death->dx = rand()*4.0f/RAND_MAX - 2.0f;
-	death->dy = rand()*4.0f/RAND_MAX - 2.0f;
 }
 
 //---------------------------------------------------------------------------------
 static void moveDeathHead(deathHead *death) {
 //---------------------------------------------------------------------------------
-	deathHead* deathHead = death;
-	C2D_SpriteMove(&deathHead->spr, deathHead->dx, deathHead->dy);
-	if (deathHead->posx >= SCREEN_WIDTH || deathHead->posx <= 0)
-		deathHead->dx = -deathHead->dx;
-	if (deathHead->posy >= SCREEN_HEIGHT || deathHead->posy <= 0)
-		deathHead->dy = -deathHead->dy;
+	for (size_t i = 0; i < nDeathHeads; i++)
+	{
+		deathHead* deathHead = &deathHeads[i];
+		C2D_SpriteMove(&deathHead->spr, deathHead->dx, deathHead->dy);
+		if (deathHead->posx >= SCREEN_WIDTH || deathHead->posx <= 0)
+			deathHead->dx = -deathHead->dx;
+		if (deathHead->posy >= SCREEN_HEIGHT || deathHead->posy <= 0)
+			deathHead->dy = -deathHead->dy;
+	}
 }
 
 static void moveEnemies() {
@@ -389,6 +389,20 @@ static void playerStanding(u32 kUp){
 		}
 }
 
+static void loadSheets(){
+	isaacSheet = C2D_SpriteSheetLoad("romfs:/gfx/isaac.t3x");
+	if (!isaacSheet) svcBreak(USERBREAK_PANIC);
+
+	spriteSheet = C2D_SpriteSheetLoad("romfs:/gfx/sprites.t3x");
+	if (!spriteSheet) svcBreak(USERBREAK_PANIC);
+
+	enemiesSpriteSheet = C2D_SpriteSheetLoad("romfs:/gfx/enemiesSprites.t3x");
+	if (!enemiesSpriteSheet) svcBreak(USERBREAK_PANIC);
+
+	deathHeadSheet = C2D_SpriteSheetLoad("romfs:/gfx/deathHeadSprites.t3x");
+	if (!deathHeadSheet) svcBreak(USERBREAK_PANIC);
+}
+
 //---------------------------------------------------------------------------------
 int main(int argc, char* argv[]) {
 //---------------------------------------------------------------------------------
@@ -404,23 +418,14 @@ int main(int argc, char* argv[]) {
 	C3D_RenderTarget* top = C2D_CreateScreenTarget(GFX_TOP, GFX_LEFT);
 
 	// Load graphics
-	isaacSheet = C2D_SpriteSheetLoad("romfs:/gfx/isaac.t3x");
-	if (!isaacSheet) svcBreak(USERBREAK_PANIC);
-
-	spriteSheet = C2D_SpriteSheetLoad("romfs:/gfx/sprites.t3x");
-	if (!spriteSheet) svcBreak(USERBREAK_PANIC);
-
-	enemiesSpriteSheet = C2D_SpriteSheetLoad("romfs:/gfx/enemiesSprites.t3x");
-	if (!enemiesSpriteSheet) svcBreak(USERBREAK_PANIC);
-
-	deathHeadSheet = C2D_SpriteSheetLoad("romfs:/gfx/deathHeadSprites.t3x");
-	if (!deathHeadSheet) svcBreak(USERBREAK_PANIC);
+	loadSheets();
 
 	// Initialize background
 	initBackground();
 
 	// Initialize enemies
 	initEnemies();
+	initDeathHeads();
 
 	// Initialize sprites
 	initIsaacSprites();
