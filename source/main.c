@@ -379,15 +379,6 @@ int main(int argc, char* argv[]) {
 	// Main loop
 	while (aptMainLoop())
 	{
-		if (contadorDeathHead == CADENCIA_DEATH_HEAD){
-			contadorDeathHead = 0;
-			initDeathHead(&deathHeads[i]);
-			nDeathHeads++;
-			i++;
-		}else
-		{
-			contadorDeathHead++;
-		}
 		
 		hidScanInput();
 
@@ -444,12 +435,6 @@ int main(int argc, char* argv[]) {
 			lastMove = 0;
 			isaacStanding();
 		}
-
-		for (size_t i = 0; i < nDeathHeads; i++)
-		{
-			moveDeathHead(&deathHeads[i]);
-		}
-		
 
 		isaacSpritePos();
 
