@@ -177,6 +177,24 @@ static void moveDeathHead(deathHead *death) {
 		deathHead->dy = -deathHead->dy;
 }
 
+static void moveSprites() {
+	for (size_t i = 0; i < numEnemies; i++)
+	{
+		Sprite* sprite = &enemies[i];
+		C2D_SpriteMove(&sprite->spr, sprite->dx, sprite->dy);
+		C2D_SpriteRotateDegrees(&sprite->spr, 1.0f);
+
+		// Check for collision with the screen boundaries
+		if ((sprite->spr.params.pos.x < sprite->spr.params.pos.w / 2.0f && sprite->dx < 0.0f) ||
+			(sprite->spr.params.pos.x > (SCREEN_WIDTH-(sprite->spr.params.pos.w / 2.0f)) && sprite->dx > 0.0f))
+			sprite->dx = -sprite->dx;
+
+		if ((sprite->spr.params.pos.y < sprite->spr.params.pos.h / 2.0f && sprite->dy < 0.0f) ||
+			(sprite->spr.params.pos.y > (SCREEN_HEIGHT-(sprite->spr.params.pos.h / 2.0f)) && sprite->dy > 0.0f))
+			sprite->dy = -sprite->dy;
+	}
+}
+
 static void moveUp(){
 	if (lastMove != 1)
 	{
