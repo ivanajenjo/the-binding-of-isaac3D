@@ -56,7 +56,6 @@ static Sprite background;
 static Sprite enemies[MAX_ENEMIES];
 static size_t numEnemies = MAX_ENEMIES/2;
 static int lastMove = 0;
-static int contadorDisparo = 0;
 static int contCaminar = 0;
 static int contadorDeathHead = 0;
 static int nDeathHeads = 0;
@@ -144,6 +143,13 @@ static void initCharacter(){
 	isaacSpritePos();
 	mainIsaac.characterSpeed = INIT_CHARACTER_SPEED;
 	mainIsaac.characterHp = INIT_CHARACTER_HP;
+}
+
+static void initDeathHeads(){
+	for (size_t i = 0; i < MAX_DEATH_HEADS; i++)
+	{
+		/* code */
+	}
 }
 
 static void initDeathHead(deathHead *death){
@@ -319,12 +325,10 @@ static void drawEnemies(){
 	{
 		C2D_DrawSprite(&enemies[i].spr);
 	}
-
 	for (size_t i = 0; i < nDeathHeads; i++)
 	{
 		C2D_DrawSprite(&deathHeads[i].spr);
 	}
-	
 }
 
 static void drawIsaac(){
