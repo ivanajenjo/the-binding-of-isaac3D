@@ -1,6 +1,3 @@
-// Simple citro2d sprite drawing example
-// Images borrowed from:
-//   https://kenney.nl/assets/space-shooter-redux
 #include <citro2d.h>
 
 #include <assert.h>
@@ -18,6 +15,7 @@
 #define ANIMACION 5
 #define MAX_DEATH_HEADS 12
 #define CADENCIA_DEATH_HEAD 60
+#define VELOCIDAD_BALA 10.0f
 
 // Simple sprite struct
 typedef struct
@@ -26,6 +24,7 @@ typedef struct
 	float dx, dy; // velocity
 	int enemyHp;
 	int characterHp;
+	bool visible;
 } Sprite;
 
 typedef struct
@@ -47,7 +46,7 @@ typedef struct
 } deathHead;
 
 
-static C2D_SpriteSheet spriteSheet, enemiesSpriteSheet, isaacSheet, deathHeadSheet;
+static C2D_SpriteSheet spriteSheet, enemiesSpriteSheet, isaacSheet, deathHeadSheet, backgroundSheet;
 static Sprite deathHeadSprites[4];
 static Sprite isaacSprites[18];
 static Isaac mainIsaac;
@@ -60,10 +59,21 @@ static int contadorDeathHead = 0;
 static int nDeathHeads = 0;
 static deathHead deathHeads[MAX_DEATH_HEADS];
 
+Sprite* bulletLeft;
+Sprite* bulletRight;
+
 //---------------------------------------------------------------------------------
-static void initBackground(){
+static void initFirstBackground(){
 //---------------------------------------------------------------------------------
 	C2D_SpriteFromSheet(&background.spr, spriteSheet, 1);
+	C2D_SpriteSetCenter(&background.spr, 0.5f, 0.5f);
+	C2D_SpriteSetPos(&background.spr, 0.5f, 0.5f);
+	C2D_SpriteSetRotation(&background.spr, C3D_Angle(0));
+	C2D_SpriteSetDepth(&background.spr, 0.1f);
+}
+
+static void initSecondBackground(){
+	C2D_SpriteFromSheet(&background.spr, backgroundSheet, 0);
 	C2D_SpriteSetCenter(&background.spr, 0.5f, 0.5f);
 	C2D_SpriteSetPos(&background.spr, 0.5f, 0.5f);
 	C2D_SpriteSetRotation(&background.spr, C3D_Angle(0));
@@ -305,6 +315,33 @@ static void moveLeft(){
 		mainIsaac.posx = mainIsaac.posx - mainIsaac.characterSpeed;
 	}
 }
+
+void moveBullets(Sprite* sprite)
+{
+	//Mientras la bala derecha no llegue al borde derecho de la pantalla
+	if(bulletRight->spr.params.pos.x < SCREEN_WIDTH)
+    {	
+		bulletRight->dx = VELOCIDAD_BALA;
+		
+	}
+	else
+	{
+		bulletRight->dx = 0.0f;
+		bulletRight->visible = false;
+	}
+
+	//Mientras la bala izquierda no llegue al borde izquierdo de la pantalla
+	if(bulletLeft->spr.params.pos.x > 0)
+    {	
+		bulletLeft->dx = -VELOCIDAD_BALA; 
+    }
+    else
+	{
+		bulletLeft->dx = 0.0f;
+		bulletLeft->visible = false;
+	}    
+}
+
 //Logica del disparo del personaje
 static void shootUp(){
 	mainIsaac.head = isaacSprites[2].spr;
@@ -405,6 +442,9 @@ static void loadSheets(){
 
 	deathHeadSheet = C2D_SpriteSheetLoad("romfs:/gfx/deathHeadSprites.t3x");
 	if (!deathHeadSheet) svcBreak(USERBREAK_PANIC);
+
+	backgroundSheet = C2D_SpriteSheetLoad("romfs:/gfx/background.t3x");
+	if (!backgroundSheet) svcBreak(USERBREAK_PANIC);
 }
 
 //---------------------------------------------------------------------------------
@@ -425,7 +465,8 @@ int main(int argc, char* argv[]) {
 	loadSheets();
 
 	// Initialize background
-	initBackground();
+	//initFirstBackground();
+	initSecondBackground();
 
 	// Initialize enemies
 	initEnemies();
