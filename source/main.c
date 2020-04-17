@@ -58,6 +58,7 @@ static int contCaminar = 0;
 static int contadorDeathHead = 0;
 static int nDeathHeads = 0;
 static deathHead deathHeads[MAX_DEATH_HEADS];
+static int status = 0;
 
 Sprite* bulletLeft;
 Sprite* bulletRight;
