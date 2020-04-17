@@ -499,7 +499,7 @@ int main(int argc, char* argv[]) {
 		shootPlayer(kHeld);
 
 		u32 kUp = hidKeysUp();
-		//Player Standing
+		//Player Standing check
 		playerStanding(kUp);
 
 		moveEnemies();
