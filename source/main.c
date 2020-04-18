@@ -34,6 +34,7 @@ typedef struct
 	int posx, posy; // velocity
 	int characterHp, characterSpeed;
 	bool visible;
+	int status;
 } Isaac;
 
 typedef struct
@@ -45,6 +46,7 @@ typedef struct
 	bool visible;
 } deathHead;
 
+enum statusPlayer { IDLE = 0, RIGHT = 1, LEFT = 2, UP = 3, DOWN = 4};
 
 static C2D_SpriteSheet spriteSheet, enemiesSpriteSheet, isaacSheet, deathHeadSheet, backgroundSheet;
 static Sprite deathHeadSprites[4];
@@ -204,6 +206,7 @@ static void moveEnemies() {
 }
 
 static void moveUp(){
+	mainIsaac.status = UP;
 	if (lastMove != 1)
 	{
 		lastMove = 1;
@@ -232,6 +235,7 @@ static void moveUp(){
 }
 
 static void moveDown(){
+	mainIsaac.status = DOWN;
 	if (lastMove != 2)
 	{
 		lastMove = 2;
@@ -264,6 +268,7 @@ static void moveDown(){
 }
 
 static void moveRight(){
+	mainIsaac.status = RIGHT;
 	if (lastMove != 3)
 	{
 		lastMove = 3;
@@ -291,6 +296,7 @@ static void moveRight(){
 }
 
 static void moveLeft(){
+	mainIsaac.status = LEFT;
 	if (lastMove != 4)
 	{
 		lastMove = 4;
@@ -424,6 +430,7 @@ static void shootPlayer(u32 kHeld){
 }
 
 static void playerStanding(u32 kUp){
+	mainIsaac.status = IDLE;
 	if((kUp & KEY_UP) || (kUp & KEY_DOWN) || (kUp & KEY_LEFT) || (kUp & KEY_RIGHT)){
 			contCaminar = 0;
 			lastMove = 0;
