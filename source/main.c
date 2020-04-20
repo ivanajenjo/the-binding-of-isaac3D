@@ -613,6 +613,7 @@ int main(int argc, char *argv[])
 		
 		if (contDisparo == 30)
 		{
+			contDisparo = 0;
 			boolDisparo = true;
 		}
 		
