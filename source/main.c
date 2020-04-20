@@ -172,6 +172,7 @@ static void initCharacter(){
 	mainIsaac.characterSpeed = INIT_CHARACTER_SPEED;
 	mainIsaac.characterHp = INIT_CHARACTER_HP;
 	mainIsaac.tear = isaacSprites[15].spr;
+	C2D_SpriteScale(&mainIsaac.tear, 0.2f, 0.2f);
 }
 
 static void initDeathHeads(){
@@ -358,7 +359,7 @@ static void shootUp(){
 	mainIsaac.head = isaacSprites[2].spr;
 	disparos_actuales++;
 	disparos[disparos_actuales-1].x = mainIsaac.posx;
-	disparos[disparos_actuales-1].y = mainIsaac.posy + 5;
+	disparos[disparos_actuales-1].y = mainIsaac.posy;
 	disparos[disparos_actuales-1].dx = -VELOCIDAD_BALA;
 	disparos[disparos_actuales-1].dy = 0;
 	disparos[disparos_actuales-1].spr = mainIsaac.tear;
@@ -368,7 +369,7 @@ static void shootDown(){
 	mainIsaac.head = isaacSprites[0].spr;
 	disparos_actuales++;
 	disparos[disparos_actuales-1].x = mainIsaac.posx;
-	disparos[disparos_actuales-1].y = mainIsaac.posy + 5;
+	disparos[disparos_actuales-1].y = mainIsaac.posy;
 	disparos[disparos_actuales-1].dx = VELOCIDAD_BALA;
 	disparos[disparos_actuales-1].dy = 0;
 	disparos[disparos_actuales-1].spr = mainIsaac.tear;
@@ -378,7 +379,7 @@ static void shootRight(){
 	mainIsaac.head = isaacSprites[1].spr;
 	disparos_actuales++;
 	disparos[disparos_actuales-1].x = mainIsaac.posx;
-	disparos[disparos_actuales-1].y = mainIsaac.posy + 5;
+	disparos[disparos_actuales-1].y = mainIsaac.posy;
 	disparos[disparos_actuales-1].dx = 0;
 	disparos[disparos_actuales-1].dy = VELOCIDAD_BALA;
 	disparos[disparos_actuales-1].spr = mainIsaac.tear;
@@ -388,7 +389,7 @@ static void shootLeft(){
 	mainIsaac.head = isaacSprites[3].spr;
 	disparos_actuales++;
 	disparos[disparos_actuales-1].x = mainIsaac.posx;
-	disparos[disparos_actuales-1].y = mainIsaac.posy + 5;
+	disparos[disparos_actuales-1].y = mainIsaac.posy;
 	disparos[disparos_actuales-1].dx = 0;
 	disparos[disparos_actuales-1].dy = -VELOCIDAD_BALA;
 	disparos[disparos_actuales-1].spr = mainIsaac.tear;
