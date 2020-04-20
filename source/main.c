@@ -461,6 +461,32 @@ static void drawTears()
 	}
 }
 
+float distancia(float x1, float y1, float x2, float y2)
+{
+	float d;
+	d = sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
+
+	return d;
+}
+
+static void checkCollisions()
+{
+	for (size_t i = 0; i < disparos_actuales; i++)
+	{
+		for (size_t j = 0; j < MAX_DEATH_HEADS; j++)
+		{
+			if (deathHeads[j].visible == true)
+			{
+				if (distancia(disparos[i].spr.params.pos.x, disparos[i].spr.params.pos.y, deathHeads[j].spr.params.pos.x, deathHeads[j].spr.params.pos.y) < 10)
+				{
+					disparos[i].visible = false;
+					deathHeads[j].visible = false;
+				}
+			}
+		}
+	}
+}
+
 static void drawScene()
 {
 	//Draw Background
@@ -619,13 +645,12 @@ int main(int argc, char *argv[])
 		{
 			contDisparo++;
 		}
-		
+
 		if (contDisparo == ATTC_SPEED)
 		{
 			contDisparo = 0;
 			boolDisparo = true;
 		}
-		
 
 		moveEnemies();
 		moveDeathHeads();
