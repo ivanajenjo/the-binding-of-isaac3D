@@ -349,6 +349,7 @@ void moveTears()
 		{
 			disparos_actuales--;
 		}
+		C2D_SpriteMove(&disparos[i].spr, disparos[i].dx, disparos[i].dy);
 		disparos[i].x += disparos[i].dx;
 		disparos[i].y += disparos[i].dy;
 	}
