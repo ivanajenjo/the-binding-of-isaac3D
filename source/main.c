@@ -27,6 +27,7 @@ Curso 2020
 #define CADENCIA_DEATH_HEAD 60
 #define VELOCIDAD_BALA 5.0f
 #define MAX_DISPAROS 200
+#define ATTC_SPEED 25
 
 // Simple sprite struct
 typedef struct
@@ -611,7 +612,7 @@ int main(int argc, char *argv[])
 			contDisparo++;
 		}
 		
-		if (contDisparo == 30)
+		if (contDisparo == ATTC_SPEED)
 		{
 			contDisparo = 0;
 			boolDisparo = true;
