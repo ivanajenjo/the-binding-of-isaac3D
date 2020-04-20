@@ -349,10 +349,10 @@ void moveTears()
 		{
 			disparos_actuales--;
 		}
-		disparos[i].x += disparos[i].dx;
-		disparos[i].y += disparos[i].dy;
-		disparos[i].spr.params.pos.x = disparos[i].x;
-		disparos[i].spr.params.pos.x = disparos[i].y;
+		//disparos[i].x += disparos[i].dx;
+		//disparos[i].y += disparos[i].dy;
+		disparos[i].spr.params.pos.x += disparos[i].dx;
+		disparos[i].spr.params.pos.x += disparos[i].dy;
 	}
 }
 
@@ -380,11 +380,12 @@ static void shootDown(){
 static void shootRight(){
 	mainIsaac.head = isaacSprites[1].spr;
 	disparos_actuales++;
-	disparos[disparos_actuales-1].x = mainIsaac.posx;
-	disparos[disparos_actuales-1].y = mainIsaac.posy;
+	disparos[disparos_actuales-1].spr = mainIsaac.tear;
+	disparos[disparos_actuales-1].spr.params.pos.x = mainIsaac.posx;
+	disparos[disparos_actuales-1].spr.params.pos.y = mainIsaac.posy;
 	disparos[disparos_actuales-1].dx = 0;
 	disparos[disparos_actuales-1].dy = VELOCIDAD_BALA;
-	disparos[disparos_actuales-1].spr = mainIsaac.tear;
+	
 }
 
 static void shootLeft(){

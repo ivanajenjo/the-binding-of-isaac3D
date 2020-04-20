@@ -57,7 +57,7 @@
 00100d54 t __do_global_dtors_aux
 00100d98 t frame_dummy
 00100dcc 00000050 t isaacStanding
-00100e1c 000000b4 T moveTears
+00100e1c 000000b0 T moveTears
 00100ed0 0000111c T main
 00101fec 00000330 T C2D_Init
 0010231c 00000044 T C2D_Fini
