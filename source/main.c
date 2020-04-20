@@ -359,7 +359,7 @@ static void shootUp(){
 	disparos_actuales++;
 	disparos[disparos_actuales-1].x = mainIsaac.posx;
 	disparos[disparos_actuales-1].y = mainIsaac.posy + 5;
-	disparos[disparos_actuales-1].dx =
+	disparos[disparos_actuales-1].dx = 0;
 	disparos[disparos_actuales-1].dy = -10;
 	disparos[disparos_actuales-1].spr = mainIsaac.tear;
 }
