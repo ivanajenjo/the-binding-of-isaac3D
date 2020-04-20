@@ -352,7 +352,7 @@ void moveTears()
 		//disparos[i].x += disparos[i].dx;
 		//disparos[i].y += disparos[i].dy;
 		disparos[i].spr.params.pos.x += disparos[i].dx;
-		disparos[i].spr.params.pos.x += disparos[i].dy;
+		disparos[i].spr.params.pos.y += disparos[i].dy;
 	}
 }
 
