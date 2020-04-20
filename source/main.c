@@ -481,6 +481,7 @@ static void checkCollisions()
 				{
 					disparos[i].visible = false;
 					deathHeads[j].visible = false;
+					printf("Colision \n");
 				}
 			}
 		}
