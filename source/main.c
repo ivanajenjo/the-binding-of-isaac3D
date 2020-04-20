@@ -478,7 +478,7 @@ static void checkCollisions()
 		{
 			if (deathHeads[j].visible == true)
 			{
-				if (distancia(disparos[i].spr.params.pos.x, disparos[i].spr.params.pos.y, deathHeads[j].spr.params.pos.x, deathHeads[j].spr.params.pos.y) < 40)
+				if (distancia(disparos[i].spr.params.pos.x, disparos[i].spr.params.pos.y, deathHeads[j].spr.params.pos.x, deathHeads[j].spr.params.pos.y) < 50.0f)
 				{
 					disparos[i].visible = false;
 					deathHeads[j].visible = false;
