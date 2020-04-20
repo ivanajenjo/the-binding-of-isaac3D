@@ -496,23 +496,26 @@ static void shootPlayer(u32 kHeld)
 		if (kHeld & KEY_A)
 		{
 			shootRight();
+			boolDisparo = false;
 		}
 
 		if (kHeld & KEY_Y)
 		{
 			shootLeft();
+			boolDisparo = false;
 		}
 
 		if (kHeld & KEY_X)
 		{
 			shootUp();
+			boolDisparo = false;
 		}
 
 		if (kHeld & KEY_B)
 		{
 			shootDown();
+			boolDisparo = false;
 		}
-		boolDisparo = false;
 	}
 }
 
