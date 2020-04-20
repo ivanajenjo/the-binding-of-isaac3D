@@ -359,21 +359,39 @@ static void shootUp(){
 	disparos_actuales++;
 	disparos[disparos_actuales-1].x = mainIsaac.posx;
 	disparos[disparos_actuales-1].y = mainIsaac.posy + 5;
-	disparos[disparos_actuales-1].dx = 0;
-	disparos[disparos_actuales-1].dy = -10;
+	disparos[disparos_actuales-1].dx = -5;
+	disparos[disparos_actuales-1].dy = 0;
 	disparos[disparos_actuales-1].spr = mainIsaac.tear;
 }
 
 static void shootDown(){
 	mainIsaac.head = isaacSprites[0].spr;
+	disparos_actuales++;
+	disparos[disparos_actuales-1].x = mainIsaac.posx;
+	disparos[disparos_actuales-1].y = mainIsaac.posy + 5;
+	disparos[disparos_actuales-1].dx = 5;
+	disparos[disparos_actuales-1].dy = 0;
+	disparos[disparos_actuales-1].spr = mainIsaac.tear;
 }
 
 static void shootRight(){
 	mainIsaac.head = isaacSprites[1].spr;
+	disparos_actuales++;
+	disparos[disparos_actuales-1].x = mainIsaac.posx;
+	disparos[disparos_actuales-1].y = mainIsaac.posy + 5;
+	disparos[disparos_actuales-1].dx = 0;
+	disparos[disparos_actuales-1].dy = 5;
+	disparos[disparos_actuales-1].spr = mainIsaac.tear;
 }
 
 static void shootLeft(){
 	mainIsaac.head = isaacSprites[3].spr;
+	disparos_actuales++;
+	disparos[disparos_actuales-1].x = mainIsaac.posx;
+	disparos[disparos_actuales-1].y = mainIsaac.posy + 5;
+	disparos[disparos_actuales-1].dx = 0;
+	disparos[disparos_actuales-1].dy = -5;
+	disparos[disparos_actuales-1].spr = mainIsaac.tear;
 }
 
 static void drawEnemies(){
