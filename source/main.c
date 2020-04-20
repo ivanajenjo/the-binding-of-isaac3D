@@ -25,7 +25,7 @@ Curso 2020
 #define ANIMACION 5
 #define MAX_DEATH_HEADS 12
 #define CADENCIA_DEATH_HEAD 60
-#define VELOCIDAD_BALA 10.0f
+#define VELOCIDAD_BALA 2.0f
 #define MAX_DISPAROS 200
 
 // Simple sprite struct
@@ -359,7 +359,7 @@ static void shootUp(){
 	disparos_actuales++;
 	disparos[disparos_actuales-1].x = mainIsaac.posx;
 	disparos[disparos_actuales-1].y = mainIsaac.posy + 5;
-	disparos[disparos_actuales-1].dx = -5;
+	disparos[disparos_actuales-1].dx = -VELOCIDAD_BALA;
 	disparos[disparos_actuales-1].dy = 0;
 	disparos[disparos_actuales-1].spr = mainIsaac.tear;
 }
@@ -369,7 +369,7 @@ static void shootDown(){
 	disparos_actuales++;
 	disparos[disparos_actuales-1].x = mainIsaac.posx;
 	disparos[disparos_actuales-1].y = mainIsaac.posy + 5;
-	disparos[disparos_actuales-1].dx = 5;
+	disparos[disparos_actuales-1].dx = VELOCIDAD_BALA;
 	disparos[disparos_actuales-1].dy = 0;
 	disparos[disparos_actuales-1].spr = mainIsaac.tear;
 }
@@ -380,7 +380,7 @@ static void shootRight(){
 	disparos[disparos_actuales-1].x = mainIsaac.posx;
 	disparos[disparos_actuales-1].y = mainIsaac.posy + 5;
 	disparos[disparos_actuales-1].dx = 0;
-	disparos[disparos_actuales-1].dy = 5;
+	disparos[disparos_actuales-1].dy = VELOCIDAD_BALA;
 	disparos[disparos_actuales-1].spr = mainIsaac.tear;
 }
 
@@ -390,7 +390,7 @@ static void shootLeft(){
 	disparos[disparos_actuales-1].x = mainIsaac.posx;
 	disparos[disparos_actuales-1].y = mainIsaac.posy + 5;
 	disparos[disparos_actuales-1].dx = 0;
-	disparos[disparos_actuales-1].dy = -5;
+	disparos[disparos_actuales-1].dy = -VELOCIDAD_BALA;
 	disparos[disparos_actuales-1].spr = mainIsaac.tear;
 }
 
