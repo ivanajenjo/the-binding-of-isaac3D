@@ -26,12 +26,14 @@ Curso 2020
 #define MAX_DEATH_HEADS 12
 #define CADENCIA_DEATH_HEAD 60
 #define VELOCIDAD_BALA 10.0f
+#define MAX_DISPAROS 200
 
 // Simple sprite struct
 typedef struct
 {
 	C2D_Sprite spr;
-	float dx, dy; // velocity
+	float dx, dy;
+	float x, y;
 	int enemyHp;
 	int characterHp;
 	bool visible;
@@ -62,6 +64,7 @@ enum statusPlayer { IDLE = 0, RIGHT = 1, LEFT = 2, UP = 3, DOWN = 4};
 static C2D_SpriteSheet spriteSheet, enemiesSpriteSheet, isaacSheet, deathHeadSheet, backgroundSheet;
 static Sprite deathHeadSprites[4];
 static Sprite isaacSprites[18];
+static Sprite disparos[MAX_DISPAROS];
 static Isaac mainIsaac;
 static Sprite background;
 static Sprite enemies[MAX_ENEMIES];
@@ -72,6 +75,8 @@ static int contadorDeathHead = 0;
 static int nDeathHeads = 0;
 static deathHead deathHeads[MAX_DEATH_HEADS];
 static int status = 0;
+
+int disparos_actuales = 0;
 
 Sprite* bulletLeft;
 Sprite* bulletRight;
@@ -335,33 +340,28 @@ static void moveLeft(){
 	}
 }
 
-void moveTears(Sprite* sprite)
+void moveTears()
 {
-	//Mientras la bala derecha no llegue al borde derecho de la pantalla
-	if(bulletRight->spr.params.pos.x < SCREEN_WIDTH)
-    {	
-		bulletRight->dx = VELOCIDAD_BALA;
-	}
-	else
+	for (size_t i = 0; i < disparos_actuales; i++)
 	{
-		bulletRight->dx = 0.0f;
-		bulletRight->visible = false;
+		if ((disparos[i].y > SCREEN_HEIGHT) || (disparos[i].y < 0) || (disparos[i].x > SCREEN_WIDTH) || (disparos[i].x < 0))
+		{
+			disparos_actuales--;
+		}
+		disparos[i].x += disparos[i].dx;
+		disparos[i].y += disparos[i].dy;
 	}
-	//Mientras la bala izquierda no llegue al borde izquierdo de la pantalla
-	if(bulletLeft->spr.params.pos.x > 0)
-    {	
-		bulletLeft->dx = -VELOCIDAD_BALA; 
-    }
-    else
-	{
-		bulletLeft->dx = 0.0f;
-		bulletLeft->visible = false;
-	}    
 }
 
 //Logica del disparo del personaje
 static void shootUp(){
 	mainIsaac.head = isaacSprites[2].spr;
+	disparos_actuales++;
+	disparos[disparos_actuales-1].x = mainIsaac.posx;
+	disparos[disparos_actuales-1].y = mainIsaac.posy + 5;
+	disparos[disparos_actuales-1].dx =
+	disparos[disparos_actuales-1].dy = -10;
+	disparos[disparos_actuales-1].spr = mainIsaac.tear;
 }
 
 static void shootDown(){
@@ -390,6 +390,15 @@ static void drawEnemies(){
 static void drawIsaac(){
 	C2D_DrawSprite(&mainIsaac.body);
 	C2D_DrawSprite(&mainIsaac.head);
+}
+
+static void drawTears(){
+	for (size_t i = 0; i < disparos_actuales; i++)
+	{
+		disparos[i].spr.params.pos.x = disparos[i].x;
+		disparos[i].spr.params.pos.x = disparos[i].y;
+		C2D_DrawSprite(&disparos[i].spr);
+	}
 }
 
 static void drawScene(){
