@@ -406,6 +406,7 @@ static void drawScene(){
 	C2D_DrawSprite(&background.spr);
 	drawIsaac();
 	drawEnemies();
+	drawTears();
 }
 
 static void movePlayer(u32 kHeld){
