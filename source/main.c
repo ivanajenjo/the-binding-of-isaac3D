@@ -393,6 +393,7 @@ static void shootUp()
 	disparos[disparos_actuales - 1].spr.params.pos.y = mainIsaac.posy;
 	disparos[disparos_actuales - 1].dx = 0;
 	disparos[disparos_actuales - 1].dy = -VELOCIDAD_BALA;
+	disparos[disparos_actuales - 1].visible = true;
 }
 
 static void shootDown()
@@ -402,9 +403,9 @@ static void shootDown()
 	disparos[disparos_actuales - 1].spr = mainIsaac.tear;
 	disparos[disparos_actuales - 1].spr.params.pos.x = mainIsaac.posx;
 	disparos[disparos_actuales - 1].spr.params.pos.y = mainIsaac.posy;
-	;
 	disparos[disparos_actuales - 1].dx = 0;
 	disparos[disparos_actuales - 1].dy = VELOCIDAD_BALA;
+	disparos[disparos_actuales - 1].visible = true;
 }
 
 static void shootRight()
@@ -416,6 +417,7 @@ static void shootRight()
 	disparos[disparos_actuales - 1].spr.params.pos.y = mainIsaac.posy;
 	disparos[disparos_actuales - 1].dx = VELOCIDAD_BALA;
 	disparos[disparos_actuales - 1].dy = 0;
+	disparos[disparos_actuales - 1].visible = true;
 }
 
 static void shootLeft()
@@ -427,6 +429,7 @@ static void shootLeft()
 	disparos[disparos_actuales - 1].spr.params.pos.y = mainIsaac.posy;
 	disparos[disparos_actuales - 1].dx = -VELOCIDAD_BALA;
 	disparos[disparos_actuales - 1].dy = 0;
+	disparos[disparos_actuales - 1].visible = true;
 }
 
 static void drawEnemies()
@@ -451,7 +454,10 @@ static void drawTears()
 {
 	for (size_t i = 0; i < disparos_actuales; i++)
 	{
-		C2D_DrawSprite(&disparos[i].spr);
+		if (disparos[i].visible == true)
+		{
+			C2D_DrawSprite(&disparos[i].spr);
+		}
 	}
 }
 
