@@ -529,6 +529,7 @@ int main(int argc, char* argv[]) {
 
 		moveEnemies();
 		moveDeathHeads();
+		moveTears();
 		isaacSpritePos();
 
 		printf("The Binding of Ivan");
