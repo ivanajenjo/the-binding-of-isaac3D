@@ -25,7 +25,7 @@ Curso 2020
 #define ANIMACION 5
 #define MAX_DEATH_HEADS 12
 #define CADENCIA_DEATH_HEAD 60
-#define VELOCIDAD_BALA 2.0f
+#define VELOCIDAD_BALA 5.0f
 #define MAX_DISPAROS 200
 
 // Simple sprite struct
