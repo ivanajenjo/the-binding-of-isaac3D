@@ -470,6 +470,9 @@ float distancia(float x1, float y1, float x2, float y2)
 	return d;
 }
 
+//disparos[i].spr.params.pos.x
+//deathHeads[j].spr.params.pos.x
+
 static void checkCollisions()
 {
 	for (size_t i = 0; i < disparos_actuales; i++)
@@ -478,7 +481,7 @@ static void checkCollisions()
 		{
 			if (deathHeads[j].visible == true)
 			{
-				if (distancia(disparos[i].spr.params.pos.x, disparos[i].spr.params.pos.y, deathHeads[j].spr.params.pos.x, deathHeads[j].spr.params.pos.y) < 50.0f)
+				if ((fabs(disparos[i].spr.params.pos.x - deathHeads[j].spr.params.pos.x) < 20) || (fabs(disparos[i].spr.params.pos.y - deathHeads[j].spr.params.pos.y) < 20))
 				{
 					disparos[i].visible = false;
 					deathHeads[j].visible = false;
