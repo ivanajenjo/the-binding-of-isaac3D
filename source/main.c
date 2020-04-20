@@ -16,7 +16,7 @@ Curso 2020
 #include <stdlib.h>
 #include <time.h>
 
-#define SCREEN_WIDTH  400
+#define SCREEN_WIDTH 400
 #define SCREEN_HEIGHT 240
 #define INIT_CHARACTER_SPEED 2
 #define INIT_CHARACTER_HP 10
@@ -59,7 +59,14 @@ typedef struct
 	bool visible;
 } deathHead;
 
-enum statusPlayer { IDLE = 0, RIGHT = 1, LEFT = 2, UP = 3, DOWN = 4};
+enum statusPlayer
+{
+	IDLE = 0,
+	RIGHT = 1,
+	LEFT = 2,
+	UP = 3,
+	DOWN = 4
+};
 
 static C2D_SpriteSheet spriteSheet, enemiesSpriteSheet, isaacSheet, deathHeadSheet, backgroundSheet;
 static Sprite deathHeadSprites[4];
@@ -68,9 +75,11 @@ static Sprite disparos[MAX_DISPAROS];
 static Isaac mainIsaac;
 static Sprite background;
 static Sprite enemies[MAX_ENEMIES];
-static size_t numEnemies = MAX_ENEMIES/2;
+static size_t numEnemies = MAX_ENEMIES / 2;
 static int lastMove = 0;
 static int contCaminar = 0;
+static int contDisparo = 0;
+static bool boolDisparo = true;
 static int contadorDeathHead = 0;
 static int nDeathHeads = 0;
 static deathHead deathHeads[MAX_DEATH_HEADS];
@@ -78,12 +87,13 @@ static int status = 0;
 
 int disparos_actuales = 0;
 
-Sprite* bulletLeft;
-Sprite* bulletRight;
+Sprite *bulletLeft;
+Sprite *bulletRight;
 
 //---------------------------------------------------------------------------------
-static void initFirstBackground(){
-//---------------------------------------------------------------------------------
+static void initFirstBackground()
+{
+	//---------------------------------------------------------------------------------
 	C2D_SpriteFromSheet(&background.spr, spriteSheet, 0);
 	C2D_SpriteSetCenter(&background.spr, 0.5f, 0.5f);
 	C2D_SpriteSetPos(&background.spr, 0.5f, 0.5f);
@@ -91,7 +101,8 @@ static void initFirstBackground(){
 	C2D_SpriteSetDepth(&background.spr, 0.1f);
 }
 
-static void initSecondBackground(){
+static void initSecondBackground()
+{
 	C2D_SpriteFromSheet(&background.spr, backgroundSheet, 0);
 	C2D_SpriteSetCenter(&background.spr, 0.5f, 0.5f);
 	C2D_SpriteSetPos(&background.spr, 0.5f, 0.5f);
@@ -100,20 +111,21 @@ static void initSecondBackground(){
 }
 
 //---------------------------------------------------------------------------------
-static void initEnemies(){
-//---------------------------------------------------------------------------------
+static void initEnemies()
+{
+	//---------------------------------------------------------------------------------
 	size_t numImages = C2D_SpriteSheetCount(enemiesSpriteSheet);
 
 	for (size_t i = 0; i < MAX_ENEMIES; i++)
 	{
-		Sprite* sprite = &enemies[i];
+		Sprite *sprite = &enemies[i];
 		C2D_SpriteFromSheet(&sprite->spr, enemiesSpriteSheet, rand() % numImages);
 		C2D_SpriteSetCenter(&sprite->spr, 0.5f, 0.5f);
 		C2D_SpriteSetPos(&sprite->spr, rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT);
-		C2D_SpriteSetRotation(&sprite->spr, C3D_Angle(rand()/(float)RAND_MAX));
+		C2D_SpriteSetRotation(&sprite->spr, C3D_Angle(rand() / (float)RAND_MAX));
 		C2D_SpriteSetDepth(&sprite->spr, 0.3f);
-		sprite->dx = rand()*4.0f/RAND_MAX - 2.0f;
-		sprite->dy = rand()*4.0f/RAND_MAX - 2.0f;
+		sprite->dx = rand() * 4.0f / RAND_MAX - 2.0f;
+		sprite->dy = rand() * 4.0f / RAND_MAX - 2.0f;
 		sprite->enemyHp = INIT_ENEMY_HP;
 	}
 
@@ -121,24 +133,24 @@ static void initEnemies(){
 
 	for (size_t i = 0; i < numImages; i++)
 	{
-		Sprite* sprite = &deathHeadSprites[i];
+		Sprite *sprite = &deathHeadSprites[i];
 		C2D_SpriteFromSheet(&sprite->spr, deathHeadSheet, i);
 		C2D_SpriteSetCenter(&sprite->spr, 0.5f, 0.5f);
 		C2D_SpriteSetPos(&sprite->spr, rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT);
 		C2D_SpriteSetDepth(&sprite->spr, 0.3f);
 		sprite->enemyHp = INIT_ENEMY_HP;
-		sprite->dx = rand()*4.0f/RAND_MAX - 2.0f;
-		sprite->dy = rand()*4.0f/RAND_MAX - 2.0f;
+		sprite->dx = rand() * 4.0f / RAND_MAX - 2.0f;
+		sprite->dy = rand() * 4.0f / RAND_MAX - 2.0f;
 	}
-	
 }
 
-static void initIsaacSprites(){
+static void initIsaacSprites()
+{
 	size_t numImages = C2D_SpriteSheetCount(isaacSheet);
 
 	for (size_t i = 0; i < numImages; i++)
 	{
-		Sprite* sprite = &isaacSprites[i];
+		Sprite *sprite = &isaacSprites[i];
 		C2D_SpriteFromSheet(&sprite->spr, isaacSheet, i);
 		C2D_SpriteSetCenter(&sprite->spr, 0.5f, 0.5f);
 		C2D_SpriteSetPos(&sprite->spr, rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT);
@@ -147,24 +159,28 @@ static void initIsaacSprites(){
 	}
 }
 
-static void deathHeadPos(deathHead *death){
+static void deathHeadPos(deathHead *death)
+{
 	death->spr.params.pos.x = death->posx;
 	death->spr.params.pos.y = death->posy;
 }
 
-static void isaacSpritePos(){
+static void isaacSpritePos()
+{
 	mainIsaac.head.params.pos.x = mainIsaac.posx;
 	mainIsaac.head.params.pos.y = mainIsaac.posy;
 	mainIsaac.body.params.pos.x = mainIsaac.posx;
-	mainIsaac.body.params.pos.y = mainIsaac.posy+15;
+	mainIsaac.body.params.pos.y = mainIsaac.posy + 15;
 }
 
-static void isaacStanding(){
+static void isaacStanding()
+{
 	mainIsaac.head = isaacSprites[0].spr;
 	mainIsaac.body = isaacSprites[4].spr;
 }
 
-static void initCharacter(){
+static void initCharacter()
+{
 	mainIsaac.posx = 50;
 	mainIsaac.posy = 50;
 	isaacStanding();
@@ -175,55 +191,58 @@ static void initCharacter(){
 	C2D_SpriteScale(&mainIsaac.tear, 0.2f, 0.2f);
 }
 
-static void initDeathHeads(){
+static void initDeathHeads()
+{
 	for (size_t i = 0; i < MAX_DEATH_HEADS; i++)
 	{
 		deathHeads[i].spr = deathHeadSprites[0].spr;
 		deathHeads[i].posx = rand() % SCREEN_WIDTH;
 		deathHeads[i].posy = rand() % SCREEN_HEIGHT;
-		deathHeads[i].dx = rand()*4.0f/RAND_MAX - 2.0f;
-		deathHeads[i].dy = rand()*4.0f/RAND_MAX - 2.0f;
+		deathHeads[i].dx = rand() * 4.0f / RAND_MAX - 2.0f;
+		deathHeads[i].dy = rand() * 4.0f / RAND_MAX - 2.0f;
 		deathHeads[i].visible = true;
 	}
 }
 
-static void moveDeathHeads(){
+static void moveDeathHeads()
+{
 	for (size_t i = 0; i < MAX_DEATH_HEADS; i++)
 	{
-		deathHead* sprite = &deathHeads[i];
+		deathHead *sprite = &deathHeads[i];
 		C2D_SpriteMove(&sprite->spr, sprite->dx, sprite->dy);
 
 		// Check for collision with the screen boundaries
 		if ((sprite->spr.params.pos.x < sprite->spr.params.pos.w / 2.0f && sprite->dx < 0.0f) ||
-			(sprite->spr.params.pos.x > (SCREEN_WIDTH-(sprite->spr.params.pos.w / 2.0f)) && sprite->dx > 0.0f))
+			(sprite->spr.params.pos.x > (SCREEN_WIDTH - (sprite->spr.params.pos.w / 2.0f)) && sprite->dx > 0.0f))
 			sprite->dx = -sprite->dx;
 
 		if ((sprite->spr.params.pos.y < sprite->spr.params.pos.h / 2.0f && sprite->dy < 0.0f) ||
-			(sprite->spr.params.pos.y > (SCREEN_HEIGHT-(sprite->spr.params.pos.h / 2.0f)) && sprite->dy > 0.0f))
+			(sprite->spr.params.pos.y > (SCREEN_HEIGHT - (sprite->spr.params.pos.h / 2.0f)) && sprite->dy > 0.0f))
 			sprite->dy = -sprite->dy;
 	}
-	
 }
 
-static void moveEnemies() {
+static void moveEnemies()
+{
 	for (size_t i = 0; i < numEnemies; i++)
 	{
-		Sprite* sprite = &enemies[i];
+		Sprite *sprite = &enemies[i];
 		C2D_SpriteMove(&sprite->spr, sprite->dx, sprite->dy);
 		C2D_SpriteRotateDegrees(&sprite->spr, 1.0f);
 
 		// Check for collision with the screen boundaries
 		if ((sprite->spr.params.pos.x < sprite->spr.params.pos.w / 2.0f && sprite->dx < 0.0f) ||
-			(sprite->spr.params.pos.x > (SCREEN_WIDTH-(sprite->spr.params.pos.w / 2.0f)) && sprite->dx > 0.0f))
+			(sprite->spr.params.pos.x > (SCREEN_WIDTH - (sprite->spr.params.pos.w / 2.0f)) && sprite->dx > 0.0f))
 			sprite->dx = -sprite->dx;
 
 		if ((sprite->spr.params.pos.y < sprite->spr.params.pos.h / 2.0f && sprite->dy < 0.0f) ||
-			(sprite->spr.params.pos.y > (SCREEN_HEIGHT-(sprite->spr.params.pos.h / 2.0f)) && sprite->dy > 0.0f))
+			(sprite->spr.params.pos.y > (SCREEN_HEIGHT - (sprite->spr.params.pos.h / 2.0f)) && sprite->dy > 0.0f))
 			sprite->dy = -sprite->dy;
 	}
 }
 
-static void moveUp(){
+static void moveUp()
+{
 	mainIsaac.status = UP;
 	if (lastMove != 1)
 	{
@@ -238,21 +257,23 @@ static void moveUp(){
 	{
 		mainIsaac.body = isaacSprites[6].spr;
 	}
-	if (contCaminar == ANIMACION*2)
+	if (contCaminar == ANIMACION * 2)
 	{
 		mainIsaac.body = isaacSprites[7].spr;
 	}
-	if (contCaminar == ANIMACION*3)
+	if (contCaminar == ANIMACION * 3)
 	{
 		mainIsaac.body = isaacSprites[8].spr;
 		contCaminar = 0;
 	}
-	if(!(mainIsaac.posy<=0)){
+	if (!(mainIsaac.posy <= 0))
+	{
 		mainIsaac.posy = mainIsaac.posy - mainIsaac.characterSpeed;
 	}
 }
 
-static void moveDown(){
+static void moveDown()
+{
 	mainIsaac.status = DOWN;
 	if (lastMove != 2)
 	{
@@ -267,25 +288,27 @@ static void moveDown(){
 	{
 		mainIsaac.body = isaacSprites[6].spr;
 	}
-	if (contCaminar == ANIMACION*2)
+	if (contCaminar == ANIMACION * 2)
 	{
 		mainIsaac.body = isaacSprites[7].spr;
 	}
-	if (contCaminar == ANIMACION*3)
+	if (contCaminar == ANIMACION * 3)
 	{
 		mainIsaac.body = isaacSprites[8].spr;
 		contCaminar = 0;
 	}
-	if (contCaminar == ANIMACION*4)
+	if (contCaminar == ANIMACION * 4)
 	{
 		contCaminar = 0;
 	}
-	if(!(mainIsaac.posy>=SCREEN_HEIGHT)){
+	if (!(mainIsaac.posy >= SCREEN_HEIGHT))
+	{
 		mainIsaac.posy = mainIsaac.posy + mainIsaac.characterSpeed;
 	}
 }
 
-static void moveRight(){
+static void moveRight()
+{
 	mainIsaac.status = RIGHT;
 	if (lastMove != 3)
 	{
@@ -300,20 +323,22 @@ static void moveRight(){
 	{
 		mainIsaac.body = isaacSprites[10].spr;
 	}
-	if (contCaminar == ANIMACION*2)
+	if (contCaminar == ANIMACION * 2)
 	{
 		mainIsaac.body = isaacSprites[11].spr;
 	}
-	if (contCaminar == ANIMACION*3)
+	if (contCaminar == ANIMACION * 3)
 	{
 		contCaminar = 0;
 	}
-	if(!(mainIsaac.posx>=SCREEN_WIDTH)){
+	if (!(mainIsaac.posx >= SCREEN_WIDTH))
+	{
 		mainIsaac.posx = mainIsaac.posx + mainIsaac.characterSpeed;
 	}
 }
 
-static void moveLeft(){
+static void moveLeft()
+{
 	mainIsaac.status = LEFT;
 	if (lastMove != 4)
 	{
@@ -328,15 +353,16 @@ static void moveLeft(){
 	{
 		mainIsaac.body = isaacSprites[13].spr;
 	}
-	if (contCaminar == ANIMACION*2)
+	if (contCaminar == ANIMACION * 2)
 	{
 		mainIsaac.body = isaacSprites[14].spr;
 	}
-	if (contCaminar == ANIMACION*3)
+	if (contCaminar == ANIMACION * 3)
 	{
 		contCaminar = 0;
 	}
-	if(!(mainIsaac.posx<=0)){
+	if (!(mainIsaac.posx <= 0))
+	{
 		mainIsaac.posx = mainIsaac.posx - mainIsaac.characterSpeed;
 	}
 }
@@ -357,48 +383,53 @@ void moveTears()
 }
 
 //Logica del disparo del personaje
-static void shootUp(){
+static void shootUp()
+{
 	mainIsaac.head = isaacSprites[2].spr;
 	disparos_actuales++;
-	disparos[disparos_actuales-1].spr = mainIsaac.tear;
-	disparos[disparos_actuales-1].spr.params.pos.x = mainIsaac.posx;
-	disparos[disparos_actuales-1].spr.params.pos.y = mainIsaac.posy;
-	disparos[disparos_actuales-1].dx = 0;
-	disparos[disparos_actuales-1].dy = -VELOCIDAD_BALA;
+	disparos[disparos_actuales - 1].spr = mainIsaac.tear;
+	disparos[disparos_actuales - 1].spr.params.pos.x = mainIsaac.posx;
+	disparos[disparos_actuales - 1].spr.params.pos.y = mainIsaac.posy;
+	disparos[disparos_actuales - 1].dx = 0;
+	disparos[disparos_actuales - 1].dy = -VELOCIDAD_BALA;
 }
 
-static void shootDown(){
+static void shootDown()
+{
 	mainIsaac.head = isaacSprites[0].spr;
 	disparos_actuales++;
-	disparos[disparos_actuales-1].spr = mainIsaac.tear;
-	disparos[disparos_actuales-1].spr.params.pos.x = mainIsaac.posx;
-	disparos[disparos_actuales-1].spr.params.pos.y = mainIsaac.posy;;
-	disparos[disparos_actuales-1].dx = 0;
-	disparos[disparos_actuales-1].dy = VELOCIDAD_BALA;
+	disparos[disparos_actuales - 1].spr = mainIsaac.tear;
+	disparos[disparos_actuales - 1].spr.params.pos.x = mainIsaac.posx;
+	disparos[disparos_actuales - 1].spr.params.pos.y = mainIsaac.posy;
+	;
+	disparos[disparos_actuales - 1].dx = 0;
+	disparos[disparos_actuales - 1].dy = VELOCIDAD_BALA;
 }
 
-static void shootRight(){
+static void shootRight()
+{
 	mainIsaac.head = isaacSprites[1].spr;
 	disparos_actuales++;
-	disparos[disparos_actuales-1].spr = mainIsaac.tear;
-	disparos[disparos_actuales-1].spr.params.pos.x = mainIsaac.posx;
-	disparos[disparos_actuales-1].spr.params.pos.y = mainIsaac.posy;
-	disparos[disparos_actuales-1].dx = VELOCIDAD_BALA;
-	disparos[disparos_actuales-1].dy = 0;
-	
+	disparos[disparos_actuales - 1].spr = mainIsaac.tear;
+	disparos[disparos_actuales - 1].spr.params.pos.x = mainIsaac.posx;
+	disparos[disparos_actuales - 1].spr.params.pos.y = mainIsaac.posy;
+	disparos[disparos_actuales - 1].dx = VELOCIDAD_BALA;
+	disparos[disparos_actuales - 1].dy = 0;
 }
 
-static void shootLeft(){
+static void shootLeft()
+{
 	mainIsaac.head = isaacSprites[3].spr;
 	disparos_actuales++;
-	disparos[disparos_actuales-1].spr = mainIsaac.tear;
-	disparos[disparos_actuales-1].spr.params.pos.x = mainIsaac.posx;
-	disparos[disparos_actuales-1].spr.params.pos.y = mainIsaac.posy;
-	disparos[disparos_actuales-1].dx = -VELOCIDAD_BALA;
-	disparos[disparos_actuales-1].dy = 0;
+	disparos[disparos_actuales - 1].spr = mainIsaac.tear;
+	disparos[disparos_actuales - 1].spr.params.pos.x = mainIsaac.posx;
+	disparos[disparos_actuales - 1].spr.params.pos.y = mainIsaac.posy;
+	disparos[disparos_actuales - 1].dx = -VELOCIDAD_BALA;
+	disparos[disparos_actuales - 1].dy = 0;
 }
 
-static void drawEnemies(){
+static void drawEnemies()
+{
 	// Render Enemies
 	for (size_t i = 0; i < MAX_DEATH_HEADS; i++)
 	{
@@ -409,19 +440,22 @@ static void drawEnemies(){
 	}
 }
 
-static void drawIsaac(){
+static void drawIsaac()
+{
 	C2D_DrawSprite(&mainIsaac.body);
 	C2D_DrawSprite(&mainIsaac.head);
 }
 
-static void drawTears(){
+static void drawTears()
+{
 	for (size_t i = 0; i < disparos_actuales; i++)
 	{
 		C2D_DrawSprite(&disparos[i].spr);
 	}
 }
 
-static void drawScene(){
+static void drawScene()
+{
 	//Draw Background
 	C2D_DrawSprite(&background.spr);
 	drawIsaac();
@@ -429,73 +463,97 @@ static void drawScene(){
 	drawTears();
 }
 
-static void movePlayer(u32 kHeld){
-	if (kHeld & KEY_UP){
+static void movePlayer(u32 kHeld)
+{
+	if (kHeld & KEY_UP)
+	{
 		moveUp();
 		contCaminar++;
 	}
-	if (kHeld & KEY_DOWN){
+	if (kHeld & KEY_DOWN)
+	{
 		moveDown();
 		contCaminar++;
 	}
-	if (kHeld & KEY_RIGHT){
+	if (kHeld & KEY_RIGHT)
+	{
 		moveRight();
 		contCaminar++;
 	}
-	if (kHeld & KEY_LEFT){
+	if (kHeld & KEY_LEFT)
+	{
 		moveLeft();
 		contCaminar++;
 	}
 }
 
-static void shootPlayer(u32 kHeld){
+static void shootPlayer(u32 kHeld)
+{
 	mainIsaac.shooting = true;
-	if (kHeld & KEY_A){
-		shootRight();
-	}
-
-	if (kHeld & KEY_Y){
-		shootLeft();
-	}
-
-	if (kHeld & KEY_X){
-		shootUp();
-	}
-
-	if (kHeld & KEY_B){
-		shootDown();
-	}
-}
-
-static void playerStanding(u32 kUp){
-	mainIsaac.status = IDLE;
-	if((kUp & KEY_UP) || (kUp & KEY_DOWN) || (kUp & KEY_LEFT) || (kUp & KEY_RIGHT)){
-			contCaminar = 0;
-			lastMove = 0;
-			isaacStanding();
+	if (boolDisparo == true)
+	{
+		if (kHeld & KEY_A)
+		{
+			shootRight();
 		}
+
+		if (kHeld & KEY_Y)
+		{
+			shootLeft();
+		}
+
+		if (kHeld & KEY_X)
+		{
+			shootUp();
+		}
+
+		if (kHeld & KEY_B)
+		{
+			shootDown();
+		}
+
+		boolDisparo = false;
+	}
 }
 
-static void loadSheets(){
+static void playerStanding(u32 kUp)
+{
+	mainIsaac.status = IDLE;
+	if ((kUp & KEY_UP) || (kUp & KEY_DOWN) || (kUp & KEY_LEFT) || (kUp & KEY_RIGHT))
+	{
+		contCaminar = 0;
+		lastMove = 0;
+		isaacStanding();
+	}
+}
+
+static void loadSheets()
+{
 	isaacSheet = C2D_SpriteSheetLoad("romfs:/gfx/isaac.t3x");
-	if (!isaacSheet) svcBreak(USERBREAK_PANIC);
+	if (!isaacSheet)
+		svcBreak(USERBREAK_PANIC);
 
 	spriteSheet = C2D_SpriteSheetLoad("romfs:/gfx/sprites.t3x");
-	if (!spriteSheet) svcBreak(USERBREAK_PANIC);
+	if (!spriteSheet)
+		svcBreak(USERBREAK_PANIC);
 
 	enemiesSpriteSheet = C2D_SpriteSheetLoad("romfs:/gfx/enemiesSprites.t3x");
-	if (!enemiesSpriteSheet) svcBreak(USERBREAK_PANIC);
+	if (!enemiesSpriteSheet)
+		svcBreak(USERBREAK_PANIC);
 
 	deathHeadSheet = C2D_SpriteSheetLoad("romfs:/gfx/deathHeadSprites.t3x");
-	if (!deathHeadSheet) svcBreak(USERBREAK_PANIC);
+	if (!deathHeadSheet)
+		svcBreak(USERBREAK_PANIC);
 
 	backgroundSheet = C2D_SpriteSheetLoad("romfs:/gfx/background.t3x");
-	if (!backgroundSheet) svcBreak(USERBREAK_PANIC);
+	if (!backgroundSheet)
+		svcBreak(USERBREAK_PANIC);
 }
 
 //---------------------------------------------------------------------------------
-int main(int argc, char* argv[]) {
-//---------------------------------------------------------------------------------
+int main(int argc, char *argv[])
+{
+	//---------------------------------------------------------------------------------
 	// Init libs
 	romfsInit();
 	gfxInitDefault();
@@ -505,7 +563,7 @@ int main(int argc, char* argv[]) {
 	consoleInit(GFX_BOTTOM, NULL);
 
 	// Create screens
-	C3D_RenderTarget* top = C2D_CreateScreenTarget(GFX_TOP, GFX_LEFT);
+	C3D_RenderTarget *top = C2D_CreateScreenTarget(GFX_TOP, GFX_LEFT);
 
 	// Load graphics
 	loadSheets();
@@ -531,10 +589,11 @@ int main(int argc, char* argv[]) {
 
 		// Respond to user input
 		u32 kDown = hidKeysDown();
-		if (kDown & KEY_START){
+		if (kDown & KEY_START)
+		{
 			break; // break in order to return to hbmenu
 		}
-			
+
 		u32 kHeld = hidKeysHeld();
 
 		//Programar movimiento
@@ -547,15 +606,26 @@ int main(int argc, char* argv[]) {
 		//Player Standing check
 		playerStanding(kUp);
 
+		if (boolDisparo == false)
+		{
+			contDisparo++;
+		}
+		
+		if (contDisparo == 30)
+		{
+			boolDisparo = true;
+		}
+		
+
 		moveEnemies();
 		moveDeathHeads();
 		moveTears();
 		isaacSpritePos();
 
 		printf("The Binding of Ivan\n");
-		printf("\x1b[2;1HCPU:     %6.2f%%\x1b[K", C3D_GetProcessingTime()*6.0f);
-		printf("\x1b[3;1HGPU:     %6.2f%%\x1b[K", C3D_GetDrawingTime()*6.0f);
-		printf("\x1b[4;1HCmdBuf:  %6.2f%%\x1b[K", C3D_GetCmdBufUsage()*100.0f);
+		printf("\x1b[2;1HCPU:     %6.2f%%\x1b[K", C3D_GetProcessingTime() * 6.0f);
+		printf("\x1b[3;1HGPU:     %6.2f%%\x1b[K", C3D_GetDrawingTime() * 6.0f);
+		printf("\x1b[4;1HCmdBuf:  %6.2f%%\x1b[K", C3D_GetCmdBufUsage() * 100.0f);
 		printf("\nMain isaac X: %d\n", mainIsaac.posx);
 		printf("Main isaac Y: %d\n", mainIsaac.posy);
 		printf("Numero de Disparos: %d\n", disparos_actuales);
@@ -566,7 +636,7 @@ int main(int argc, char* argv[]) {
 		C2D_SceneBegin(top);
 		//draw Scene Logic
 		drawScene();
-		
+
 		C3D_FrameEnd(0);
 	}
 
