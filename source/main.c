@@ -345,7 +345,7 @@ void moveTears()
 {
 	for (size_t i = 0; i < disparos_actuales; i++)
 	{
-		if ((disparos[i].y > SCREEN_HEIGHT) || (disparos[i].y < 0) || (disparos[i].x > SCREEN_WIDTH) || (disparos[i].x < 0))
+		if ((disparos[i].spr.params.pos.y > SCREEN_HEIGHT) || (disparos[i].spr.params.pos.y < 0) || (disparos[i].spr.params.pos.x > SCREEN_WIDTH) || (disparos[i].spr.params.pos.x < 0))
 		{
 			disparos_actuales--;
 		}
