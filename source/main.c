@@ -85,6 +85,7 @@ static int contadorDeathHead = 0;
 static int nDeathHeads = 0;
 static deathHead deathHeads[MAX_DEATH_HEADS];
 static int status = 0;
+static int colisiones = 0;
 
 int disparos_actuales = 0;
 
@@ -477,11 +478,11 @@ static void checkCollisions()
 		{
 			if (deathHeads[j].visible == true)
 			{
-				if (distancia(disparos[i].spr.params.pos.x, disparos[i].spr.params.pos.y, deathHeads[j].spr.params.pos.x, deathHeads[j].spr.params.pos.y) < 10)
+				if (distancia(disparos[i].spr.params.pos.x, disparos[i].spr.params.pos.y, deathHeads[j].spr.params.pos.x, deathHeads[j].spr.params.pos.y) < 40)
 				{
 					disparos[i].visible = false;
 					deathHeads[j].visible = false;
-					printf("Colision \n");
+					colisiones++;
 				}
 			}
 		}
@@ -666,6 +667,7 @@ int main(int argc, char *argv[])
 		printf("Main isaac Y: %d\n", mainIsaac.posy);
 		printf("Numero de Disparos: %d\n", disparos_actuales);
 		printf("Bool de Disparo %d\n", boolDisparo);
+		printf("Nº de Colisiones %d\n", colisiones);
 
 		// Render the scene
 		C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
