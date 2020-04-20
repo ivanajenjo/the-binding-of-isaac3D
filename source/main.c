@@ -512,7 +512,6 @@ static void shootPlayer(u32 kHeld)
 		{
 			shootDown();
 		}
-
 		boolDisparo = false;
 	}
 }
@@ -631,6 +630,7 @@ int main(int argc, char *argv[])
 		printf("\nMain isaac X: %d\n", mainIsaac.posx);
 		printf("Main isaac Y: %d\n", mainIsaac.posy);
 		printf("Numero de Disparos: %d\n", disparos_actuales);
+		printf("Bool de Disparo %d\n", boolDisparo);
 
 		// Render the scene
 		C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
