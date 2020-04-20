@@ -349,9 +349,10 @@ void moveTears()
 		{
 			disparos_actuales--;
 		}
-		C2D_SpriteMove(&disparos[i].spr, disparos[i].dx, disparos[i].dy);
 		disparos[i].x += disparos[i].dx;
 		disparos[i].y += disparos[i].dy;
+		disparos[i].spr.params.pos.x = disparos[i].x;
+		disparos[i].spr.params.pos.x = disparos[i].y;
 	}
 }
 
@@ -415,8 +416,6 @@ static void drawIsaac(){
 static void drawTears(){
 	for (size_t i = 0; i < disparos_actuales; i++)
 	{
-		disparos[i].spr.params.pos.x = disparos[i].x;
-		disparos[i].spr.params.pos.x = disparos[i].y;
 		C2D_DrawSprite(&disparos[i].spr);
 	}
 }
