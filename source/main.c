@@ -554,7 +554,7 @@ int main(int argc, char* argv[]) {
 		printf("\x1b[2;1HCPU:     %6.2f%%\x1b[K", C3D_GetProcessingTime()*6.0f);
 		printf("\x1b[3;1HGPU:     %6.2f%%\x1b[K", C3D_GetDrawingTime()*6.0f);
 		printf("\x1b[4;1HCmdBuf:  %6.2f%%\x1b[K", C3D_GetCmdBufUsage()*100.0f);
-		printf("Main isaac X: %d\n", mainIsaac.posx);
+		printf("\nMain isaac X: %d\n", mainIsaac.posx);
 		printf("Main isaac Y: %d\n", mainIsaac.posy);
 
 		// Render the scene
