@@ -1,3 +1,13 @@
+/*************************************
+
+Proyecto AEV: Juego The Binding of Isaac
+
+Alumno: Ivan Iñaki Ajenjo Vicente
+
+Curso 2020
+
+*************************************/
+
 #include <citro2d.h>
 
 #include <assert.h>
@@ -31,9 +41,10 @@ typedef struct
 {
 	C2D_Sprite head;
 	C2D_Sprite body;
+	C2D_Sprite tear;
 	int posx, posy; // velocity
 	int characterHp, characterSpeed;
-	bool visible;
+	bool visible, shooting;
 	int status;
 } Isaac;
 
@@ -155,6 +166,7 @@ static void initCharacter(){
 	isaacSpritePos();
 	mainIsaac.characterSpeed = INIT_CHARACTER_SPEED;
 	mainIsaac.characterHp = INIT_CHARACTER_HP;
+	mainIsaac.tear = isaacSprites[15].spr;
 }
 
 static void initDeathHeads(){
@@ -323,20 +335,18 @@ static void moveLeft(){
 	}
 }
 
-void moveBullets(Sprite* sprite)
+void moveTears(Sprite* sprite)
 {
 	//Mientras la bala derecha no llegue al borde derecho de la pantalla
 	if(bulletRight->spr.params.pos.x < SCREEN_WIDTH)
     {	
 		bulletRight->dx = VELOCIDAD_BALA;
-		
 	}
 	else
 	{
 		bulletRight->dx = 0.0f;
 		bulletRight->visible = false;
 	}
-
 	//Mientras la bala izquierda no llegue al borde izquierdo de la pantalla
 	if(bulletLeft->spr.params.pos.x > 0)
     {	
@@ -391,42 +401,40 @@ static void drawScene(){
 
 static void movePlayer(u32 kHeld){
 	if (kHeld & KEY_UP){
-			moveUp();
-			contCaminar++;
-		}
-
-		if (kHeld & KEY_DOWN){
-			moveDown();
-			contCaminar++;
-		}
-
-		if (kHeld & KEY_RIGHT){
-			moveRight();
-			contCaminar++;
-		}
-
-		if (kHeld & KEY_LEFT){
-			moveLeft();
-			contCaminar++;
-		}
+		moveUp();
+		contCaminar++;
+	}
+	if (kHeld & KEY_DOWN){
+		moveDown();
+		contCaminar++;
+	}
+	if (kHeld & KEY_RIGHT){
+		moveRight();
+		contCaminar++;
+	}
+	if (kHeld & KEY_LEFT){
+		moveLeft();
+		contCaminar++;
+	}
 }
 
 static void shootPlayer(u32 kHeld){
-		if (kHeld & KEY_A){
-			shootRight();
-		}
+	mainIsaac.shooting = true;
+	if (kHeld & KEY_A){
+		shootRight();
+	}
 
-		if (kHeld & KEY_Y){
-			shootLeft();
-		}
+	if (kHeld & KEY_Y){
+		shootLeft();
+	}
 
-		if (kHeld & KEY_X){
-			shootUp();
-		}
+	if (kHeld & KEY_X){
+		shootUp();
+	}
 
-		if (kHeld & KEY_B){
-			shootDown();
-		}
+	if (kHeld & KEY_B){
+		shootDown();
+	}
 }
 
 static void playerStanding(u32 kUp){
