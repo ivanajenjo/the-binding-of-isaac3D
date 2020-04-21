@@ -591,6 +591,20 @@ static void loadSheets()
 		svcBreak(USERBREAK_PANIC);
 }
 
+static void logicaDisparo()
+{
+	if (boolDisparo == false)
+	{
+		contDisparo++;
+	}
+
+	if (contDisparo == ATTC_SPEED)
+	{
+		contDisparo = 0;
+		boolDisparo = true;
+	}
+}
+
 //---------------------------------------------------------------------------------
 int main(int argc, char *argv[])
 {
@@ -647,16 +661,7 @@ int main(int argc, char *argv[])
 		//Player Standing check
 		playerStanding(kUp);
 
-		if (boolDisparo == false)
-		{
-			contDisparo++;
-		}
-
-		if (contDisparo == ATTC_SPEED)
-		{
-			contDisparo = 0;
-			boolDisparo = true;
-		}
+		logicaDisparo();
 
 		moveEnemies();
 		moveDeathHeads();
