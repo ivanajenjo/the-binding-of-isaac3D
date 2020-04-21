@@ -4165,287 +4165,287 @@ ARM.exidx
  *(.dtors)
                 0x0000000000132440                __bss_start__ = .
 
-.bss            0x0000000000132440     0x9378
+.bss            0x0000000000132440     0x9278
  *(.dynbss)
  *(.bss)
- .bss           0x0000000000132440     0x4440 main.o
+ .bss           0x0000000000132440     0x4340 main.o
                 0x0000000000132998                disparos_actuales
- .bss           0x0000000000136880        0x8 /opt/devkitpro/libctru/lib/libctru.a(stack_adjust.o)
+ .bss           0x0000000000136780        0x8 /opt/devkitpro/libctru/lib/libctru.a(stack_adjust.o)
  *(.bss.*)
  .bss.completed.10434
-                0x0000000000136888        0x1 /opt/devkitpro/devkitARM/lib/gcc/arm-none-eabi/9.1.0/armv6k/fpu/crtbegin.o
- *fill*         0x0000000000136889        0x3 
+                0x0000000000136788        0x1 /opt/devkitpro/devkitARM/lib/gcc/arm-none-eabi/9.1.0/armv6k/fpu/crtbegin.o
+ *fill*         0x0000000000136789        0x3 
  .bss.object.10439
-                0x000000000013688c       0x18 /opt/devkitpro/devkitARM/lib/gcc/arm-none-eabi/9.1.0/armv6k/fpu/crtbegin.o
+                0x000000000013678c       0x18 /opt/devkitpro/devkitARM/lib/gcc/arm-none-eabi/9.1.0/armv6k/fpu/crtbegin.o
  .bss.s_projBot
-                0x00000000001368a4       0x40 /opt/devkitpro/libctru/lib/libcitro2d.a(base.o)
+                0x00000000001367a4       0x40 /opt/devkitpro/libctru/lib/libcitro2d.a(base.o)
  .bss.s_projTop
-                0x00000000001368e4       0x40 /opt/devkitpro/libctru/lib/libcitro2d.a(base.o)
+                0x00000000001367e4       0x40 /opt/devkitpro/libctru/lib/libcitro2d.a(base.o)
  .bss.uLoc_mdlvMtx
-                0x0000000000136924        0x4 /opt/devkitpro/libctru/lib/libcitro2d.a(base.o)
+                0x0000000000136824        0x4 /opt/devkitpro/libctru/lib/libcitro2d.a(base.o)
  .bss.uLoc_projMtx
-                0x0000000000136928        0x4 /opt/devkitpro/libctru/lib/libcitro2d.a(base.o)
+                0x0000000000136828        0x4 /opt/devkitpro/libctru/lib/libcitro2d.a(base.o)
  .bss.hookCookie
-                0x000000000013692c        0xc /opt/devkitpro/libctru/lib/libcitro3d.a(base.o)
- .bss.cpuTime   0x0000000000136938       0x10 /opt/devkitpro/libctru/lib/libcitro3d.a(renderqueue.o)
+                0x000000000013682c        0xc /opt/devkitpro/libctru/lib/libcitro3d.a(base.o)
+ .bss.cpuTime   0x0000000000136838       0x10 /opt/devkitpro/libctru/lib/libcitro3d.a(renderqueue.o)
  .bss.firstTarget
-                0x0000000000136948        0x4 /opt/devkitpro/libctru/lib/libcitro3d.a(renderqueue.o)
+                0x0000000000136848        0x4 /opt/devkitpro/libctru/lib/libcitro3d.a(renderqueue.o)
  .bss.frameCounter
-                0x000000000013694c        0x8 /opt/devkitpro/libctru/lib/libcitro3d.a(renderqueue.o)
+                0x000000000013684c        0x8 /opt/devkitpro/libctru/lib/libcitro3d.a(renderqueue.o)
  .bss.frameEndCb
-                0x0000000000136954        0x4 /opt/devkitpro/libctru/lib/libcitro3d.a(renderqueue.o)
+                0x0000000000136854        0x4 /opt/devkitpro/libctru/lib/libcitro3d.a(renderqueue.o)
  .bss.frameEndCbData
-                0x0000000000136958        0x4 /opt/devkitpro/libctru/lib/libcitro3d.a(renderqueue.o)
+                0x0000000000136858        0x4 /opt/devkitpro/libctru/lib/libcitro3d.a(renderqueue.o)
  .bss.frameStage
-                0x000000000013695c        0x1 /opt/devkitpro/libctru/lib/libcitro3d.a(renderqueue.o)
- *fill*         0x000000000013695d        0x3 
- .bss.gpuTime   0x0000000000136960       0x10 /opt/devkitpro/libctru/lib/libcitro3d.a(renderqueue.o)
- .bss.inFrame   0x0000000000136970        0x1 /opt/devkitpro/libctru/lib/libcitro3d.a(renderqueue.o)
+                0x000000000013685c        0x1 /opt/devkitpro/libctru/lib/libcitro3d.a(renderqueue.o)
+ *fill*         0x000000000013685d        0x3 
+ .bss.gpuTime   0x0000000000136860       0x10 /opt/devkitpro/libctru/lib/libcitro3d.a(renderqueue.o)
+ .bss.inFrame   0x0000000000136870        0x1 /opt/devkitpro/libctru/lib/libcitro3d.a(renderqueue.o)
  .bss.inSafeTransfer
-                0x0000000000136971        0x1 /opt/devkitpro/libctru/lib/libcitro3d.a(renderqueue.o)
+                0x0000000000136871        0x1 /opt/devkitpro/libctru/lib/libcitro3d.a(renderqueue.o)
  .bss.initialized
-                0x0000000000136972        0x1 /opt/devkitpro/libctru/lib/libcitro3d.a(renderqueue.o)
- *fill*         0x0000000000136973        0x1 
+                0x0000000000136872        0x1 /opt/devkitpro/libctru/lib/libcitro3d.a(renderqueue.o)
+ *fill*         0x0000000000136873        0x1 
  .bss.lastTarget
-                0x0000000000136974        0x4 /opt/devkitpro/libctru/lib/libcitro3d.a(renderqueue.o)
+                0x0000000000136874        0x4 /opt/devkitpro/libctru/lib/libcitro3d.a(renderqueue.o)
  .bss.linkedTarget
-                0x0000000000136978        0xc /opt/devkitpro/libctru/lib/libcitro3d.a(renderqueue.o)
+                0x0000000000136878        0xc /opt/devkitpro/libctru/lib/libcitro3d.a(renderqueue.o)
  .bss.measureGpuTime
-                0x0000000000136984        0x1 /opt/devkitpro/libctru/lib/libcitro3d.a(renderqueue.o)
- *fill*         0x0000000000136985        0x3 
+                0x0000000000136884        0x1 /opt/devkitpro/libctru/lib/libcitro3d.a(renderqueue.o)
+ *fill*         0x0000000000136885        0x3 
  .bss.C3Di_FVUnifEverDirty
-                0x0000000000136988       0xc0 /opt/devkitpro/libctru/lib/libcitro3d.a(uniforms.o)
+                0x0000000000136888       0xc0 /opt/devkitpro/libctru/lib/libcitro3d.a(uniforms.o)
  .bss.C3Di_IVUnifEverDirty
-                0x0000000000136a48        0x8 /opt/devkitpro/libctru/lib/libcitro3d.a(uniforms.o)
+                0x0000000000136948        0x8 /opt/devkitpro/libctru/lib/libcitro3d.a(uniforms.o)
  .bss.C3Di_ShaderFVecData
-                0x0000000000136a50       0x18 /opt/devkitpro/libctru/lib/libcitro3d.a(uniforms.o)
+                0x0000000000136950       0x18 /opt/devkitpro/libctru/lib/libcitro3d.a(uniforms.o)
  .bss._ZL8sAddrMap
-                0x0000000000136a68        0xc /opt/devkitpro/libctru/lib/libctru.a(vram.o)
+                0x0000000000136968        0xc /opt/devkitpro/libctru/lib/libctru.a(vram.o)
  .bss._ZL9sVramPool
-                0x0000000000136a74        0x8 /opt/devkitpro/libctru/lib/libctru.a(vram.o)
+                0x0000000000136974        0x8 /opt/devkitpro/libctru/lib/libctru.a(vram.o)
  .bss._ZL11sLinearPool
-                0x0000000000136a7c        0x8 /opt/devkitpro/libctru/lib/libctru.a(linear.o)
+                0x000000000013697c        0x8 /opt/devkitpro/libctru/lib/libctru.a(linear.o)
  .bss._ZL8sAddrMap
-                0x0000000000136a84        0xc /opt/devkitpro/libctru/lib/libctru.a(linear.o)
+                0x0000000000136984        0xc /opt/devkitpro/libctru/lib/libctru.a(linear.o)
  .bss.__component
-                0x0000000000136a90      0x401 /opt/devkitpro/libctru/lib/libctru.a(romfs_dev.o)
- *fill*         0x0000000000136e91        0x3 
+                0x0000000000136990      0x401 /opt/devkitpro/libctru/lib/libctru.a(romfs_dev.o)
+ *fill*         0x0000000000136d91        0x3 
  .bss.__romfs_path
-                0x0000000000136e94        0x4 /opt/devkitpro/libctru/lib/libctru.a(romfs_dev.o)
-                0x0000000000136e94                __romfs_path
+                0x0000000000136d94        0x4 /opt/devkitpro/libctru/lib/libctru.a(romfs_dev.o)
+                0x0000000000136d94                __romfs_path
  .bss.__utf16path
-                0x0000000000136e98      0x802 /opt/devkitpro/libctru/lib/libctru.a(romfs_dev.o)
- *fill*         0x000000000013769a        0x2 
+                0x0000000000136d98      0x802 /opt/devkitpro/libctru/lib/libctru.a(romfs_dev.o)
+ *fill*         0x000000000013759a        0x2 
  .bss.romfs_mount_list
-                0x000000000013769c        0x4 /opt/devkitpro/libctru/lib/libctru.a(romfs_dev.o)
+                0x000000000013759c        0x4 /opt/devkitpro/libctru/lib/libctru.a(romfs_dev.o)
  .bss.__ctru_speedup
-                0x00000000001376a0        0x1 /opt/devkitpro/libctru/lib/libctru.a(os.o)
-                0x00000000001376a0                __ctru_speedup
- *fill*         0x00000000001376a1        0x3 
+                0x00000000001375a0        0x1 /opt/devkitpro/libctru/lib/libctru.a(os.o)
+                0x00000000001375a0                __ctru_speedup
+ *fill*         0x00000000001375a1        0x3 
  .bss.currentBuffer
-                0x00000000001376a4        0x2 /opt/devkitpro/libctru/lib/libctru.a(gfx.o)
- .bss.enable3d  0x00000000001376a6        0x1 /opt/devkitpro/libctru/lib/libctru.a(gfx.o)
- *fill*         0x00000000001376a7        0x1 
+                0x00000000001375a4        0x2 /opt/devkitpro/libctru/lib/libctru.a(gfx.o)
+ .bss.enable3d  0x00000000001375a6        0x1 /opt/devkitpro/libctru/lib/libctru.a(gfx.o)
+ *fill*         0x00000000001375a7        0x1 
  .bss.screenAlloc
-                0x00000000001376a8        0x4 /opt/devkitpro/libctru/lib/libctru.a(gfx.o)
+                0x00000000001375a8        0x4 /opt/devkitpro/libctru/lib/libctru.a(gfx.o)
  .bss.screenFree
-                0x00000000001376ac        0x4 /opt/devkitpro/libctru/lib/libctru.a(gfx.o)
+                0x00000000001375ac        0x4 /opt/devkitpro/libctru/lib/libctru.a(gfx.o)
  .bss.boundQueue
-                0x00000000001376b0        0x4 /opt/devkitpro/libctru/lib/libctru.a(gx.o)
- .bss.curQueue  0x00000000001376b4        0x4 /opt/devkitpro/libctru/lib/libctru.a(gxqueue.o)
- .bss.isActive  0x00000000001376b8        0x1 /opt/devkitpro/libctru/lib/libctru.a(gxqueue.o)
+                0x00000000001375b0        0x4 /opt/devkitpro/libctru/lib/libctru.a(gx.o)
+ .bss.curQueue  0x00000000001375b4        0x4 /opt/devkitpro/libctru/lib/libctru.a(gxqueue.o)
+ .bss.isActive  0x00000000001375b8        0x1 /opt/devkitpro/libctru/lib/libctru.a(gxqueue.o)
  .bss.isRunning
-                0x00000000001376b9        0x1 /opt/devkitpro/libctru/lib/libctru.a(gxqueue.o)
+                0x00000000001375b9        0x1 /opt/devkitpro/libctru/lib/libctru.a(gxqueue.o)
  .bss.shouldStop
-                0x00000000001376ba        0x1 /opt/devkitpro/libctru/lib/libctru.a(gxqueue.o)
- *fill*         0x00000000001376bb        0x1 
- .bss.gspEvent  0x00000000001376bc        0x4 /opt/devkitpro/libctru/lib/libctru.a(gspgpu.o)
+                0x00000000001375ba        0x1 /opt/devkitpro/libctru/lib/libctru.a(gxqueue.o)
+ *fill*         0x00000000001375bb        0x1 
+ .bss.gspEvent  0x00000000001375bc        0x4 /opt/devkitpro/libctru/lib/libctru.a(gspgpu.o)
  .bss.gspEventCb
-                0x00000000001376c0       0x1c /opt/devkitpro/libctru/lib/libctru.a(gspgpu.o)
+                0x00000000001375c0       0x1c /opt/devkitpro/libctru/lib/libctru.a(gspgpu.o)
  .bss.gspEventCbData
-                0x00000000001376dc       0x1c /opt/devkitpro/libctru/lib/libctru.a(gspgpu.o)
+                0x00000000001375dc       0x1c /opt/devkitpro/libctru/lib/libctru.a(gspgpu.o)
  .bss.gspEventCbOneShot
-                0x00000000001376f8        0x7 /opt/devkitpro/libctru/lib/libctru.a(gspgpu.o)
- *fill*         0x00000000001376ff        0x1 
+                0x00000000001375f8        0x7 /opt/devkitpro/libctru/lib/libctru.a(gspgpu.o)
+ *fill*         0x00000000001375ff        0x1 
  .bss.gspEventCounts
-                0x0000000000137700       0x1c /opt/devkitpro/libctru/lib/libctru.a(gspgpu.o)
+                0x0000000000137600       0x1c /opt/devkitpro/libctru/lib/libctru.a(gspgpu.o)
  .bss.gspEventData
-                0x000000000013771c        0x4 /opt/devkitpro/libctru/lib/libctru.a(gspgpu.o)
+                0x000000000013761c        0x4 /opt/devkitpro/libctru/lib/libctru.a(gspgpu.o)
  .bss.gspEventThread
-                0x0000000000137720        0x4 /opt/devkitpro/libctru/lib/libctru.a(gspgpu.o)
+                0x0000000000137620        0x4 /opt/devkitpro/libctru/lib/libctru.a(gspgpu.o)
  .bss.gspEvents
-                0x0000000000137724       0x38 /opt/devkitpro/libctru/lib/libctru.a(gspgpu.o)
+                0x0000000000137624       0x38 /opt/devkitpro/libctru/lib/libctru.a(gspgpu.o)
  .bss.gspRefCount
-                0x000000000013775c        0x4 /opt/devkitpro/libctru/lib/libctru.a(gspgpu.o)
+                0x000000000013765c        0x4 /opt/devkitpro/libctru/lib/libctru.a(gspgpu.o)
  .bss.gspRunEvents
-                0x0000000000137760        0x1 /opt/devkitpro/libctru/lib/libctru.a(gspgpu.o)
+                0x0000000000137660        0x1 /opt/devkitpro/libctru/lib/libctru.a(gspgpu.o)
  .bss.aptChainloadMediatype
-                0x0000000000137761        0x1 /opt/devkitpro/libctru/lib/libctru.a(apt.o)
- *fill*         0x0000000000137762        0x6 
+                0x0000000000137661        0x1 /opt/devkitpro/libctru/lib/libctru.a(apt.o)
+ *fill*         0x0000000000137662        0x6 
  .bss.aptChainloadTid
-                0x0000000000137768        0x8 /opt/devkitpro/libctru/lib/libctru.a(apt.o)
+                0x0000000000137668        0x8 /opt/devkitpro/libctru/lib/libctru.a(apt.o)
  .bss.aptEventHandlerThread
-                0x0000000000137770        0x4 /opt/devkitpro/libctru/lib/libctru.a(apt.o)
+                0x0000000000137670        0x4 /opt/devkitpro/libctru/lib/libctru.a(apt.o)
  .bss.aptEvents
-                0x0000000000137774        0xc /opt/devkitpro/libctru/lib/libctru.a(apt.o)
+                0x0000000000137674        0xc /opt/devkitpro/libctru/lib/libctru.a(apt.o)
  .bss.aptFirstHook
-                0x0000000000137780        0xc /opt/devkitpro/libctru/lib/libctru.a(apt.o)
+                0x0000000000137680        0xc /opt/devkitpro/libctru/lib/libctru.a(apt.o)
  .bss.aptHomeButtonState
-                0x000000000013778c        0x1 /opt/devkitpro/libctru/lib/libctru.a(apt.o)
- *fill*         0x000000000013778d        0x3 
+                0x000000000013768c        0x1 /opt/devkitpro/libctru/lib/libctru.a(apt.o)
+ *fill*         0x000000000013768d        0x3 
  .bss.aptLockHandle
-                0x0000000000137790        0x4 /opt/devkitpro/libctru/lib/libctru.a(apt.o)
+                0x0000000000137690        0x4 /opt/devkitpro/libctru/lib/libctru.a(apt.o)
  .bss.aptMessageFunc
-                0x0000000000137794        0x4 /opt/devkitpro/libctru/lib/libctru.a(apt.o)
+                0x0000000000137694        0x4 /opt/devkitpro/libctru/lib/libctru.a(apt.o)
  .bss.aptMessageFuncData
-                0x0000000000137798        0x4 /opt/devkitpro/libctru/lib/libctru.a(apt.o)
+                0x0000000000137698        0x4 /opt/devkitpro/libctru/lib/libctru.a(apt.o)
  .bss.aptParameters
-                0x000000000013779c     0x1000 /opt/devkitpro/libctru/lib/libctru.a(apt.o)
+                0x000000000013769c     0x1000 /opt/devkitpro/libctru/lib/libctru.a(apt.o)
  .bss.aptRecentHomeButtonState
-                0x000000000013879c        0x1 /opt/devkitpro/libctru/lib/libctru.a(apt.o)
- *fill*         0x000000000013879d        0x3 
+                0x000000000013869c        0x1 /opt/devkitpro/libctru/lib/libctru.a(apt.o)
+ *fill*         0x000000000013869d        0x3 
  .bss.aptRefCount
-                0x00000000001387a0        0x4 /opt/devkitpro/libctru/lib/libctru.a(apt.o)
+                0x00000000001386a0        0x4 /opt/devkitpro/libctru/lib/libctru.a(apt.o)
  .bss.aptSleepEvent
-                0x00000000001387a4        0x8 /opt/devkitpro/libctru/lib/libctru.a(apt.o)
+                0x00000000001386a4        0x8 /opt/devkitpro/libctru/lib/libctru.a(apt.o)
  .bss.flagInit.8300
-                0x00000000001387ac        0x1 /opt/devkitpro/libctru/lib/libctru.a(apt.o)
+                0x00000000001386ac        0x1 /opt/devkitpro/libctru/lib/libctru.a(apt.o)
  .bss.flagValue.8301
-                0x00000000001387ad        0x1 /opt/devkitpro/libctru/lib/libctru.a(apt.o)
- *fill*         0x00000000001387ae        0x2 
+                0x00000000001386ad        0x1 /opt/devkitpro/libctru/lib/libctru.a(apt.o)
+ *fill*         0x00000000001386ae        0x2 
  .bss.serviceName.7930
-                0x00000000001387b0        0x4 /opt/devkitpro/libctru/lib/libctru.a(apt.o)
- .bss.aVec      0x00000000001387b4        0x6 /opt/devkitpro/libctru/lib/libctru.a(hid.o)
- *fill*         0x00000000001387ba        0x2 
- .bss.cPos      0x00000000001387bc        0x4 /opt/devkitpro/libctru/lib/libctru.a(hid.o)
- .bss.gRate     0x00000000001387c0        0x6 /opt/devkitpro/libctru/lib/libctru.a(hid.o)
- *fill*         0x00000000001387c6        0x2 
+                0x00000000001386b0        0x4 /opt/devkitpro/libctru/lib/libctru.a(apt.o)
+ .bss.aVec      0x00000000001386b4        0x6 /opt/devkitpro/libctru/lib/libctru.a(hid.o)
+ *fill*         0x00000000001386ba        0x2 
+ .bss.cPos      0x00000000001386bc        0x4 /opt/devkitpro/libctru/lib/libctru.a(hid.o)
+ .bss.gRate     0x00000000001386c0        0x6 /opt/devkitpro/libctru/lib/libctru.a(hid.o)
+ *fill*         0x00000000001386c6        0x2 
  .bss.hidRefCount
-                0x00000000001387c8        0x4 /opt/devkitpro/libctru/lib/libctru.a(hid.o)
- .bss.kDown     0x00000000001387cc        0x4 /opt/devkitpro/libctru/lib/libctru.a(hid.o)
- .bss.kHeld     0x00000000001387d0        0x4 /opt/devkitpro/libctru/lib/libctru.a(hid.o)
- .bss.kOld      0x00000000001387d4        0x4 /opt/devkitpro/libctru/lib/libctru.a(hid.o)
- .bss.kUp       0x00000000001387d8        0x4 /opt/devkitpro/libctru/lib/libctru.a(hid.o)
- .bss.tPos      0x00000000001387dc        0x4 /opt/devkitpro/libctru/lib/libctru.a(hid.o)
+                0x00000000001386c8        0x4 /opt/devkitpro/libctru/lib/libctru.a(hid.o)
+ .bss.kDown     0x00000000001386cc        0x4 /opt/devkitpro/libctru/lib/libctru.a(hid.o)
+ .bss.kHeld     0x00000000001386d0        0x4 /opt/devkitpro/libctru/lib/libctru.a(hid.o)
+ .bss.kOld      0x00000000001386d4        0x4 /opt/devkitpro/libctru/lib/libctru.a(hid.o)
+ .bss.kUp       0x00000000001386d8        0x4 /opt/devkitpro/libctru/lib/libctru.a(hid.o)
+ .bss.tPos      0x00000000001386dc        0x4 /opt/devkitpro/libctru/lib/libctru.a(hid.o)
  .bss.ptmSysmHandle
-                0x00000000001387e0        0x4 /opt/devkitpro/libctru/lib/libctru.a(ptmsysm.o)
+                0x00000000001386e0        0x4 /opt/devkitpro/libctru/lib/libctru.a(ptmsysm.o)
  .bss.ptmSysmRefCount
-                0x00000000001387e4        0x4 /opt/devkitpro/libctru/lib/libctru.a(ptmsysm.o)
+                0x00000000001386e4        0x4 /opt/devkitpro/libctru/lib/libctru.a(ptmsysm.o)
  .bss.fsExemptArchives
-                0x00000000001387e8       0x80 /opt/devkitpro/libctru/lib/libctru.a(fs.o)
+                0x00000000001386e8       0x80 /opt/devkitpro/libctru/lib/libctru.a(fs.o)
  .bss.fsuHandle
-                0x0000000000138868        0x4 /opt/devkitpro/libctru/lib/libctru.a(fs.o)
+                0x0000000000138768        0x4 /opt/devkitpro/libctru/lib/libctru.a(fs.o)
  .bss.fsuRefCount
-                0x000000000013886c        0x4 /opt/devkitpro/libctru/lib/libctru.a(fs.o)
+                0x000000000013876c        0x4 /opt/devkitpro/libctru/lib/libctru.a(fs.o)
  .bss.__ctru_heap_size
-                0x0000000000138870        0x4 /opt/devkitpro/libctru/lib/libctru.a(allocateHeaps.o)
-                0x0000000000138870                __ctru_heap_size
+                0x0000000000138770        0x4 /opt/devkitpro/libctru/lib/libctru.a(allocateHeaps.o)
+                0x0000000000138770                __ctru_heap_size
  .bss._ZL13sMappablePool
-                0x0000000000138874        0x8 /opt/devkitpro/libctru/lib/libctru.a(mappable.o)
+                0x0000000000138774        0x8 /opt/devkitpro/libctru/lib/libctru.a(mappable.o)
  .bss._ZL8sAddrMap
-                0x000000000013887c        0xc /opt/devkitpro/libctru/lib/libctru.a(mappable.o)
- .bss.arbiter   0x0000000000138888        0x4 /opt/devkitpro/libctru/lib/libctru.a(synchronization.o)
+                0x000000000013877c        0xc /opt/devkitpro/libctru/lib/libctru.a(mappable.o)
+ .bss.arbiter   0x0000000000138788        0x4 /opt/devkitpro/libctru/lib/libctru.a(synchronization.o)
  .bss.srvHandle
-                0x000000000013888c        0x4 /opt/devkitpro/libctru/lib/libctru.a(srv.o)
+                0x000000000013878c        0x4 /opt/devkitpro/libctru/lib/libctru.a(srv.o)
  .bss.srvRefCount
-                0x0000000000138890        0x4 /opt/devkitpro/libctru/lib/libctru.a(srv.o)
- .bss.csPos     0x0000000000138894        0x4 /opt/devkitpro/libctru/lib/libctru.a(irrst.o)
+                0x0000000000138790        0x4 /opt/devkitpro/libctru/lib/libctru.a(srv.o)
+ .bss.csPos     0x0000000000138794        0x4 /opt/devkitpro/libctru/lib/libctru.a(irrst.o)
  .bss.irrstRefCount
-                0x0000000000138898        0x4 /opt/devkitpro/libctru/lib/libctru.a(irrst.o)
- .bss.kHeld     0x000000000013889c        0x4 /opt/devkitpro/libctru/lib/libctru.a(irrst.o)
+                0x0000000000138798        0x4 /opt/devkitpro/libctru/lib/libctru.a(irrst.o)
+ .bss.kHeld     0x000000000013879c        0x4 /opt/devkitpro/libctru/lib/libctru.a(irrst.o)
  .bss.srvPmHandle
-                0x00000000001388a0        0x4 /opt/devkitpro/libctru/lib/libctru.a(srvpm.o)
- *fill*         0x00000000001388a4        0x4 
+                0x00000000001387a0        0x4 /opt/devkitpro/libctru/lib/libctru.a(srvpm.o)
+ *fill*         0x00000000001387a4        0x4 
  .bss.sdmcArchive
-                0x00000000001388a8        0x8 /opt/devkitpro/libctru/lib/libctru.a(sdmc_dev.o)
+                0x00000000001387a8        0x8 /opt/devkitpro/libctru/lib/libctru.a(sdmc_dev.o)
  .bss.sdmcInitialised
-                0x00000000001388b0        0x1 /opt/devkitpro/libctru/lib/libctru.a(sdmc_dev.o)
- *fill*         0x00000000001388b1        0x3 
+                0x00000000001387b0        0x1 /opt/devkitpro/libctru/lib/libctru.a(sdmc_dev.o)
+ *fill*         0x00000000001387b1        0x3 
  .bss.__malloc_current_mallinfo
-                0x00000000001388b4       0x28 /opt/devkitpro/devkitARM/lib/gcc/arm-none-eabi/9.1.0/../../../../arm-none-eabi/lib/armv6k/fpu/libg.a(lib_a-mallocr.o)
-                0x00000000001388b4                __malloc_current_mallinfo
+                0x00000000001387b4       0x28 /opt/devkitpro/devkitARM/lib/gcc/arm-none-eabi/9.1.0/../../../../arm-none-eabi/lib/armv6k/fpu/libg.a(lib_a-mallocr.o)
+                0x00000000001387b4                __malloc_current_mallinfo
  .bss.__malloc_max_sbrked_mem
-                0x00000000001388dc        0x4 /opt/devkitpro/devkitARM/lib/gcc/arm-none-eabi/9.1.0/../../../../arm-none-eabi/lib/armv6k/fpu/libg.a(lib_a-mallocr.o)
-                0x00000000001388dc                __malloc_max_sbrked_mem
+                0x00000000001387dc        0x4 /opt/devkitpro/devkitARM/lib/gcc/arm-none-eabi/9.1.0/../../../../arm-none-eabi/lib/armv6k/fpu/libg.a(lib_a-mallocr.o)
+                0x00000000001387dc                __malloc_max_sbrked_mem
  .bss.__malloc_max_total_mem
-                0x00000000001388e0        0x4 /opt/devkitpro/devkitARM/lib/gcc/arm-none-eabi/9.1.0/../../../../arm-none-eabi/lib/armv6k/fpu/libg.a(lib_a-mallocr.o)
-                0x00000000001388e0                __malloc_max_total_mem
+                0x00000000001387e0        0x4 /opt/devkitpro/devkitARM/lib/gcc/arm-none-eabi/9.1.0/../../../../arm-none-eabi/lib/armv6k/fpu/libg.a(lib_a-mallocr.o)
+                0x00000000001387e0                __malloc_max_total_mem
  .bss.__malloc_top_pad
-                0x00000000001388e4        0x4 /opt/devkitpro/devkitARM/lib/gcc/arm-none-eabi/9.1.0/../../../../arm-none-eabi/lib/armv6k/fpu/libg.a(lib_a-mallocr.o)
-                0x00000000001388e4                __malloc_top_pad
+                0x00000000001387e4        0x4 /opt/devkitpro/devkitARM/lib/gcc/arm-none-eabi/9.1.0/../../../../arm-none-eabi/lib/armv6k/fpu/libg.a(lib_a-mallocr.o)
+                0x00000000001387e4                __malloc_top_pad
  .bss.heap_start.7420
-                0x00000000001388e8        0x4 /opt/devkitpro/devkitARM/lib/gcc/arm-none-eabi/9.1.0/../../../../arm-none-eabi/lib/armv6k/fpu/libsysbase.a(sbrk.o)
+                0x00000000001387e8        0x4 /opt/devkitpro/devkitARM/lib/gcc/arm-none-eabi/9.1.0/../../../../arm-none-eabi/lib/armv6k/fpu/libsysbase.a(sbrk.o)
  .bss.fake_heap_end
-                0x00000000001388ec        0x4 /opt/devkitpro/devkitARM/lib/gcc/arm-none-eabi/9.1.0/../../../../arm-none-eabi/lib/armv6k/fpu/libsysbase.a(malloc_vars.o)
-                0x00000000001388ec                fake_heap_end
+                0x00000000001387ec        0x4 /opt/devkitpro/devkitARM/lib/gcc/arm-none-eabi/9.1.0/../../../../arm-none-eabi/lib/armv6k/fpu/libsysbase.a(malloc_vars.o)
+                0x00000000001387ec                fake_heap_end
  .bss.fake_heap_start
-                0x00000000001388f0        0x4 /opt/devkitpro/devkitARM/lib/gcc/arm-none-eabi/9.1.0/../../../../arm-none-eabi/lib/armv6k/fpu/libsysbase.a(malloc_vars.o)
-                0x00000000001388f0                fake_heap_start
- .bss.temp_cwd  0x00000000001388f4      0x400 /opt/devkitpro/devkitARM/lib/gcc/arm-none-eabi/9.1.0/../../../../arm-none-eabi/lib/armv6k/fpu/libsysbase.a(chdir.o)
+                0x00000000001387f0        0x4 /opt/devkitpro/devkitARM/lib/gcc/arm-none-eabi/9.1.0/../../../../arm-none-eabi/lib/armv6k/fpu/libsysbase.a(malloc_vars.o)
+                0x00000000001387f0                fake_heap_start
+ .bss.temp_cwd  0x00000000001387f4      0x400 /opt/devkitpro/devkitARM/lib/gcc/arm-none-eabi/9.1.0/../../../../arm-none-eabi/lib/armv6k/fpu/libsysbase.a(chdir.o)
  .bss.__syscalls
-                0x0000000000138cf4       0x48 /opt/devkitpro/devkitARM/lib/gcc/arm-none-eabi/9.1.0/../../../../arm-none-eabi/lib/armv6k/fpu/libsysbase.a(syscall_support.o)
-                0x0000000000138cf4                __syscalls
+                0x0000000000138bf4       0x48 /opt/devkitpro/devkitARM/lib/gcc/arm-none-eabi/9.1.0/../../../../arm-none-eabi/lib/armv6k/fpu/libsysbase.a(syscall_support.o)
+                0x0000000000138bf4                __syscalls
  *(.gnu.linkonce.b*)
  *(COMMON)
- *fill*         0x0000000000138d3c        0x4 
- COMMON         0x0000000000138d40      0x5a0 /opt/devkitpro/libctru/lib/libcitro2d.a(base.o)
-                0x0000000000138d40                __C2Di_Context
- COMMON         0x00000000001392e0      0x2d0 /opt/devkitpro/libctru/lib/libcitro3d.a(base.o)
-                0x00000000001392e0                __C3D_Context
- COMMON         0x00000000001395b0      0xcf0 /opt/devkitpro/libctru/lib/libcitro3d.a(uniforms.o)
-                0x00000000001395b0                C3D_IVUnif
-                0x00000000001395d0                C3D_FVUnifDirty
-                0x0000000000139690                C3D_BoolUnifsDirty
-                0x0000000000139694                C3D_IVUnifDirty
-                0x000000000013969c                C3D_BoolUnifs
-                0x00000000001396a0                C3D_FVUnif
- COMMON         0x000000000013a2a0       0x4c /opt/devkitpro/libctru/lib/libctru.a(console.o)
-                0x000000000013a2a0                currentCopy
- COMMON         0x000000000013a2ec       0x68 /opt/devkitpro/libctru/lib/libctru.a(gfx.o)
-                0x000000000013a2ec                gfxBottomFramebuffers
-                0x000000000013a2f4                gspSharedMemHandle
-                0x000000000013a2f8                bottomFramebufferInfo
-                0x000000000013a314                gspEvent
-                0x000000000013a318                gfxTopLeftFramebuffers
-                0x000000000013a320                gfxTopRightFramebuffers
-                0x000000000013a328                topFramebufferInfo
-                0x000000000013a344                gfxThreadID
-                0x000000000013a348                gfxSharedMemory
-                0x000000000013a34c                gfxTopFramebufferMaxSize
-                0x000000000013a350                gfxBottomFramebufferMaxSize
- COMMON         0x000000000013a354        0x4 /opt/devkitpro/libctru/lib/libctru.a(gx.o)
-                0x000000000013a354                gxCmdBuf
- COMMON         0x000000000013a358        0xc /opt/devkitpro/libctru/lib/libctru.a(gpu.o)
-                0x000000000013a358                gpuCmdBuf
-                0x000000000013a35c                gpuCmdBufOffset
-                0x000000000013a360                gpuCmdBufSize
- COMMON         0x000000000013a364        0x4 /opt/devkitpro/libctru/lib/libctru.a(gspgpu.o)
-                0x000000000013a364                gspGpuHandle
- COMMON         0x000000000013a368       0x20 /opt/devkitpro/libctru/lib/libctru.a(hid.o)
-                0x000000000013a368                hidMemHandle
-                0x000000000013a36c                hidHandle
-                0x000000000013a370                hidSharedMem
-                0x000000000013a374                hidEvents
- COMMON         0x000000000013a388        0x4 /opt/devkitpro/libctru/lib/libctru.a(initSystem.o)
-                0x000000000013a388                __system_retAddr
- COMMON         0x000000000013a38c        0x8 /opt/devkitpro/libctru/lib/libctru.a(allocateHeaps.o)
-                0x000000000013a38c                __ctru_linear_heap
-                0x000000000013a390                __ctru_heap
- COMMON         0x000000000013a394        0x8 /opt/devkitpro/libctru/lib/libctru.a(initArgv.o)
-                0x000000000013a394                __system_argv
-                0x000000000013a398                __system_argc
- COMMON         0x000000000013a39c       0x10 /opt/devkitpro/libctru/lib/libctru.a(irrst.o)
-                0x000000000013a39c                irrstHandle
-                0x000000000013a3a0                irrstEvent
-                0x000000000013a3a4                irrstMemHandle
-                0x000000000013a3a8                irrstSharedMem
-                0x000000000013a3ac                . = ALIGN (0x4)
-                0x000000000013a3ac                __tls_start = .
-                0x000000000013b7b8                . = (. + (SIZEOF (.tdata) + SIZEOF (.tbss)))
- *fill*         0x000000000013a3ac     0x140c 
-                0x000000000013b7b8                __tls_end = .
-                0x000000000013b7b8                __bss_end__ = .
-                0x000000000013b7b8                __end__ = ABSOLUTE (.)
+ *fill*         0x0000000000138c3c        0x4 
+ COMMON         0x0000000000138c40      0x5a0 /opt/devkitpro/libctru/lib/libcitro2d.a(base.o)
+                0x0000000000138c40                __C2Di_Context
+ COMMON         0x00000000001391e0      0x2d0 /opt/devkitpro/libctru/lib/libcitro3d.a(base.o)
+                0x00000000001391e0                __C3D_Context
+ COMMON         0x00000000001394b0      0xcf0 /opt/devkitpro/libctru/lib/libcitro3d.a(uniforms.o)
+                0x00000000001394b0                C3D_IVUnif
+                0x00000000001394d0                C3D_FVUnifDirty
+                0x0000000000139590                C3D_BoolUnifsDirty
+                0x0000000000139594                C3D_IVUnifDirty
+                0x000000000013959c                C3D_BoolUnifs
+                0x00000000001395a0                C3D_FVUnif
+ COMMON         0x000000000013a1a0       0x4c /opt/devkitpro/libctru/lib/libctru.a(console.o)
+                0x000000000013a1a0                currentCopy
+ COMMON         0x000000000013a1ec       0x68 /opt/devkitpro/libctru/lib/libctru.a(gfx.o)
+                0x000000000013a1ec                gfxBottomFramebuffers
+                0x000000000013a1f4                gspSharedMemHandle
+                0x000000000013a1f8                bottomFramebufferInfo
+                0x000000000013a214                gspEvent
+                0x000000000013a218                gfxTopLeftFramebuffers
+                0x000000000013a220                gfxTopRightFramebuffers
+                0x000000000013a228                topFramebufferInfo
+                0x000000000013a244                gfxThreadID
+                0x000000000013a248                gfxSharedMemory
+                0x000000000013a24c                gfxTopFramebufferMaxSize
+                0x000000000013a250                gfxBottomFramebufferMaxSize
+ COMMON         0x000000000013a254        0x4 /opt/devkitpro/libctru/lib/libctru.a(gx.o)
+                0x000000000013a254                gxCmdBuf
+ COMMON         0x000000000013a258        0xc /opt/devkitpro/libctru/lib/libctru.a(gpu.o)
+                0x000000000013a258                gpuCmdBuf
+                0x000000000013a25c                gpuCmdBufOffset
+                0x000000000013a260                gpuCmdBufSize
+ COMMON         0x000000000013a264        0x4 /opt/devkitpro/libctru/lib/libctru.a(gspgpu.o)
+                0x000000000013a264                gspGpuHandle
+ COMMON         0x000000000013a268       0x20 /opt/devkitpro/libctru/lib/libctru.a(hid.o)
+                0x000000000013a268                hidMemHandle
+                0x000000000013a26c                hidHandle
+                0x000000000013a270                hidSharedMem
+                0x000000000013a274                hidEvents
+ COMMON         0x000000000013a288        0x4 /opt/devkitpro/libctru/lib/libctru.a(initSystem.o)
+                0x000000000013a288                __system_retAddr
+ COMMON         0x000000000013a28c        0x8 /opt/devkitpro/libctru/lib/libctru.a(allocateHeaps.o)
+                0x000000000013a28c                __ctru_linear_heap
+                0x000000000013a290                __ctru_heap
+ COMMON         0x000000000013a294        0x8 /opt/devkitpro/libctru/lib/libctru.a(initArgv.o)
+                0x000000000013a294                __system_argv
+                0x000000000013a298                __system_argc
+ COMMON         0x000000000013a29c       0x10 /opt/devkitpro/libctru/lib/libctru.a(irrst.o)
+                0x000000000013a29c                irrstHandle
+                0x000000000013a2a0                irrstEvent
+                0x000000000013a2a4                irrstMemHandle
+                0x000000000013a2a8                irrstSharedMem
+                0x000000000013a2ac                . = ALIGN (0x4)
+                0x000000000013a2ac                __tls_start = .
+                0x000000000013b6b8                . = (. + (SIZEOF (.tdata) + SIZEOF (.tbss)))
+ *fill*         0x000000000013a2ac     0x140c 
+                0x000000000013b6b8                __tls_end = .
+                0x000000000013b6b8                __bss_end__ = .
+                0x000000000013b6b8                __end__ = ABSOLUTE (.)
 
 /DISCARD/
  *(.group .comment .note)
