@@ -477,15 +477,18 @@ static void checkCollisions()
 {
 	for (size_t i = 0; i < disparos_actuales; i++)
 	{
-		for (size_t j = 0; j < MAX_DEATH_HEADS; j++)
+		if (disparos[i].visible == true)
 		{
-			if (deathHeads[j].visible == true)
+			for (size_t j = 0; j < MAX_DEATH_HEADS; j++)
 			{
-				if ((abs(disparos[i].spr.params.pos.x - deathHeads[j].spr.params.pos.x) < 10) && (abs(disparos[i].spr.params.pos.y - deathHeads[j].spr.params.pos.y) < 10))
+				if (deathHeads[j].visible == true)
 				{
-					disparos[i].visible = false;
-					deathHeads[j].visible = false;
-					colisiones++;
+					if ((abs(disparos[i].spr.params.pos.x - deathHeads[j].spr.params.pos.x) < 10) && (abs(disparos[i].spr.params.pos.y - deathHeads[j].spr.params.pos.y) < 10))
+					{
+						disparos[i].visible = false;
+						deathHeads[j].visible = false;
+						colisiones++;
+					}
 				}
 			}
 		}
