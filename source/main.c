@@ -28,6 +28,7 @@ Curso 2020
 #define VELOCIDAD_BALA 5.0f
 #define MAX_DISPAROS 200
 #define ATTC_SPEED 25
+#define DISTANCIA_COLISION 10
 
 // Simple sprite struct
 typedef struct
@@ -470,9 +471,6 @@ float distancia(float x1, float y1, float x2, float y2)
 	return d;
 }
 
-//disparos[i].spr.params.pos.x
-//deathHeads[j].spr.params.pos.x
-
 static void checkCollisions()
 {
 	for (size_t i = 0; i < disparos_actuales; i++)
@@ -483,7 +481,7 @@ static void checkCollisions()
 			{
 				if (deathHeads[j].visible == true)
 				{
-					if ((abs(disparos[i].spr.params.pos.x - deathHeads[j].spr.params.pos.x) < 10) && (abs(disparos[i].spr.params.pos.y - deathHeads[j].spr.params.pos.y) < 10))
+					if ((abs(disparos[i].spr.params.pos.x - deathHeads[j].spr.params.pos.x) < DISTANCIA_COLISION) && (abs(disparos[i].spr.params.pos.y - deathHeads[j].spr.params.pos.y) < DISTANCIA_COLISION))
 					{
 						disparos[i].visible = false;
 						deathHeads[j].visible = false;
