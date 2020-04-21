@@ -481,7 +481,7 @@ static void checkCollisions()
 		{
 			if (deathHeads[j].visible == true)
 			{
-				if ((abs(disparos[i].spr.params.pos.x - deathHeads[j].spr.params.pos.x) < 20) && (abs(disparos[i].spr.params.pos.y - deathHeads[j].spr.params.pos.y) < 20))
+				if ((abs(disparos[i].spr.params.pos.x - deathHeads[j].spr.params.pos.x) < 50) && (abs(disparos[i].spr.params.pos.y - deathHeads[j].spr.params.pos.y) < 50))
 				{
 					disparos[i].visible = false;
 					deathHeads[j].visible = false;
@@ -661,6 +661,7 @@ int main(int argc, char *argv[])
 		moveDeathHeads();
 		moveTears();
 		isaacSpritePos();
+		checkCollisions();
 
 		printf("The Binding of Ivan\n");
 		printf("\x1b[2;1HCPU:     %6.2f%%\x1b[K", C3D_GetProcessingTime() * 6.0f);
