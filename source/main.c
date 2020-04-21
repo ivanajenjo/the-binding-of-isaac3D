@@ -87,6 +87,8 @@ static int nDeathHeads = 0;
 static deathHead deathHeads[MAX_DEATH_HEADS];
 static int status = 0;
 static int colisiones = 0;
+static int enemigosDerrotados = 0;
+static bool loadSecondStage = false;
 
 int disparos_actuales = 0;
 
@@ -102,6 +104,7 @@ static void initFirstBackground()
 	C2D_SpriteSetPos(&background.spr, 0.5f, 0.5f);
 	C2D_SpriteSetRotation(&background.spr, C3D_Angle(0));
 	C2D_SpriteSetDepth(&background.spr, 0.1f);
+	status = 1;
 }
 
 static void initSecondBackground()
@@ -111,6 +114,8 @@ static void initSecondBackground()
 	C2D_SpriteSetPos(&background.spr, 0.5f, 0.5f);
 	C2D_SpriteSetRotation(&background.spr, C3D_Angle(0));
 	C2D_SpriteSetDepth(&background.spr, 0.1f);
+	enemigosDerrotados = 0;
+	status = 2;
 }
 
 //---------------------------------------------------------------------------------
@@ -486,6 +491,7 @@ static void checkCollisions()
 						disparos[i].visible = false;
 						deathHeads[j].visible = false;
 						colisiones++;
+						enemigosDerrotados++;
 					}
 				}
 			}
@@ -605,6 +611,21 @@ static void logicaDisparo()
 	}
 }
 
+static void checkSecondStage(){
+	if (enemigosDerrotados == 8 && status == 1)
+	{
+		loadSecondStage = true;
+	}
+}
+
+static void loadSecondStageEnemies(){
+	for (size_t i = 0; i < MAX_DEATH_HEADS; i++)
+	{
+		deathHeads[i].visible = true;
+	}
+	
+}
+
 //---------------------------------------------------------------------------------
 int main(int argc, char *argv[])
 {
@@ -624,8 +645,7 @@ int main(int argc, char *argv[])
 	loadSheets();
 
 	// Initialize background
-	//initFirstBackground();
-	initSecondBackground();
+	initFirstBackground();
 
 	// Initialize enemies
 	initEnemies();
@@ -640,6 +660,13 @@ int main(int argc, char *argv[])
 	// Main loop
 	while (aptMainLoop())
 	{
+		if (loadSecondStage == true)
+		{
+			initSecondBackground();
+			loadSecondStageEnemies();
+			loadSecondStage = false;
+		}
+
 		hidScanInput();
 
 		// Respond to user input
@@ -660,6 +687,8 @@ int main(int argc, char *argv[])
 		u32 kUp = hidKeysUp();
 		//Player Standing check
 		playerStanding(kUp);
+
+		checkSecondStage();
 
 		logicaDisparo();
 
